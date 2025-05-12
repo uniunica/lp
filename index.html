@@ -42,23 +42,11 @@
 
     <!-- Home -->
     <section id="home" class="bg-purple-100 py-20 text-center">
-      <h2
-        class="text-4xl font-bold text-purple-800 mb-4 animate__animated animate__fadeInDown"
-      >
-        Bem-vindo ao Setor de Expansão
+      <h2 class="text-4xl font-bold text-purple-800 mb-4 animate__animated animate__fadeInDown">
+        Bem-vindo ao Setor de Expansão e Negócios
       </h2>
       <p class="text-lg text-purple-700 animate__animated animate__fadeInUp">
         Tudo o que você precisa saber para crescer conosco.
-      </p>
-    </section>
-
-    <!-- Sobre -->
-    <section id="sobre" class="py-16 px-4 max-w-5xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6 text-purple-800">Sobre o Setor</h2>
-      <p class="text-gray-700">
-        Nosso setor atua diretamente no suporte e crescimento da rede de polos
-        parceiros em todo o Brasil, oferecendo consultoria, materiais e
-        estratégias para captação e expansão regional.
       </p>
     </section>
 
@@ -91,24 +79,21 @@
       </div>
     </section>
 
-    <!-- Mapa dos Polos -->
+    <!-- Mapa dos Polos com SVG -->
     <section id="mapa" class="py-16 px-4 bg-white">
       <div class="max-w-5xl mx-auto">
         <h2 class="text-3xl font-bold mb-6 text-purple-800">Onde Estamos</h2>
         <p class="mb-4 text-gray-700">
           Confira no mapa onde estão localizados nossos polos pelo Brasil:
         </p>
-        <div class="aspect-w-16 aspect-h-9 rounded overflow-hidden shadow-lg">
-          <!-- Exemplo com Google Maps -->
-          <iframe
-            src="https://www.google.com/maps/d/embed?mid=1sUA_Ux6hzD0tE9bYcNeNjZgJ50k&hl=pt-BR"
-            width="100%"
-            height="480"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            class="w-full h-96 border-2 border-purple-300 rounded"
-          ></iframe>
+        <div
+          class="rounded overflow-hidden shadow-lg border-2 border-purple-300"
+        >
+          <object
+            data="Brazil_Blank_Map.svg"
+            type="image/svg+xml"
+            class="w-full h-auto"
+          ></object>
         </div>
       </div>
     </section>
@@ -116,39 +101,25 @@
     <!-- Dúvidas -->
     <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto">
       <h2 class="text-3xl font-bold mb-6 text-purple-800">
-        Central de Dúvidas
+        Dúvidas mais comuns
       </h2>
       <div x-data="{ selected: null }" class="space-y-4">
         <div>
-          <button
-            @click="selected !== 1 ? selected = 1 : selected = null"
-            class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700"
-          >
-            Como funciona a abertura de um polo parceiro?
+          <button @click="selected !== 1 ? selected = 1 : selected = null" class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700">
+            Onde encontro os preços atuais dos nossos produtos?
           </button>
-          <div
-            x-show="selected === 1"
-            x-transition
-            class="p-4 bg-purple-50 border rounded"
-          >
-            Envolve etapas de análise regional, documentação, homologação e
-            treinamento com nossa equipe.
+          <div x-show="selected === 1" x-transition class="p-4 bg-purple-50 border rounded">
+            Temos um drive contendo as informações referentes ao regulamento, clique no
+            <a href="https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing">regulamento</a>
           </div>
         </div>
         <div>
-          <button
-            @click="selected !== 2 ? selected = 2 : selected = null"
-            class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700"
-          >
-            Que tipos de suporte o setor oferece aos parceiros?
+          <button @click="selected !== 2 ? selected = 2 : selected = null" class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700">
+            Onde eu localizo os criativos para postagem?
           </button>
-          <div
-            x-show="selected === 2"
-            x-transition
-            class="p-4 bg-purple-50 border rounded"
-          >
-            Oferecemos suporte comercial, marketing, treinamentos, campanhas
-            sazonais e materiais institucionais.
+          <div x-show="selected === 2" x-transition class="p-4 bg-purple-50 border rounded">
+            Temos um drive contendo os criativos, clique no
+            <a href="https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u">criativos</a>
           </div>
         </div>
       </div>
@@ -259,6 +230,32 @@
           })
           .catch(() => alert("Erro ao enviar. Tente novamente."));
       }
+
+      // mapa do Brasil em formato  SVG
+      const svgPaths = [
+        // Exemplo simplificado de dois estados (SP e RJ);
+        { d: "M300,300 L350,300 L350,350 L300,350 Z", uf: "SP" },
+        { d: "M360,320 L400,320 L400,360 L360,360 Z", uf: "RJ" },
+        // Adicione os demais estados aqui...
+      ];
+
+      const canvas = document.getElementById("mapaBrasil");
+      const ctx = canvas.getContext("2d");
+
+      function drawBrazilMap() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        svgPaths.forEach((state) => {
+          const path = new Path2D(state.d);
+          ctx.fillStyle = "#e9d8fd"; // Cor base
+          ctx.strokeStyle = "#6b21a8"; // Borda roxa
+          ctx.lineWidth = 1;
+          ctx.fill(path);
+          ctx.stroke(path);
+        });
+      }
+
+      drawBrazilMap();
     </script>
   </body>
 </html>
