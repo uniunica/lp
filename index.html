@@ -38,7 +38,6 @@
         <!-- Título com logo -->
         <div class="flex items-center space-x-3">
         <img src="logo.png" alt="Logo Expansão e Negócios" class="w-30 h-10 object-contain" />
-        <h1 class="text-xl font-bold text-purple-700">Expansão e Negócios</h1>
         </div>
         <!-- Navegação -->
         <nav class="space-x-4">
@@ -70,33 +69,43 @@
         <div class="grid md:grid-cols-3 gap-6">
           <button
             onclick="openModal('Graduação', 'https://seusite.com/catalogo-graduacao.pdf',
-            'https://seusite.com/criativos-graduacao.zip')"
+            'https://drive.google.com/drive/folders/1j7G8VkDgSW9bhD2_4ZeD2hAdBZefEZ1c?usp=drive_link',
+            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
             class="produto-card">
             Graduação
           </button>
           <button
             onclick="openModal('Segunda Graduação', 'https://seusite.com/catalogo-segunda-graduacao.pdf',
-            'https://seusite.com/criativos-segunda-graduacao.zip')"
+            'https://drive.google.com/drive/folders/1OItV_fNWQzupiVoRspbwwC_9xEvyi8M0?usp=drive_link',
+            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
             class="produto-card">
             Segunda Graduação
           </button>
           <button
-            onclick="openModal('Pós-Graduação', 'https://drive.google.com/drive/folders/1KbladBVJgP7uXu1n8JRyA91XKmG9fnLr', 'https://seusite.com/criativos-pos.zip')"
+            onclick="openModal('Pós-Graduação', 'https://drive.google.com/drive/folders/1KbladBVJgP7uXu1n8JRyA91XKmG9fnLr', 
+            'https://drive.google.com/drive/folders/1Bwp3Bubc4vFUo0fj_XVWvhYhgmBjiz9J?usp=drive_link',
+            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
             class="produto-card">
             Pós-Graduação
           </button>
           <button
-            onclick="openModal('Disciplinas Isoladas', 'https://seusite.com/catalogo-disciplinas.pdf', 'https://seusite.com/criativos-disciplinas.zip')"
+            onclick="openModal('Disciplinas Isoladas', 'https://seusite.com/catalogo-disciplinas.pdf',
+            'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
+            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
             class="produto-card">
             Disciplinas Isoladas
           </button>
           <button
-            onclick="openModal('EJA', 'https://seusite.com/catalogo-eja.pdf', 'https://seusite.com/criativos-eja.zip')"
+            onclick="openModal('EJA', 'https://seusite.com/catalogo-eja.pdf',
+            'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
+            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
             class="produto-card">
             EJA
           </button>
           <button
-            onclick="openModal('Cursos Técnicos', 'https://seusite.com/catalogo-tecnicos.pdf', 'https://seusite.com/criativos-tecnicos.zip')"
+            onclick="openModal('Cursos Técnicos', 'https://seusite.com/catalogo-tecnicos.pdf',
+            'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
+            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
             class="produto-card">
             Cursos Técnicos
           </button>
@@ -265,10 +274,11 @@
           .catch(() => alert("Erro ao enviar. Tente novamente."));
       }
 
-      function openModal(titulo, linkCatalogo, linkCriativos) {
+      function openModal(titulo, linkCatalogo, linkCriativos, linkRegulamento) {
         document.getElementById("modal-title").textContent = titulo;
         document.getElementById("modal-link-catalogo").href = linkCatalogo;
         document.getElementById("modal-link-criativos").href = linkCriativos;
+        document.getElementById("modal-link-regulamento").href = linkRegulamento;
         document.getElementById("modal").classList.remove("hidden");
       }
       function closeModal() {
