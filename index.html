@@ -34,16 +34,21 @@
   <body class="font-sans antialiased text-gray-900 bg-purple-50">
     <!-- Topo -->
     <header class="bg-white shadow sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Título com logo -->
+        <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="Logo Expansão e Negócios" class="w-30 h-10 object-contain" />
         <h1 class="text-xl font-bold text-purple-700">Expansão e Negócios</h1>
+        </div>
+        <!-- Navegação -->
         <nav class="space-x-4">
-          <a href="#home" class="hover:text-purple-600 font-medium">Home</a>
-          <a href="#produtos" class="hover:text-purple-600 font-medium">Produtos</a>
-          <a href="#mapa" class="hover:text-purple-600 font-medium">Onde Estamos?</a>
-          <a href="#duvidas" class="hover:text-purple-600 font-medium">Dúvidas</a>
-          <a href="#contato" class="hover:text-purple-600 font-medium">Contato</a>
+        <a href="#home" class="hover:text-purple-600 font-medium">Home</a>
+        <a href="#produtos" class="hover:text-purple-600 font-medium">Produtos</a>
+        <a href="#mapa" class="hover:text-purple-600 font-medium">Onde Estamos?</a>
+        <a href="#duvidas" class="hover:text-purple-600 font-medium">Dúvidas</a>
+        <a href="#contato" class="hover:text-purple-600 font-medium">Contato</a>
         </nav>
-      </div>
+    </div>
     </header>
 
     <!-- Home -->
@@ -64,12 +69,14 @@
         </h2>
         <div class="grid md:grid-cols-3 gap-6">
           <button
-            onclick="openModal('Graduação', 'https://seusite.com/catalogo-graduacao.pdf', 'https://seusite.com/criativos-graduacao.zip')"
+            onclick="openModal('Graduação', 'https://seusite.com/catalogo-graduacao.pdf',
+            'https://seusite.com/criativos-graduacao.zip')"
             class="produto-card">
             Graduação
           </button>
           <button
-            onclick="openModal('Segunda Graduação', 'https://seusite.com/catalogo-segunda-graduacao.pdf', 'https://seusite.com/criativos-segunda-graduacao.zip')"
+            onclick="openModal('Segunda Graduação', 'https://seusite.com/catalogo-segunda-graduacao.pdf',
+            'https://seusite.com/criativos-segunda-graduacao.zip')"
             class="produto-card">
             Segunda Graduação
           </button>
