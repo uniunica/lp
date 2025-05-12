@@ -6,13 +6,24 @@
     <title>Setor de Expansão e Negócios</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
       html {
         scroll-behavior: smooth;
+      }
+      .produto-card {
+        background-color: white;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        text-align: center;
+        font-weight: 600;
+        color: #5b21b6;
+      }
+      .produto-card:hover {
+        background-color: #f3e8ff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
       }
     </style>
   </head>
@@ -42,7 +53,9 @@
 
     <!-- Home -->
     <section id="home" class="bg-purple-100 py-20 text-center">
-      <h2 class="text-4xl font-bold text-purple-800 mb-4 animate__animated animate__fadeInDown">
+      <h2
+        class="text-4xl font-bold text-purple-800 mb-4 animate__animated animate__fadeInDown"
+      >
         Bem-vindo ao Setor de Expansão e Negócios
       </h2>
       <p class="text-lg text-purple-700 animate__animated animate__fadeInUp">
@@ -57,23 +70,90 @@
           Nossos Produtos
         </h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+          <button onclick="openModal('Graduação', 'https://seusite.com/catalogo-graduacao.pdf')" class="produto-card">
             Graduação
-          </div>
-          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+          </button>
+          <button onclick="openModal('Segunda Graduação', 'https://seusite.com/catalogo-segunda-graduacao.pdf')"
+            class="produto-card">
             Segunda Graduação
-          </div>
-          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-            Pós Graduação
-          </div>
-          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+          </button>
+          <button onclick="openModal('Pós-Graduação', 'https://seusite.com/catalogo-pos.pdf')"
+            class="produto-card">
+            Pós-Graduação
+          </button>
+          <button onclick="openModal('Disciplinas Isoladas', 'https://seusite.com/catalogo-disciplinas.pdf')"
+            class="produto-card">
             Disciplinas Isoladas
-          </div>
-          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+          </button>
+          <button onclick="openModal('EJA', 'https://seusite.com/catalogo-eja.pdf')" class="produto-card">
             EJA
-          </div>
-          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+          </button>
+          <button onclick="openModal('Cursos Técnicos', 'https://seusite.com/catalogo-tecnicos.pdf')" class="produto-card">
             Cursos Técnicos
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+      <div class="bg-white p-6 rounded shadow-lg max-w-md text-center relative">
+        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl">
+          &times;
+        </button>
+        <h3 id="modal-title" class="text-xl font-bold text-purple-800 mb-4"></h3>
+        <p class="mb-6 text-gray-700">
+          Clique no botão abaixo para visualizar o catálogo completo.
+        </p>
+        <a id="modal-link" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded" >
+          Ver Catálogo
+        </a>
+      </div>
+    </div>
+
+    <!-- Dúvidas -->
+    <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-purple-800">
+        Dúvidas mais comuns
+      </h2>
+      <div x-data="{ selected: null }" class="space-y-4">
+        <div>
+          <button
+            @click="selected !== 1 ? selected = 1 : selected = null"
+            class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700"
+          >
+            Onde encontro os preços atuais dos nossos produtos?
+          </button>
+          <div
+            x-show="selected === 1"
+            x-transition
+            class="p-4 bg-purple-50 border rounded"
+          >
+            Temos um drive contendo as informações referentes ao regulamento,
+            clique no
+            <a
+              href="https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing"
+              >regulamento</a
+            >
+          </div>
+        </div>
+        <div>
+          <button
+            @click="selected !== 2 ? selected = 2 : selected = null"
+            class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700"
+          >
+            Onde eu localizo os criativos para postagem?
+          </button>
+          <div
+            x-show="selected === 2"
+            x-transition
+            class="p-4 bg-purple-50 border rounded"
+          >
+            Temos um drive contendo os criativos, clique no
+            <a
+              href="https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u"
+              >criativos</a
+            >
           </div>
         </div>
       </div>
@@ -94,33 +174,6 @@
             type="image/svg+xml"
             class="w-full h-auto"
           ></object>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dúvidas -->
-    <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6 text-purple-800">
-        Dúvidas mais comuns
-      </h2>
-      <div x-data="{ selected: null }" class="space-y-4">
-        <div>
-          <button @click="selected !== 1 ? selected = 1 : selected = null" class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700">
-            Onde encontro os preços atuais dos nossos produtos?
-          </button>
-          <div x-show="selected === 1" x-transition class="p-4 bg-purple-50 border rounded">
-            Temos um drive contendo as informações referentes ao regulamento, clique no
-            <a href="https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing">regulamento</a>
-          </div>
-        </div>
-        <div>
-          <button @click="selected !== 2 ? selected = 2 : selected = null" class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700">
-            Onde eu localizo os criativos para postagem?
-          </button>
-          <div x-show="selected === 2" x-transition class="p-4 bg-purple-50 border rounded">
-            Temos um drive contendo os criativos, clique no
-            <a href="https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u">criativos</a>
-          </div>
         </div>
       </div>
     </section>
@@ -239,23 +292,14 @@
         // Adicione os demais estados aqui...
       ];
 
-      const canvas = document.getElementById("mapaBrasil");
-      const ctx = canvas.getContext("2d");
-
-      function drawBrazilMap() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        svgPaths.forEach((state) => {
-          const path = new Path2D(state.d);
-          ctx.fillStyle = "#e9d8fd"; // Cor base
-          ctx.strokeStyle = "#6b21a8"; // Borda roxa
-          ctx.lineWidth = 1;
-          ctx.fill(path);
-          ctx.stroke(path);
-        });
+      function openModal(titulo, link) {
+        document.getElementById("modal-title").textContent = titulo;
+        document.getElementById("modal-link").href = link;
+        document.getElementById("modal").classList.remove("hidden");
       }
-
-      drawBrazilMap();
+      function closeModal() {
+        document.getElementById("modal").classList.add("hidden");
+      }
     </script>
   </body>
 </html>
