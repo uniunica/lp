@@ -107,28 +107,13 @@
           Escolha abaixo uma das opções para acessar o material:
         </p>
         <div class="flex flex-col gap-3">
-          <a
-            id="modal-link-catalogo"
-            href="#"
-            target="_blank"
-            class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded"
-          >
+          <a id="modal-link-catalogo" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">
             Ver Catálogo
           </a>
-          <a
-            id="modal-link-criativos"
-            href="#"
-            target="_blank"
-            class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded"
-          >
+          <a id="modal-link-criativos" href="#" target="_blank" class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded">
             Ver Criativos
           </a>
-          <a
-            id="modal-link-regulamento"
-            href="#"
-            target="_blank"
-            class="bg-purple-400 hover:bg-purple-500 text-white font-semibold py-2 px-4 rounded"
-          >
+          <a id="modal-link-regulamento" href="#" target="_blank" class="bg-purple-400 hover:bg-purple-500 text-white font-semibold py-2 px-4 rounded">
             Ver Regulamento
           </a>
         </div>
@@ -142,42 +127,22 @@
       </h2>
       <div x-data="{ selected: null }" class="space-y-4">
         <div>
-          <button
-            @click="selected !== 1 ? selected = 1 : selected = null"
-            class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700"
-          >
+          <button @click="selected !== 1 ? selected = 1 : selected = null" class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700">
             Onde encontro os preços atuais dos nossos produtos?
           </button>
-          <div
-            x-show="selected === 1"
-            x-transition
-            class="p-4 bg-purple-50 border rounded"
-          >
+          <div x-show="selected === 1" x-transition class="p-4 bg-purple-50 border rounded">
             Temos um drive contendo as informações referentes ao regulamento,
             clique no
-            <a
-              href="https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing"
-              >regulamento</a
-            >
+            <a href="https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing">regulamento</a>
           </div>
         </div>
         <div>
-          <button
-            @click="selected !== 2 ? selected = 2 : selected = null"
-            class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700"
-          >
+          <button  @click="selected !== 2 ? selected = 2 : selected = null" class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700">
             Onde eu localizo os criativos para postagem?
           </button>
-          <div
-            x-show="selected === 2"
-            x-transition
-            class="p-4 bg-purple-50 border rounded"
-          >
+          <div x-show="selected === 2" x-transition class="p-4 bg-purple-50 border rounded">
             Temos um drive contendo os criativos, clique no
-            <a
-              href="https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u"
-              >criativos</a
-            >
+            <a href="https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u">criativos</a>
           </div>
         </div>
       </div>
@@ -190,14 +155,8 @@
         <p class="mb-4 text-gray-700">
           Confira no mapa onde estão localizados nossos polos pelo Brasil:
         </p>
-        <div
-          class="rounded overflow-hidden shadow-lg border-2 border-purple-300"
-        >
-          <object
-            data="Brazil_Blank_Map.svg"
-            type="image/svg+xml"
-            class="w-full h-auto"
-          ></object>
+        <div class="rounded overflow-hidden shadow-lg border-2 border-purple-300">
+          <object data="Brazil_Blank_Map.svg" type="image/svg+xml" class="w-full h-auto"></object>
         </div>
       </div>
     </section>
@@ -206,42 +165,14 @@
     <section id="contato" class="bg-purple-100 py-16 px-4">
       <div class="max-w-3xl mx-auto">
         <h2 class="text-3xl font-bold mb-6 text-purple-800">Fale Conosco</h2>
-        <form
-          id="contatoForm"
-          action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
-          method="POST"
-          onsubmit="handleFormSubmit(event)"
-          class="space-y-4"
-        >
-          <input type="hidden" name="_captcha" value="false" />
-          <input
-            type="hidden"
-            name="_next"
-            value="https://suaurl.com/sucesso.html"
-          />
-          <input
-            type="text"
-            name="nome"
-            placeholder="Seu nome"
-            class="w-full p-3 rounded border"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Seu e-mail"
-            class="w-full p-3 rounded border"
-            required
-          />
-          <textarea
-            name="mensagem"
-            placeholder="Sua mensagem"
-            class="w-full p-3 rounded border h-32"
-          ></textarea>
-          <button
-            type="submit"
-            class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800"
-          >
+        <form id="contatoForm" action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
+          method="POST" onsubmit="handleFormSubmit(event)" class="space-y-4">
+          <input type="hidden" name="_captcha" value="false"/>
+          <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html"/>
+          <input type="text" name="nome" placeholder="Seu nome" class="w-full p-3 rounded border" required/>
+          <input type="email" name="email" placeholder="Seu e-mail" class="w-full p-3 rounded border" required/>
+          <textarea name="mensagem" placeholder="Sua mensagem" class="w-full p-3 rounded border h-32"></textarea>
+          <button type="submit" class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800">
             Enviar
           </button>
         </form>
@@ -268,11 +199,8 @@
       "
       class="fixed inset-0 flex items-center justify-center z-50"
       style="display: none"
-      id="popupSuccess"
-    >
-      <div
-        class="bg-white rounded-lg p-6 shadow-xl border border-green-300 animate__animated animate__fadeInDown"
-      >
+      id="popupSuccess">
+      <div class="bg-white rounded-lg p-6 shadow-xl border border-green-300 animate__animated animate__fadeInDown">
         <div class="text-green-600 text-2xl font-semibold mb-2">
           ✅ Mensagem Enviada!
         </div>
@@ -307,14 +235,6 @@
           })
           .catch(() => alert("Erro ao enviar. Tente novamente."));
       }
-
-      // mapa do Brasil em formato  SVG
-      const svgPaths = [
-        // Exemplo simplificado de dois estados (SP e RJ);
-        { d: "M300,300 L350,300 L350,350 L300,350 Z", uf: "SP" },
-        { d: "M360,320 L400,320 L400,360 L360,360 Z", uf: "RJ" },
-        // Adicione os demais estados aqui...
-      ];
 
       function openModal(titulo, linkCatalogo, linkCriativos) {
         document.getElementById("modal-title").textContent = titulo;
