@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setor de Expansão e Negócios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased text-gray-900 bg-purple-50">
+    <!-- Topo -->
+    <header class="bg-white shadow sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <h1 class="text-xl font-bold text-purple-700">Expansão e Negócios</h1>
+        <nav class="space-x-4">
+          <a href="#home" class="hover:text-purple-600 font-medium">Home</a>
+          <a href="#sobre" class="hover:text-purple-600 font-medium">Sobre</a>
+          <a href="#produtos" class="hover:text-purple-600 font-medium"
+            >Produtos</a
+          >
+          <a href="#mapa" class="hover:text-purple-600 font-medium">Mapa</a>
+          <a href="#duvidas" class="hover:text-purple-600 font-medium"
+            >Dúvidas</a
+          >
+          <a href="#contato" class="hover:text-purple-600 font-medium"
+            >Contato</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- Home -->
+    <section id="home" class="bg-purple-100 py-20 text-center">
+      <h2
+        class="text-4xl font-bold text-purple-800 mb-4 animate__animated animate__fadeInDown"
+      >
+        Bem-vindo ao Setor de Expansão
+      </h2>
+      <p class="text-lg text-purple-700 animate__animated animate__fadeInUp">
+        Tudo o que você precisa saber para crescer conosco.
+      </p>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="py-16 px-4 max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-purple-800">Sobre o Setor</h2>
+      <p class="text-gray-700">
+        Nosso setor atua diretamente no suporte e crescimento da rede de polos
+        parceiros em todo o Brasil, oferecendo consultoria, materiais e
+        estratégias para captação e expansão regional.
+      </p>
+    </section>
+
+    <!-- Produtos -->
+    <section id="produtos" class="bg-purple-100 py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-10 text-center text-purple-800">
+          Nossos Produtos
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            Graduação
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            Segunda Graduação
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            Pós Graduação
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            Disciplinas Isoladas
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            EJA
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            Cursos Técnicos
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mapa dos Polos -->
+    <section id="mapa" class="py-16 px-4 bg-white">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-purple-800">Onde Estamos</h2>
+        <p class="mb-4 text-gray-700">
+          Confira no mapa onde estão localizados nossos polos pelo Brasil:
+        </p>
+        <div class="aspect-w-16 aspect-h-9 rounded overflow-hidden shadow-lg">
+          <!-- Exemplo com Google Maps -->
+          <iframe
+            src="https://www.google.com/maps/d/embed?mid=1sUA_Ux6hzD0tE9bYcNeNjZgJ50k&hl=pt-BR"
+            width="100%"
+            height="480"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="w-full h-96 border-2 border-purple-300 rounded"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dúvidas -->
+    <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-purple-800">
+        Central de Dúvidas
+      </h2>
+      <div x-data="{ selected: null }" class="space-y-4">
+        <div>
+          <button
+            @click="selected !== 1 ? selected = 1 : selected = null"
+            class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700"
+          >
+            Como funciona a abertura de um polo parceiro?
+          </button>
+          <div
+            x-show="selected === 1"
+            x-transition
+            class="p-4 bg-purple-50 border rounded"
+          >
+            Envolve etapas de análise regional, documentação, homologação e
+            treinamento com nossa equipe.
+          </div>
+        </div>
+        <div>
+          <button
+            @click="selected !== 2 ? selected = 2 : selected = null"
+            class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700"
+          >
+            Que tipos de suporte o setor oferece aos parceiros?
+          </button>
+          <div
+            x-show="selected === 2"
+            x-transition
+            class="p-4 bg-purple-50 border rounded"
+          >
+            Oferecemos suporte comercial, marketing, treinamentos, campanhas
+            sazonais e materiais institucionais.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="bg-purple-100 py-16 px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-purple-800">Fale Conosco</h2>
+        <form
+          id="contatoForm"
+          action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
+          method="POST"
+          onsubmit="handleFormSubmit(event)"
+          class="space-y-4"
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://suaurl.com/sucesso.html"
+          />
+          <input
+            type="text"
+            name="nome"
+            placeholder="Seu nome"
+            class="w-full p-3 rounded border"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Seu e-mail"
+            class="w-full p-3 rounded border"
+            required
+          />
+          <textarea
+            name="mensagem"
+            placeholder="Sua mensagem"
+            class="w-full p-3 rounded border h-32"
+          ></textarea>
+          <button
+            type="submit"
+            class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800"
+          >
+            Enviar
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-white text-center py-6 border-t">
+      <p class="text-sm text-gray-600">
+        © 2025 Centro Universitário Única | Expansão e Negócios
+      </p>
+    </footer>
+
+    <!-- Popup -->
+    <div
+      x-data="{ show: false }"
+      x-show="show"
+      x-transition
+      x-init="
+        window.addEventListener('form-enviado', () => {
+          show = true;
+          setTimeout(() => show = false, 4000);
+        })
+      "
+      class="fixed inset-0 flex items-center justify-center z-50"
+      style="display: none"
+      id="popupSuccess"
+    >
+      <div
+        class="bg-white rounded-lg p-6 shadow-xl border border-green-300 animate__animated animate__fadeInDown"
+      >
+        <div class="text-green-600 text-2xl font-semibold mb-2">
+          ✅ Mensagem Enviada!
+        </div>
+        <p class="text-gray-700">
+          Agradecemos o seu contato. Em breve retornaremos.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function resetFormAfterSend() {
+        setTimeout(() => {
+          document.getElementById("contatoForm").reset();
+        }, 1000);
+      }
+
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        const form = document.getElementById("contatoForm");
+        fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        })
+          .then((response) => {
+            if (response.ok) {
+              form.reset();
+              window.dispatchEvent(new Event("form-enviado"));
+            } else {
+              alert("Formulário enviado. Em breve retornaremos");
+            }
+          })
+          .catch(() => alert("Erro ao enviar. Tente novamente."));
+      }
+    </script>
+  </body>
+</html>
