@@ -105,11 +105,11 @@
             EJA
           </button>
           <button
-            onclick="openModal('Disciplinas Isoladas', 'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
+            onclick="openModal('Cursos Técnicos', 'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
             'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
             'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
             class="produto-card">
-            Disciplinas Isoladas
+            Cursos Técnicos
           </button>
         </div>
       </div>
@@ -321,24 +321,18 @@
       document.addEventListener("DOMContentLoaded", () => {
         const searchInput = document.getElementById("city-search");
         const resultsContainer = document.getElementById("autocomplete-results");
-
         // Acessa o objeto de cidades definido em mapdata.js
         const citiesData = simplemaps_countrymap_mapdata.locations;
-
         const cities = Object.values(citiesData).map(city => city.name);
-
         // Escuta a digitação
         searchInput.addEventListener("input", function () {
             const query = this.value.toLowerCase();
             resultsContainer.innerHTML = "";
-
             if (query.length < 2) {
                 resultsContainer.classList.add("hidden");
                 return;
             }
-
             const filteredCities = cities.filter(name => name.toLowerCase().includes(query));
-
             if (filteredCities.length > 0) {
                 filteredCities.forEach(city => {
                     const li = document.createElement("li");
@@ -348,7 +342,6 @@
                         searchInput.value = city;
                         resultsContainer.innerHTML = "";
                         resultsContainer.classList.add("hidden");
-
                         // Função extra: focar o mapa na cidade
                         focusCityOnMap(city);
                     });
@@ -359,7 +352,6 @@
                 resultsContainer.classList.add("hidden");
             }
         });
-
         // (Opcional) Centralizar no mapa a cidade selecionada
         function focusCityOnMap(cityName) {
             const cityKey = Object.keys(citiesData).find(key => citiesData[key].name === cityName);
