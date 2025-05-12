@@ -6,7 +6,10 @@
     <title>Setor de Expansão e Negócios</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
       html {
         scroll-behavior: smooth;
@@ -30,32 +33,22 @@
   <body class="font-sans antialiased text-gray-900 bg-purple-50">
     <!-- Topo -->
     <header class="bg-white shadow sticky top-0 z-50">
-      <div
-        class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
-      >
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <h1 class="text-xl font-bold text-purple-700">Expansão e Negócios</h1>
         <nav class="space-x-4">
           <a href="#home" class="hover:text-purple-600 font-medium">Home</a>
           <a href="#sobre" class="hover:text-purple-600 font-medium">Sobre</a>
-          <a href="#produtos" class="hover:text-purple-600 font-medium"
-            >Produtos</a
-          >
+          <a href="#produtos" class="hover:text-purple-600 font-medium">Produtos</a>
           <a href="#mapa" class="hover:text-purple-600 font-medium">Mapa</a>
-          <a href="#duvidas" class="hover:text-purple-600 font-medium"
-            >Dúvidas</a
-          >
-          <a href="#contato" class="hover:text-purple-600 font-medium"
-            >Contato</a
-          >
+          <a href="#duvidas" class="hover:text-purple-600 font-medium">Dúvidas</a>
+          <a href="#contato" class="hover:text-purple-600 font-medium">Contato</a>
         </nav>
       </div>
     </header>
 
     <!-- Home -->
     <section id="home" class="bg-purple-100 py-20 text-center">
-      <h2
-        class="text-4xl font-bold text-purple-800 mb-4 animate__animated animate__fadeInDown"
-      >
+      <h2 class="text-4xl font-bold text-purple-800 mb-4 animate__animated animate__fadeInDown">
         Bem-vindo ao Setor de Expansão e Negócios
       </h2>
       <p class="text-lg text-purple-700 animate__animated animate__fadeInUp">
@@ -70,25 +63,33 @@
           Nossos Produtos
         </h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <button onclick="openModal('Graduação', 'https://seusite.com/catalogo-graduacao.pdf')" class="produto-card">
+          <button onclick="openModal('Graduação', 'https://seusite.com/catalogo-graduacao.pdf', 'https://seusite.com/criativos-graduacao.zip')"
+            class="produto-card">
             Graduação
           </button>
-          <button onclick="openModal('Segunda Graduação', 'https://seusite.com/catalogo-segunda-graduacao.pdf')"
+          <button
+            onclick="openModal('Segunda Graduação', 'https://seusite.com/catalogo-segunda-graduacao.pdf', 'https://seusite.com/criativos-segunda-graduacao.zip')"
             class="produto-card">
             Segunda Graduação
           </button>
-          <button onclick="openModal('Pós-Graduação', 'https://seusite.com/catalogo-pos.pdf')"
+          <button
+            onclick="openModal('Pós-Graduação', 'https://drive.google.com/drive/folders/1KbladBVJgP7uXu1n8JRyA91XKmG9fnLr', 'https://seusite.com/criativos-pos.zip')"
             class="produto-card">
             Pós-Graduação
           </button>
-          <button onclick="openModal('Disciplinas Isoladas', 'https://seusite.com/catalogo-disciplinas.pdf')"
+          <button
+            onclick="openModal('Disciplinas Isoladas', 'https://seusite.com/catalogo-disciplinas.pdf', 'https://seusite.com/criativos-disciplinas.zip')"
             class="produto-card">
             Disciplinas Isoladas
           </button>
-          <button onclick="openModal('EJA', 'https://seusite.com/catalogo-eja.pdf')" class="produto-card">
+          <button
+            onclick="openModal('EJA', 'https://seusite.com/catalogo-eja.pdf', 'https://seusite.com/criativos-eja.zip')"
+            class="produto-card">
             EJA
           </button>
-          <button onclick="openModal('Cursos Técnicos', 'https://seusite.com/catalogo-tecnicos.pdf')" class="produto-card">
+          <button
+            onclick="openModal('Cursos Técnicos', 'https://seusite.com/catalogo-tecnicos.pdf', 'https://seusite.com/criativos-tecnicos.zip')"
+            class="produto-card">
             Cursos Técnicos
           </button>
         </div>
@@ -103,11 +104,34 @@
         </button>
         <h3 id="modal-title" class="text-xl font-bold text-purple-800 mb-4"></h3>
         <p class="mb-6 text-gray-700">
-          Clique no botão abaixo para visualizar o catálogo completo.
+          Escolha abaixo uma das opções para acessar o material:
         </p>
-        <a id="modal-link" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded" >
-          Ver Catálogo
-        </a>
+        <div class="flex flex-col gap-3">
+          <a
+            id="modal-link-catalogo"
+            href="#"
+            target="_blank"
+            class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded"
+          >
+            Ver Catálogo
+          </a>
+          <a
+            id="modal-link-criativos"
+            href="#"
+            target="_blank"
+            class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded"
+          >
+            Ver Criativos
+          </a>
+          <a
+            id="modal-link-regulamento"
+            href="#"
+            target="_blank"
+            class="bg-purple-400 hover:bg-purple-500 text-white font-semibold py-2 px-4 rounded"
+          >
+            Ver Regulamento
+          </a>
+        </div>
       </div>
     </div>
 
@@ -292,9 +316,10 @@
         // Adicione os demais estados aqui...
       ];
 
-      function openModal(titulo, link) {
+      function openModal(titulo, linkCatalogo, linkCriativos) {
         document.getElementById("modal-title").textContent = titulo;
-        document.getElementById("modal-link").href = link;
+        document.getElementById("modal-link-catalogo").href = linkCatalogo;
+        document.getElementById("modal-link-criativos").href = linkCriativos;
         document.getElementById("modal").classList.remove("hidden");
       }
       function closeModal() {
