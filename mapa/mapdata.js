@@ -225,7 +225,8 @@ var simplemaps_countrymap_mapdata={
     "13": {
       lat: -9.57,
       lng: -57.399,
-      name: "Apiacás - MT"
+      name: "Apiacás - MT",
+      description: "Endereço: Avenida Ludovico da Riva Neto, 11 - Bairro Bom Jesus III - \nResponsável: Dilma Ferreira de Oliveira Colodel\nTelefone: (66) 98415-6517\nEmail: apiacas@unicaead.com.br"
     },
     "14": {
       lat: -15.893,
