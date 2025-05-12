@@ -30,6 +30,8 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
       }
     </style>
+    <script type="text/javascript" src="mapa/mapdata.js"></script>
+    <script type="text/javascript" src="mapa/countrymap.js"></script>
   </head>
   <body class="font-sans antialiased text-gray-900 bg-purple-50">
     <!-- Topo -->
@@ -164,17 +166,17 @@
       </div>
     </section>
 
-    <!-- Mapa dos Polos com SVG -->
+    <!-- Mapa dos Polos -->
     <section id="mapa" class="py-16 px-4 bg-white">
-      <div class="max-w-5xl mx-auto">
+    <div class="max-w-5xl mx-auto">
         <h2 class="text-3xl font-bold mb-6 text-purple-800">Onde Estamos</h2>
         <p class="mb-4 text-gray-700">
-          Confira no mapa onde estão localizados nossos polos pelo Brasil:
+        Confira no mapa onde estão localizados nossos polos pelo Brasil:
         </p>
-        <div class="rounded overflow-hidden shadow-lg border-2 border-purple-300">
-          <object data="Brazil_Blank_Map.svg" type="image/svg+xml" class="w-full h-auto"></object>
+        <div id="map" class="w-full h-[600px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
+            <div id="map"></div>
         </div>
-      </div>
+    </div>
     </section>
 
     <!-- Contato -->
