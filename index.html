@@ -173,8 +173,8 @@
         <p class="mb-4 text-gray-700">
         Confira no mapa onde estão localizados nossos polos pelo Brasil:
         </p>
-        <input type="text" id="city-search" placeholder="Digite o nome da cidade..." class="w-full md:w-1/2 p-2 border border-purple-400 rounded mb-4"/>
-        <ul id="autocomplete-results" class="border border-gray-300 rounded bg-white max-h-60 overflow-auto hidden"></ul>
+        <input type="text" id="city-search" placeholder="Clique aqui para listar os polos ou digite para pesquisar..." class="w-full md:w-1/2 p-2 border border-purple-400 rounded mb-4"/>
+        <ul id="autocomplete-results" class="border border-gray-300 rounded bg-white max-h-60 overflow-auto hidden absolute z-50 w-full md:w-1/2"></ul>
         <div id="map" class="w-full h-[600px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
             <div id="map"></div>
         </div>
@@ -323,35 +323,45 @@
         const resultsContainer = document.getElementById("autocomplete-results");
         // Acessa o objeto de cidades definido em mapdata.js
         const citiesData = simplemaps_countrymap_mapdata.locations;
-        const cities = Object.values(citiesData).map(city => city.name);
-        // Escuta a digitação
+        // Mapeia e ordena alfabeticamente
+        const cities = Object.values(citiesData)
+          .map(city => city.name)
+          .sort((a, b) => a.localeCompare(b));
+        // Mostrar todas as cidades ao focar no input
+        searchInput.addEventListener("focus", () => {
+            renderAutocompleteList(cities);
+        });
+
+        // Atualiza lista conforme digita
         searchInput.addEventListener("input", function () {
             const query = this.value.toLowerCase();
+            const filtered = cities.filter(name => name.toLowerCase().includes(query));
+            renderAutocompleteList(filtered);
+        });
+
+        // Função para renderizar a lista
+        function renderAutocompleteList(cityList) {
             resultsContainer.innerHTML = "";
-            if (query.length < 2) {
+            if (cityList.length === 0) {
                 resultsContainer.classList.add("hidden");
                 return;
             }
-            const filteredCities = cities.filter(name => name.toLowerCase().includes(query));
-            if (filteredCities.length > 0) {
-                filteredCities.forEach(city => {
-                    const li = document.createElement("li");
-                    li.textContent = city;
-                    li.classList.add("px-4", "py-2", "hover:bg-purple-100", "cursor-pointer");
-                    li.addEventListener("click", () => {
-                        searchInput.value = city;
-                        resultsContainer.innerHTML = "";
-                        resultsContainer.classList.add("hidden");
-                        // Função extra: focar o mapa na cidade
-                        focusCityOnMap(city);
-                    });
-                    resultsContainer.appendChild(li);
+
+            cityList.forEach(city => {
+                const li = document.createElement("li");
+                li.textContent = city;
+                li.classList.add("px-4", "py-2", "hover:bg-purple-100", "cursor-pointer");
+                li.addEventListener("click", () => {
+                    searchInput.value = city;
+                    resultsContainer.innerHTML = "";
+                    resultsContainer.classList.add("hidden");
+                    focusCityOnMap(city);
                 });
-                resultsContainer.classList.remove("hidden");
-            } else {
-                resultsContainer.classList.add("hidden");
-            }
-        });
+                resultsContainer.appendChild(li);
+            });
+
+            resultsContainer.classList.remove("hidden");
+        }
         // (Opcional) Centralizar no mapa a cidade selecionada
         function focusCityOnMap(cityName) {
             const cityKey = Object.keys(citiesData).find(key => citiesData[key].name === cityName);
@@ -360,6 +370,12 @@
                 simplemaps_countrymap.highlight_region(cityKey);
             }
         }
+        // Ocultar lista ao clicar fora
+        document.addEventListener("click", (e) => {
+            if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
+                resultsContainer.classList.add("hidden");
+            }
+        });
     });
     </script>
   </body>
