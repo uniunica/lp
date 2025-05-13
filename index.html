@@ -45,6 +45,7 @@
         <nav class="space-x-4">
         <a href="#home" class="hover:text-purple-600 font-medium">Home</a>
         <a href="#produtos" class="hover:text-purple-600 font-medium">Produtos</a>
+        <a href="#links-uteis" class="hover:text-purple-600 font-medium">Links Úteis</a>
         <a href="#mapa" class="hover:text-purple-600 font-medium">Onde Estamos?</a>
         <a href="#duvidas" class="hover:text-purple-600 font-medium">Dúvidas</a>
         <a href="#contato" class="hover:text-purple-600 font-medium">Contato</a>
@@ -140,7 +141,7 @@
     </div>
 
     <!-- Links Úteis -->
-    <section id="links-uteis" class="bg-purple-100 py-16 px-4">
+    <section id="links-uteis" class="bg-purple-300 py-16 px-4">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-3xl font-bold mb-10 text-center text-purple-800">
           Links Úteis
@@ -223,6 +224,21 @@
       </div>
     </section>
 
+    <!-- Mapa dos Polos -->
+    <section id="mapa" class="py-16 px-4 bg-white">
+    <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6 text-purple-800">Onde Estamos</h2>
+        <p class="mb-4 text-gray-700">
+        Confira no mapa onde estão localizados nossos polos pelo Brasil:
+        </p>
+        <input type="text" id="city-search" placeholder="Clique aqui para listar os polos ou digite para pesquisar..." class="w-full md:w-1/2 p-2 border border-purple-400 rounded mb-4"/>
+        <ul id="autocomplete-results" class="border border-gray-300 rounded bg-white max-h-60 overflow-auto hidden absolute z-50 w-full md:w-1/2"></ul>
+        <div id="map" class="w-full h-[600px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
+            <div id="map"></div>
+        </div>
+    </div>
+    </section>
+
     <!-- Dúvidas -->
     <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto" x-data="faqSearch()">
       <h2 class="text-3xl font-bold mb-6 text-purple-800">
@@ -248,21 +264,6 @@
           Nenhuma dúvida encontrada com essa palavra-chave.
         </div>
       </div>
-    </section>
-
-    <!-- Mapa dos Polos -->
-    <section id="mapa" class="py-16 px-4 bg-white">
-    <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-6 text-purple-800">Onde Estamos</h2>
-        <p class="mb-4 text-gray-700">
-        Confira no mapa onde estão localizados nossos polos pelo Brasil:
-        </p>
-        <input type="text" id="city-search" placeholder="Clique aqui para listar os polos ou digite para pesquisar..." class="w-full md:w-1/2 p-2 border border-purple-400 rounded mb-4"/>
-        <ul id="autocomplete-results" class="border border-gray-300 rounded bg-white max-h-60 overflow-auto hidden absolute z-50 w-full md:w-1/2"></ul>
-        <div id="map" class="w-full h-[600px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
-            <div id="map"></div>
-        </div>
-    </div>
     </section>
 
     <!-- Contato -->
