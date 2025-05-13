@@ -351,7 +351,7 @@
           document.getElementById("contatoForm").reset();
         }, 1000);
       }
-
+      // Evento de formulário
       function handleFormSubmit(event) {
         event.preventDefault();
         const form = document.getElementById("contatoForm");
@@ -370,7 +370,7 @@
           })
           .catch(() => alert("Erro ao enviar. Tente novamente."));
       }
-
+      //Evento para abrir modal com informações
       function openModal(titulo, linkCatalogo, linkCriativos, linkRegulamento) {
         document.getElementById("modal-title").textContent = titulo;
         document.getElementById("modal-link-catalogo").href = linkCatalogo;
@@ -381,7 +381,7 @@
       function closeModal() {
         document.getElementById("modal").classList.add("hidden");
       }
-
+      // Evento para pesquisa de dúvidas
       function faqSearch() {
         return {
           search: "",
@@ -410,7 +410,7 @@
           },
         };
       }
-
+      //Eventos para pesquisa nos mapas
       document.addEventListener("DOMContentLoaded", () => {
         const searchInput = document.getElementById("city-search");
         const resultsContainer = document.getElementById("autocomplete-results");
@@ -455,13 +455,20 @@
 
             resultsContainer.classList.remove("hidden");
         }
-        // (Opcional) Centralizar no mapa a cidade selecionada
+        // Centralizar no mapa a cidade selecionada
         function focusCityOnMap(cityName) {
-            const cityKey = Object.keys(citiesData).find(key => citiesData[key].name === cityName);
-            if (cityKey && simplemaps_countrymap) {
-                simplemaps_countrymap.set_zoom(4);
-                simplemaps_countrymap.highlight_region(cityKey);
+        const cityKey = Object.keys(citiesData).find(key => citiesData[key].name === cityName);
+        if (cityKey && simplemaps_countrymap) {
+            // Obter a latitude e longitude da cidade
+            const cityLocation = citiesData[cityKey];
+            const stateKey = getStateKey(cityLocation.lat, cityLocation.lng);
+
+            if (stateKey) {
+                // Zoom no estado
+                simplemaps_countrymap.set_zoom(4); // Ajuste o nível de zoom conforme necessário
+                simplemaps_countrymap.highlight_region(stateKey);
             }
+          }
         }
         // Ocultar lista ao clicar fora
         document.addEventListener("click", (e) => {
@@ -477,28 +484,28 @@
     const mensagemSemResultado = document.getElementById('mensagem-sem-resultado');
 
     input.addEventListener("input", function () {
-    const termo = this.value.toLowerCase();
-    let encontrouResultados = false;
+      const termo = this.value.toLowerCase();
+      let encontrouResultados = false;
 
-    cards.forEach((card) => {
-      const titulo = card.querySelector("h3").textContent.toLowerCase();
-      const descricao = card.querySelector("p").textContent.toLowerCase();
+      cards.forEach((card) => {
+        const titulo = card.querySelector("h3").textContent.toLowerCase();
+        const descricao = card.querySelector("p").textContent.toLowerCase();
 
-      if (titulo.includes(termo) || descricao.includes(termo)) {
-        card.style.display = "block";
-        encontrouResultados = true;
-      } else {
-        card.style.display = "none";
-      }
+        if (titulo.includes(termo) || descricao.includes(termo)) {
+          card.style.display = "block";
+          encontrouResultados = true;
+        } else {
+          card.style.display = "none";
+        }
+        });
+
+        // Mostra ou esconde a mensagem com base no resultado
+        if (encontrouResultados) {
+          mensagemSemResultado.classList.add("hidden");
+        } else {
+          mensagemSemResultado.classList.remove("hidden");
+        }
       });
-
-      // Mostra ou esconde a mensagem com base no resultado
-      if (encontrouResultados) {
-        mensagemSemResultado.classList.add("hidden");
-      } else {
-        mensagemSemResultado.classList.remove("hidden");
-      }
-    });
     </script>
   </body>
 </html>
