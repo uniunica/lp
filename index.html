@@ -147,6 +147,9 @@
           Links Úteis
         </h2>
         <input type="text" id="pesquisa-links" placeholder="Pesquisar links..." class="w-full max-w-md mx-auto mb-8 px-4 py-2 rounded-lg shadow border border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-purple-800 placeholder-purple-500 flex justify-center"/>
+        <p id="mensagem-sem-resultado" class="text-center text-purple-800 font-semibold hidden">
+        Nenhum resultado de pesquisa encontrado.
+        </p>
         <div id="cards-links" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <!-- Card de link -->
           <a href="https://drive.google.com/drive/folders/1RKWYgmAmNuozLH-QZJrD4M8oV-psSjdA" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition">
@@ -471,20 +474,30 @@
     // Pesquisa dentro dos cards de links úteis:
     const input = document.getElementById("pesquisa-links");
     const cards = document.querySelectorAll("#cards-links a");
+    const mensagemSemResultado = document.getElementById('mensagem-sem-resultado');
 
     input.addEventListener("input", function () {
-      const termo = this.value.toLowerCase();
+    const termo = this.value.toLowerCase();
+    let encontrouResultados = false;
 
-      cards.forEach((card) => {
-        const titulo = card.querySelector("h3").textContent.toLowerCase();
-        const descricao = card.querySelector("p").textContent.toLowerCase();
+    cards.forEach((card) => {
+      const titulo = card.querySelector("h3").textContent.toLowerCase();
+      const descricao = card.querySelector("p").textContent.toLowerCase();
 
-        if (titulo.includes(termo) || descricao.includes(termo)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
+      if (titulo.includes(termo) || descricao.includes(termo)) {
+        card.style.display = "block";
+        encontrouResultados = true;
+      } else {
+        card.style.display = "none";
+      }
       });
+
+      // Mostra ou esconde a mensagem com base no resultado
+      if (encontrouResultados) {
+        mensagemSemResultado.classList.add("hidden");
+      } else {
+        mensagemSemResultado.classList.remove("hidden");
+      }
     });
     </script>
   </body>
