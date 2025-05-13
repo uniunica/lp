@@ -540,6 +540,11 @@
           linksOcultos.forEach(link => link.classList.add('hidden'));
           recolherBtn.classList.add('hidden');
           verMaisBtn.classList.remove('hidden');
+          // Rolagem suave até a seção "Links Úteis"
+          const destino = document.getElementById('links-uteis');
+          if (destino) {
+            destino.scrollIntoView({ behavior: 'smooth' });
+          }
         });
       });
     </script>
