@@ -501,7 +501,20 @@ function mostrarContato(nome) {
   const carteira = parceiros[nome];
   if (carteira && carteiras[carteira]) {
     const numero = carteiras[carteira];
+    // Link do botão para WhatsApp
     btnWhatsapp.href = `https://wa.me/${numero}`;
+    // Mostrar o número de WhatsApp
+    const numeroVisivel = document.getElementById("numero-visivel");
+    numeroVisivel.textContent = `${numero}`;
+    // Seleciona automaticamente o número
+    numeroVisivel.onclick = function () {
+      const range = document.createRange();
+      range.selectNodeContents(numeroVisivel);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    };
+    // Mostrar a seção de contato
     contatoSection.classList.remove("hidden");
   }
 }
