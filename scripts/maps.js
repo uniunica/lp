@@ -3,21 +3,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("city-search");
   const locationList = document.getElementById("location-list");
   const citiesData = simplemaps_countrymap_mapdata.locations;
-
   // Função para renderizar a lista de polos
   function renderLocationList(cityList) {
     locationList.innerHTML = ""; // Limpa a lista atual
-
+    // Adiciona o placeholder vazio
     const emptyPlaceholder = document.createElement("li");
     emptyPlaceholder.id = "empty-placeholder";
     emptyPlaceholder.className = "p-3 text-gray-500 italic text-center";
     emptyPlaceholder.textContent = "Nenhum polo encontrado";
-
+    // Adiciona o placeholder apenas se a lista estiver vazia
     if (cityList.length === 0) {
       locationList.appendChild(emptyPlaceholder);
       return;
     }
-
+    // Remove o placeholder se a lista não estiver vazia
     cityList.forEach((city) => {
       const li = document.createElement("li");
       li.classList.add("px-4", "py-2", "hover:bg-purple-100", "cursor-pointer");
@@ -31,10 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
       locationList.appendChild(li);
     });
   }
-
   // Renderiza a lista inicial
   renderLocationList(Object.values(citiesData));
-
   // Atualiza a lista conforme digita
   searchInput.addEventListener("input", function () {
     const query = this.value.toLowerCase();
@@ -50,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
       renderLocationList(filteredCities);
     }
   });
-
   // Centralizar no mapa a cidade selecionada
   function focusCityOnMap(cityName) {
     const cityKey = Object.keys(citiesData).find(
@@ -66,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showCityPopup(cityLocation);
     }
   }
-
+  // Função para obter a chave da cidade
   function showCityPopup(cityData) {
     const popup = document.getElementById("city-info-popup");
     popup.innerHTML = `
