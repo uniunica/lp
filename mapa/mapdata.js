@@ -513,7 +513,7 @@ var simplemaps_countrymap_mapdata={
       description: "Endereço: Rua Benedito Ferreira Candelaria, 36 - Centro\nResponsável: Paulyran Ferreira y Silva\nTelefone: (12) 3308-1343 / (12) 99613-4651\nEmail: saojosedoscamposcentro@unicaead.com.br",
       lat: -23.181,
       lng: -45.88,
-      name: "Rua Benedito Ferreira Candelaria, 36 - Centro, São José dos Campos"
+      name: "São José dos Campos"
     },
     "60": {
       lat: -8.056,
