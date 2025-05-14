@@ -288,20 +288,20 @@
     </section>
 
     <!-- Mapa dos Polos -->
-    <section id="mapa" class="py-16 px-4 bg-white">
-      <div class="max-w-5xl mx-auto">
-          <!-- Título -->
-          <h2 class="text-3xl font-bold mb-6 text-purple-800 flex justify-center">Onde Estamos</h2>
-          <p class="mb-4 text-gray-700 flex justify-center">
-          Confira no mapa onde estão localizados nossos polos pelo Brasil:
-          </p>
+    <section id="mapa" class="py-16 px-4 bg-white relative">
+      <div class="max-w-5xl mx-auto flex">
+        <!-- Mapa -->
+        <div id="divmap" class="w-1/2 h-[600px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
+          <div id="map"></div>
+        </div>
+        <!-- Lista de Polos -->
+        <div class="w-1/2 pl-4">
+          <h2 class="text-3xl font-bold mb-6 text-purple-800">Onde Estamos</h2>
+          <p class="mb-4 text-gray-700">Confira a lista de polos:</p>
           <!-- Campo de pesquisa -->
-          <input type="text" id="city-search" placeholder="Clique aqui para listar os polos ou digite para pesquisar..." class="w-full md:w-1/2 p-2 border border-purple-400 rounded mb-4 flex justify-center"/>
-          <ul id="autocomplete-results" class="border border-gray-300 rounded bg-white max-h-60 overflow-auto hidden absolute z-50 w-full md:w-1/2"></ul>
-          <!-- Mapa -->
-          <div id="map" class="w-full h-[600px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
-              <div id="map"></div>
-          </div>
+          <input type="text" id="city-search" placeholder="Pesquisar polos..." class="w-full p-2 border border-purple-400 rounded mb-4"/>
+          <ul id="location-list" class="border border-gray-300 rounded max-h-60 overflow-auto"></ul>
+        </div>
       </div>
     </section>
 
@@ -461,101 +461,103 @@
       //Eventos para pesquisa nos mapas
       document.addEventListener("DOMContentLoaded", () => {
         const searchInput = document.getElementById("city-search");
-        const resultsContainer = document.getElementById("autocomplete-results");
-        // Acessa o objeto de cidades definido em mapdata.js
+        const locationList = document.getElementById("location-list");
         const citiesData = simplemaps_countrymap_mapdata.locations;
-        // Mapeia e ordena alfabeticamente
-        const cities = Object.values(citiesData)
-          .map(city => city.name)
-          .sort((a, b) => a.localeCompare(b));
-        // Mostrar todas as cidades ao focar no input
-        searchInput.addEventListener("focus", () => {
-            renderAutocompleteList(cities);
-        });
 
-        // Atualiza lista conforme digita
-        searchInput.addEventListener("input", function () {
-            const query = this.value.toLowerCase();
-            const filtered = cities.filter(name => name.toLowerCase().includes(query));
-            renderAutocompleteList(filtered);
-        });
-
-        // Função para renderizar a lista
-        function renderAutocompleteList(cityList) {
-            resultsContainer.innerHTML = "";
-            if (cityList.length === 0) {
-                resultsContainer.classList.add("hidden");
-                return;
-            }
-
-            cityList.forEach(city => {
-                const li = document.createElement("li");
-                li.textContent = city;
-                li.classList.add("px-4", "py-2", "hover:bg-purple-100", "cursor-pointer");
-                li.addEventListener("click", () => {
-                    searchInput.value = city;
-                    resultsContainer.innerHTML = "";
-                    resultsContainer.classList.add("hidden");
-                    focusCityOnMap(city);
-                });
-                resultsContainer.appendChild(li);
+        // Função para renderizar a lista de polos
+        function renderLocationList(cityList) {
+          locationList.innerHTML = ""; // Limpa a lista atual
+          cityList.forEach(city => {
+            const li = document.createElement("li");
+            li.classList.add("px-4", "py-2", "hover:bg-purple-100", "cursor-pointer");
+            li.innerHTML = `<strong>${city.name}</strong><br><span class="text-sm text-gray-600">${city.description}</span>`;
+            li.addEventListener("click", () => {
+              focusCityOnMap(city.name); // Foca no mapa ao clicar na lista
             });
-
-            resultsContainer.classList.remove("hidden");
+            locationList.appendChild(li);
+          });
         }
+
+        // Renderiza a lista inicial
+        renderLocationList(Object.values(citiesData));
+
+        // Atualiza a lista conforme digita
+        searchInput.addEventListener("input", function () {
+          const query = this.value.toLowerCase();
+          const filteredCities = Object.values(citiesData).filter(city =>
+            city.name.toLowerCase().includes(query) ||
+            city.description.toLowerCase().includes(query)
+          );
+          renderLocationList(filteredCities);
+        });
+
         // Centralizar no mapa a cidade selecionada
         function focusCityOnMap(cityName) {
-        const cityKey = Object.keys(citiesData).find(key => citiesData[key].name === cityName);
-        if (cityKey && simplemaps_countrymap) {
-            // Obter a latitude e longitude da cidade
+          const cityKey = Object.keys(citiesData).find(
+            key => citiesData[key].name === cityName
+          );
+          if (cityKey && simplemaps_countrymap) {
             const cityLocation = citiesData[cityKey];
             const stateKey = getStateKey(cityLocation.lat, cityLocation.lng);
-
             if (stateKey) {
-                // Zoom no estado
-                simplemaps_countrymap.set_zoom(4); // Ajuste o nível de zoom conforme necessário
-                simplemaps_countrymap.highlight_region(stateKey);
+              simplemaps_countrymap.set_zoom(4);
+              simplemaps_countrymap.highlight_region(stateKey);
             }
+            showCityPopup(cityLocation);
           }
         }
+
+        function showCityPopup(cityData) {
+          const popup = document.getElementById("city-info-popup");
+          popup.innerHTML = `
+            <h3 class="text-lg font-bold text-purple-800 mb-2">${cityData.name}</h3>
+            <p class="text-sm text-gray-700 whitespace-pre-line">${cityData.description}</p>
+          `;
+          popup.style.position = "absolute";
+          popup.style.top = "50%";
+          popup.style.left = "50%";
+          popup.style.transform = "translate(-50%, -50%)"; // Centraliza
+          popup.classList.remove("hidden");
+        }
+
         // Ocultar lista ao clicar fora
         document.addEventListener("click", (e) => {
-            if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
-                resultsContainer.classList.add("hidden");
-            }
+          if (!searchInput.contains(e.target) && !locationList.contains(e.target)) {
+            locationList.classList.add("hidden");
+          }
         });
     });
 
-    // Variáveis para pesquisa dentro dos cards de links úteis:
-    const input = document.getElementById("pesquisa-links");
-    const cards = document.querySelectorAll("#cards-links a");
-    const mensagemSemResultado = document.getElementById('mensagem-sem-resultado');
+      // Variáveis para pesquisa dentro dos cards de links úteis:
+      const input = document.getElementById("pesquisa-links");
+      const cards = document.querySelectorAll("#cards-links a");
+      const mensagemSemResultado = document.getElementById('mensagem-sem-resultado');
 
-    input.addEventListener("input", function () {
-      const termo = this.value.toLowerCase();
-      let encontrouResultados = false;
+      input.addEventListener("input", function () {
+        const termo = this.value.toLowerCase();
+        let encontrouResultados = false;
 
-      cards.forEach((card) => {
-        const titulo = card.querySelector("h3").textContent.toLowerCase();
-        const descricao = card.querySelector("p").textContent.toLowerCase();
+        cards.forEach((card) => {
+          const titulo = card.querySelector("h3").textContent.toLowerCase();
+          const descricao = card.querySelector("p").textContent.toLowerCase();
 
-        if (titulo.includes(termo) || descricao.includes(termo)) {
-          card.style.display = "block";
-          encontrouResultados = true;
-        } else {
-          card.style.display = "none";
-        }
+          if (titulo.includes(termo) || descricao.includes(termo)) {
+            card.style.display = "block";
+            encontrouResultados = true;
+          } else {
+            card.style.display = "none";
+          }
+          });
+
+          // Mostra ou esconde a mensagem com base no resultado
+          if (encontrouResultados) {
+            mensagemSemResultado.classList.add("hidden");
+          } else {
+            mensagemSemResultado.classList.remove("hidden");
+          }
         });
-
-        // Mostra ou esconde a mensagem com base no resultado
-        if (encontrouResultados) {
-          mensagemSemResultado.classList.add("hidden");
-        } else {
-          mensagemSemResultado.classList.remove("hidden");
-        }
-      });
-      // Evento para mostrar mais links
-      document.getElementById('ver-mais-btn').addEventListener('click', function () {
+        // Evento para mostrar mais links
+        document.getElementById('ver-mais-btn').addEventListener('click', function () {
         const verMaisBtn = document.getElementById('ver-mais-btn');
         const recolherBtn = document.getElementById('recolher-btn');
         const linksOcultos = document.querySelectorAll('.hidden-link');
