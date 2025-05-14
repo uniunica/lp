@@ -482,13 +482,19 @@
         renderLocationList(Object.values(citiesData));
 
         // Atualiza a lista conforme digita
+        // Atualiza a lista conforme digita
         searchInput.addEventListener("input", function () {
           const query = this.value.toLowerCase();
-          const filteredCities = Object.values(citiesData).filter(city =>
-            city.name.toLowerCase().includes(query) ||
-            city.description.toLowerCase().includes(query)
-          );
-          renderLocationList(filteredCities);
+          if (query === "") {
+            // Se o campo de pesquisa estiver vazio, renderiza a lista completa
+            renderLocationList(Object.values(citiesData));
+          } else {
+            const filteredCities = Object.values(citiesData).filter(city =>
+              city.name.toLowerCase().includes(query) ||
+              city.description.toLowerCase().includes(query)
+            );
+            renderLocationList(filteredCities);
+          }
         });
 
         // Centralizar no mapa a cidade selecionada
