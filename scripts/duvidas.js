@@ -18,7 +18,9 @@ function faqSearch() {
     ],
     get filteredFaqs() {
       if (!this.search.trim()) return this.faqs;
-      const keyword = this.search.toLowerCase();
+      // Normaliza a string de pesquisa e remove acentos
+      const keyword = this.search.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      // Filtra as FAQs com base na pesquisa
       return this.faqs.filter(
         (f) =>
           f.pergunta.toLowerCase().includes(keyword) ||
