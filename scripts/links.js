@@ -27,25 +27,24 @@ input.addEventListener("input", function () {
   }
 });
 // Evento para mostrar mais links
-document.getElementById("ver-mais-btn").addEventListener("click", function () {
-  const verMaisBtn = document.getElementById("ver-mais-btn");
-  const recolherBtn = document.getElementById("recolher-btn");
-  const linksOcultos = document.querySelectorAll(".hidden-link");
-  // Mostrar mais
-  verMaisBtn.addEventListener("click", function () {
-    linksOcultos.forEach((link) => link.classList.remove("hidden"));
-    verMaisBtn.classList.add("hidden");
-    recolherBtn.classList.remove("hidden");
-  });
-  // Recolher
-  recolherBtn.addEventListener("click", function () {
-    linksOcultos.forEach((link) => link.classList.add("hidden"));
-    recolherBtn.classList.add("hidden");
-    verMaisBtn.classList.remove("hidden");
-    // Rolagem suave até a seção "Links Úteis"
-    const destino = document.getElementById("links-uteis");
-    if (destino) {
-      destino.scrollIntoView({ behavior: "smooth" });
-    }
-  });
+
+const verMaisBtn = document.getElementById("ver-mais-btn");
+const recolherBtn = document.getElementById("recolher-btn");
+const linksOcultos = document.querySelectorAll(".hidden-link");
+// Mostrar mais
+verMaisBtn.addEventListener("click", function () {
+  linksOcultos.forEach((link) => link.classList.remove("hidden"));
+  verMaisBtn.classList.add("hidden");
+  recolherBtn.classList.remove("hidden");
+});
+// Recolher
+recolherBtn.addEventListener("click", function () {
+  linksOcultos.forEach((link) => link.classList.add("hidden"));
+  recolherBtn.classList.add("hidden");
+  verMaisBtn.classList.remove("hidden");
+  // Rolagem suave até a seção "Links Úteis"
+  const destino = document.getElementById("links-uteis");
+  if (destino) {
+    destino.scrollIntoView({ behavior: "smooth" });
+  }
 });
