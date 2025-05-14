@@ -289,18 +289,18 @@
 
     <!-- Mapa dos Polos -->
     <section id="mapa" class="py-16 px-4 bg-white relative">
-      <div class="max-w-5xl mx-auto flex">
-        <!-- Mapa -->
-        <div id="divmap" class="flex-1 h-[500px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
-          <div id="map" class="w-full h-full"></div>
-        </div>
+      <div class="max-w-5xl mx-auto flex flex-col md:flex-row">
         <!-- Lista de Polos -->
-        <div class="w-2/5 pl-4">
+        <div class="w-full md:w-2/5 pl-0 md:pl-4 mb-4 md:mb-0">
           <h2 class="text-3xl font-bold mb-6 text-purple-800">Onde Estamos</h2>
           <p class="mb-4 text-gray-700">Confira a lista de polos:</p>
           <!-- Campo de pesquisa -->
           <input type="text" id="city-search" placeholder="Pesquisar polos..." class="w-full p-2 border border-purple-400 rounded mb-4"/>
           <ul id="location-list" class="border border-gray-300 rounded max-h-80 overflow-auto"></ul>
+        </div>
+        <!-- Mapa -->
+        <div id="divmap" class="flex-1 h-[500px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
+          <div id="map" class="w-full h-full"></div>
         </div>
       </div>
     </section>
