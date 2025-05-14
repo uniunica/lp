@@ -525,13 +525,6 @@
           popup.style.transform = "translate(-50%, -50%)"; // Centraliza
           popup.classList.remove("hidden");
         }
-
-        // Ocultar lista ao clicar fora
-        document.addEventListener("click", (e) => {
-          if (!searchInput.contains(e.target) && !locationList.contains(e.target)) {
-            locationList.classList.add("hidden");
-          }
-        });
     });
 
       // Variáveis para pesquisa dentro dos cards de links úteis:
