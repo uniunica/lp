@@ -298,17 +298,20 @@
 
     <!-- Mapa dos Polos -->
     <section id="mapa" class="py-16 px-4 bg-white relative">
-      <div class="max-w-5xl mx-auto flex flex-col md:flex-row">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
         <!-- Lista de Polos -->
-        <div class="w-full md:w-2/5 pl-0 md:pl-4 mb-4 md:mb-0">
-          <h2 class="text-3xl font-bold mb-6 text-purple-800">Onde Estamos</h2>
+        <div class="w-full md:w-2/5">
+          <h2 class="text-3xl font-bold mb-4 text-purple-800">Onde Estamos</h2>
           <p class="mb-4 text-gray-700">Confira a lista de polos:</p>
           <!-- Campo de pesquisa -->
-          <input type="text" id="city-search" placeholder="Pesquisar polos..." class="w-full p-2 border border-purple-400 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500"/>
-          <ul id="location-list" class="border border-gray-300 rounded max-h-80 overflow-auto"></ul>
+          <input type="text" id="city-search" placeholder="Pesquisar polos..." class="w-full p-3 border border-purple-400 rounded-lg mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition"/>
+          <!-- Lista de localidades -->
+          <ul id="location-list" class="border border-gray-300 rounded-lg max-h-80 overflow-y-auto divide-y divide-gray-200 bg-gray-50 shadow-sm" >
+            <!-- <li class="p-3 hover:bg-purple-100 cursor-pointer transition">Polo - Cidade/UF</li> -->
+          </ul>
         </div>
         <!-- Mapa -->
-        <div id="divmap" class="flex-1 h-[500px] rounded overflow-hidden shadow-lg border-2 border-purple-300 mt-6 md:mt-0">
+        <div id="divmap" class="flex-1 h-[500px] rounded-xl overflow-hidden shadow-lg border-2 border-purple-300">
           <div id="map" class="w-full h-full"></div>
         </div>
       </div>

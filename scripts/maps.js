@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderLocationList(Object.values(citiesData));
 
   // Atualiza a lista conforme digita
-  // Atualiza a lista conforme digita
   searchInput.addEventListener("input", function () {
     const query = this.value.toLowerCase();
     if (query === "") {
