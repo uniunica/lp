@@ -510,10 +510,10 @@ var simplemaps_countrymap_mapdata={
       description: "Endereço: Rua Campestre, 1001 - Jardim das Alterosas (1º Seçao)\nResponsável: Cristina Maria Silva Chaves Carvalho\nTelefone: (31) 9570-8779 / (31) 99570-8779\nEmail: polo.betim@unicaead.com.br"
     },
     "59": {
-      description: "Endereço: Rua Benedito Ferreira Candelaria, 36 - Centro\nResponsável: Paulyran Ferreira y Silva\nTelefone: (12) 3308-1343 / (12) 99613-4651\nEmail: saojosedoscamposcentro@unicaead.com.br",
       lat: -23.181,
       lng: -45.88,
-      name: "São José dos Campos"
+      name: "São José dos Campos - SP",
+      description: "Endereço: Rua Benedito Ferreira Candelaria, 36 - Centro\nResponsável: Paulyran Ferreira y Silva\nTelefone: (12) 3308-1343 / (12) 99613-4651\nEmail: saojosedoscamposcentro@unicaead.com.br",
     },
     "60": {
       lat: -8.056,
