@@ -12,9 +12,12 @@
     <meta property="og:type" content="website" />
     <!-- Título -->
     <title>Setor de Expansão e Negócios</title>
+    <!-- CSS Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine JS -->
     <script src="https://unpkg.com/alpinejs" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Estilo Local -->
     <style>
       html {
         scroll-behavior: smooth;
@@ -34,6 +37,7 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
       }
     </style>
+    <!-- Script para o mapa -->
     <script type="text/javascript" src="mapa/mapdata.js"></script>
     <script type="text/javascript" src="mapa/countrymap.js"></script>
   </head>
@@ -43,16 +47,16 @@
       <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <!-- Título com logo -->
           <div class="flex items-center space-x-3">
-          <img src="logo.png" alt="Logo Expansão e Negócios" class="w-30 h-10 object-contain" />
+            <img src="logo.png" alt="Logo Expansão e Negócios" class="w-30 h-10 object-contain" />
           </div>
           <!-- Navegação -->
           <nav class="space-x-4">
-          <a href="#home" class="hover:text-purple-600 font-medium">Home</a>
-          <a href="#produtos" class="hover:text-purple-600 font-medium">Produtos</a>
-          <a href="#links-uteis" class="hover:text-purple-600 font-medium">Links Úteis</a>
-          <a href="#mapa" class="hover:text-purple-600 font-medium">Onde Estamos?</a>
-          <a href="#duvidas" class="hover:text-purple-600 font-medium">Dúvidas</a>
-          <a href="#contato" class="hover:text-purple-600 font-medium">Contato</a>
+            <a href="#home" class="hover:text-purple-600 font-medium">Home</a>
+            <a href="#produtos" class="hover:text-purple-600 font-medium">Produtos</a>
+            <a href="#links-uteis" class="hover:text-purple-600 font-medium">Links Úteis</a>
+            <a href="#mapa" class="hover:text-purple-600 font-medium">Onde Estamos?</a>
+            <a href="#duvidas" class="hover:text-purple-600 font-medium">Dúvidas</a>
+            <a href="#contato" class="hover:text-purple-600 font-medium">Contato</a>
           </nav>
       </div>
     </header>
@@ -65,7 +69,7 @@
       <p class="text-lg text-purple-700 animate__animated animate__fadeInUp">
         Tudo o que você precisa saber para crescer conosco.
       </p>
-      <!-- Botão personalizado -->
+      <!-- Link para contato -->
       <div class="mt-6 animate__animated animate__fadeInUp animate__delay-1s">
         <a href="#" id="abrir-modal" class="inline-block px-6 py-3 bg-purple-800 text-white font-semibold rounded-full shadow-lg hover:bg-purple-700 transition duration-300">
           Entre em contato com seu consultor
@@ -76,11 +80,12 @@
     <!-- Modal -->
     <div id="consultor-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center flex justify-center z-50">
       <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-left">
+        <!-- Título do modal -->
         <h3 class="text-xl font-bold mb-4 text-purple-800">Identifique-se</h3>
         <label for="nome-parceiro" class="block text-sm font-medium text-gray-700 mb-1">Digite seu nome:</label>
         <input id="nome-parceiro" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Seu nome...">
         <ul id="autocomplete-list" class="border border-gray-200 mt-2 rounded-md max-h-40 overflow-y-auto hidden bg-white"></ul>
-
+        <!-- Botão para contactar consultor -->
         <div id="contato-section" class="mt-4 hidden">
           <p class="text-gray-700 mb-2">Consultor responsável encontrado:</p>
           <a id="btn-whatsapp" target="_blank" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition duration-200">
@@ -88,7 +93,7 @@
           </a>
           <p id="numero-visivel" class="mt-3 px-3 py-2 bg-purple-50 border border-purple-200 rounded-lg text-purple-800 text-sm font-medium select-text cursor-pointer hover:bg-purple-100 transition duration-200"></p>
         </div>
-
+        <!-- Botão para fechar o modal -->
         <button onclick="fecharModal()" class="mt-4 text-sm text-gray-500 hover:text-gray-800">Fechar</button>
       </div>
     </div>
@@ -99,6 +104,7 @@
         <h2 class="text-3xl font-bold mb-10 text-center text-purple-800">
           Nossos Produtos
         </h2>
+        <!-- Grid de produtos -->
         <div class="grid md:grid-cols-3 gap-6">
           <button
             onclick="openModal('Graduação', 'https://drive.google.com/drive/folders/1j7G8VkDgSW9bhD2_4ZeD2hAdBZefEZ1c?usp=drive_link',
@@ -146,16 +152,19 @@
       </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Modal dos produtos -->
     <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
       <div class="bg-white p-6 rounded shadow-lg max-w-md text-center relative">
+        <!-- Botão para fechar modal -->
         <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl">
           &times;
         </button>
+        <!-- Título do modal -->
         <h3 id="modal-title" class="text-xl font-bold text-purple-800 mb-4"></h3>
         <p class="mb-6 text-gray-700">
           Escolha abaixo uma das opções para acessar o material:
         </p>
+        <!-- Conteúdo do modal -->
         <div class="flex flex-col gap-3">
           <a id="modal-link-catalogo" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">
             Ver Catálogo
@@ -180,8 +189,8 @@
         <p id="mensagem-sem-resultado" class="text-center text-purple-800 font-semibold hidden">
         Nenhum resultado de pesquisa encontrado.
         </p>
+        <!-- Grid de links -->
         <div id="cards-links" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <!-- Card de link -->
           <a href="https://drive.google.com/drive/folders/1RKWYgmAmNuozLH-QZJrD4M8oV-psSjdA" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition">
             <h3 class="text-lg font-semibold text-purple-700 mb-2">Drive de Apoio</h3>
             <p class="text-sm text-gray-600">Catálogos, criativos, regulamentos e materiais.</p>
@@ -281,12 +290,15 @@
     <!-- Mapa dos Polos -->
     <section id="mapa" class="py-16 px-4 bg-white">
       <div class="max-w-5xl mx-auto">
+          <!-- Título -->
           <h2 class="text-3xl font-bold mb-6 text-purple-800 flex justify-center">Onde Estamos</h2>
           <p class="mb-4 text-gray-700 flex justify-center">
           Confira no mapa onde estão localizados nossos polos pelo Brasil:
           </p>
+          <!-- Campo de pesquisa -->
           <input type="text" id="city-search" placeholder="Clique aqui para listar os polos ou digite para pesquisar..." class="w-full md:w-1/2 p-2 border border-purple-400 rounded mb-4 flex justify-center"/>
           <ul id="autocomplete-results" class="border border-gray-300 rounded bg-white max-h-60 overflow-auto hidden absolute z-50 w-full md:w-1/2"></ul>
+          <!-- Mapa -->
           <div id="map" class="w-full h-[600px] rounded overflow-hidden shadow-lg border-2 border-purple-300">
               <div id="map"></div>
           </div>
@@ -298,11 +310,9 @@
       <h2 class="text-3xl font-bold mb-6 text-purple-800">
         Dúvidas mais comuns
       </h2>
-
       <!-- Campo de pesquisa -->
       <input type="text" placeholder="Digite uma palavra-chave referente a sua dúvida..."
         x-model="search" class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500"/>
-
       <!-- Lista de dúvidas -->
       <div class="space-y-4">
         <template x-for="(faq, index) in filteredFaqs" :key="index">
@@ -312,7 +322,6 @@
             <div x-show="selected === index" x-transition class="p-4 bg-purple-50 border rounded" x-html="faq.resposta"></div>
           </div>
         </template>
-
         <!-- Caso nenhuma dúvida seja encontrada -->
         <div x-show="filteredFaqs.length === 0" class="text-gray-500 text-center mt-6">
           Nenhuma dúvida encontrada com essa palavra-chave.
@@ -322,42 +331,33 @@
 
     <!-- Contato -->
     <section id="contato" class="bg-purple-100 py-16 px-4">
-    <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold mb-6 text-purple-800">Fale Conosco</h2>
-        <form id="contatoForm"
-            action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
-            method="POST"
-            onsubmit="handleFormSubmit(event)"
-            class="space-y-4">
-
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html" />
-
-        <div>
-            <label for="nome" class="block text-purple-700 font-semibold">Nome</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome" class="w-full p-3 rounded border" required />
-        </div>
-
-        <div>
-            <label for="email" class="block text-purple-700 font-semibold">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="Seu e-mail" class="w-full p-3 rounded border" required />
-        </div>
-
-        <div>
-            <label for="telefone" class="block text-purple-700 font-semibold">Telefone</label>
-            <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" class="w-full p-3 rounded border" />
-        </div>
-
-        <div>
-            <label for="mensagem" class="block text-purple-700 font-semibold">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." class="w-full p-3 rounded border h-32" required></textarea>
-        </div>
-
-        <button type="submit" class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800">
-            Enviar
-        </button>
-        </form>
-    </div>
+      <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl font-bold mb-6 text-purple-800">Fale Conosco</h2>
+          <form id="contatoForm" action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
+              method="POST" onsubmit="handleFormSubmit(event)" class="space-y-4">
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html" />
+          <div>
+              <label for="nome" class="block text-purple-700 font-semibold">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" class="w-full p-3 rounded border" required />
+          </div>
+          <div>
+              <label for="email" class="block text-purple-700 font-semibold">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="Seu e-mail" class="w-full p-3 rounded border" required />
+          </div>
+          <div>
+              <label for="telefone" class="block text-purple-700 font-semibold">Telefone</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" class="w-full p-3 rounded border" />
+          </div>
+          <div>
+              <label for="mensagem" class="block text-purple-700 font-semibold">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." class="w-full p-3 rounded border h-32" required></textarea>
+          </div>
+          <button type="submit" class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800">
+              Enviar
+          </button>
+          </form>
+      </div>
     </section>
 
     <!-- Rodapé -->
@@ -392,12 +392,13 @@
     </div>
 
     <script>
+      // Função para resetar o formulário após o envio
       function resetFormAfterSend() {
         setTimeout(() => {
           document.getElementById("contatoForm").reset();
         }, 1000);
       }
-      // Evento de formulário
+      // Função para envio de formulário
       function handleFormSubmit(event) {
         event.preventDefault();
         const form = document.getElementById("contatoForm");
@@ -416,7 +417,7 @@
           })
           .catch(() => alert("Erro ao enviar. Tente novamente."));
       }
-      //Evento para abrir modal com informações
+      //Função para abrir modal de produtos com informações
       function openModal(titulo, linkCatalogo, linkCriativos, linkRegulamento) {
         document.getElementById("modal-title").textContent = titulo;
         document.getElementById("modal-link-catalogo").href = linkCatalogo;
@@ -424,6 +425,7 @@
         document.getElementById("modal-link-regulamento").href = linkRegulamento;
         document.getElementById("modal").classList.remove("hidden");
       }
+      //Função para fechar modal de produtos
       function closeModal() {
         document.getElementById("modal").classList.add("hidden");
       }
@@ -524,7 +526,7 @@
         });
     });
 
-    // Pesquisa dentro dos cards de links úteis:
+    // Variáveis para pesquisa dentro dos cards de links úteis:
     const input = document.getElementById("pesquisa-links");
     const cards = document.querySelectorAll("#cards-links a");
     const mensagemSemResultado = document.getElementById('mensagem-sem-resultado');
@@ -557,14 +559,12 @@
         const verMaisBtn = document.getElementById('ver-mais-btn');
         const recolherBtn = document.getElementById('recolher-btn');
         const linksOcultos = document.querySelectorAll('.hidden-link');
-
         // Mostrar mais
         verMaisBtn.addEventListener('click', function () {
           linksOcultos.forEach(link => link.classList.remove('hidden'));
           verMaisBtn.classList.add('hidden');
           recolherBtn.classList.remove('hidden');
         });
-
         // Recolher
         recolherBtn.addEventListener('click', function () {
           linksOcultos.forEach(link => link.classList.add('hidden'));
