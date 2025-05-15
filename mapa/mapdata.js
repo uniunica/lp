@@ -99,23 +99,6 @@ E-mail: ${email}`.trim();
     }
   });
 
-  // Centraliza e destaca cidade no mapa
-  function focusCityOnMap(cityName) {
-    const citiesData = simplemaps_countrymap_mapdata.locations;
-    const cityKey = Object.keys(citiesData).find(
-      (key) => citiesData[key].name === cityName
-    );
-    if (cityKey && simplemaps_countrymap) {
-      const city = citiesData[cityKey];
-      const stateKey = getStateKey(city.lat, city.lng);
-      if (stateKey) {
-        simplemaps_countrymap.set_zoom(4);
-        simplemaps_countrymap.highlight_region(stateKey);
-      }
-      showCityPopup(city);
-    }
-  }
-
   // Inicia carregando os dados
   await carregarPolos();
 });
