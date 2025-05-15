@@ -116,25 +116,6 @@ E-mail: ${email}`.trim();
     }
   }
 
-  // Exibe popup com nome e descrição da cidade
-  function showCityPopup(cityData) {
-    const popup = document.getElementById("city-info-popup");
-    popup.innerHTML = `
-      <h3 class="text-lg font-bold text-purple-800 mb-2">${cityData.name}</h3>
-      <p class="text-sm text-gray-700 whitespace-pre-line">${cityData.description}</p>
-    `;
-    popup.style.position = "absolute";
-    popup.style.top = "50%";
-    popup.style.left = "50%";
-    popup.style.transform = "translate(-50%, -50%)";
-    popup.classList.remove("hidden");
-  }
-
-  // Função fictícia – você pode substituir por lógica real se quiser destacar estados
-  function getStateKey(lat, lng) {
-    return null; // ou lógica real baseada nas coordenadas
-  }
-
   // Inicia carregando os dados
   await carregarPolos();
 });
