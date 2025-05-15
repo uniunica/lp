@@ -329,7 +329,7 @@
         x-model="search" class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500"/>
       <!-- Lista de dúvidas -->
       <div class="space-y-4">
-        <template x-for="(faq, index) in filteredFaqs" :key="index">
+        <template x-for="(faq, index) in limitedFaqs" :key="index">
           <div>
             <button @click="selected !== index ? selected = index : selected = null"
               class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700" x-text="faq.pergunta"></button>
@@ -339,6 +339,13 @@
         <!-- Caso nenhuma dúvida seja encontrada -->
         <div x-show="filteredFaqs.length === 0" class="text-gray-500 text-center mt-6">
           Nenhuma dúvida encontrada com essa palavra-chave.
+        </div>
+        <!-- Botão "Ver mais" -->
+        <div class="text-center mt-6" x-show="filteredFaqs.length > visibleCount">
+          <button @click="showMore"
+            class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 transition">
+            Ver mais dúvidas
+          </button>
         </div>
       </div>
     </section>
