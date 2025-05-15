@@ -32,7 +32,7 @@ function faqSearch() {
       {
         pergunta: "Como alterar as mensalidades e taxa de matrículas?",
         resposta:
-          "Para alterar o valor das mensalidades é preciso preencher o formulário de alteração de valores: <a href='https://docs.google.com/forms/d/e/1FAIpQLSfqX0g2v3x4q5j7b8k6f9z5e4g5e4g5e4g5e4g5e4g5e4g5e4g/viewform' class='text-purple-600 underline'>Formulário de Alteração de Valores</a>. Após o preenchimento, a alteração será realizada em até 48 horas úteis.",
+          "Para alterar o valor das mensalidades é preciso preencher o formulário de alteração de valores: <a href='https://docs.google.com/forms/d/e/1FAIpQLSfteNS6wFAu9yr9y4ZJ-eAT6o9r7OLFmn6B_uhPm4efeXmyJA/viewform' class='text-purple-600 underline'>Formulário de Alteração de Valores</a>.",
       },
       {
         pergunta: "Como solicitar a Pós gratuita?",
