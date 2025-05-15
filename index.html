@@ -14,6 +14,11 @@
     <title>Setor de Expansão e Negócios</title>
     <!-- CSS Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class'
+      }
+    </script>
     <!-- Alpine JS -->
     <script src="https://unpkg.com/alpinejs" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -24,9 +29,9 @@
     <script type="text/javascript" src="mapa/teste_automatizacao_mapdata.js"></script>
     <script type="text/javascript" src="mapa/countrymap.js"></script>
   </head>
-  <body class="font-sans antialiased text-gray-900 bg-purple-50">
+  <body class="font-sans antialiased text-gray-900 bg-purple-50 dark:bg-gray-900 dark:text-white">
     <!-- Topo -->
-    <header class="bg-white shadow sticky top-0 z-50">
+    <header class="bg-white dark:bg-gray-900 shadow sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <!-- Logo -->
         <div class="flex items-center space-x-3">
@@ -34,7 +39,7 @@
         </div>
         <!-- Botão de Menu Mobile -->
         <div class="md:hidden">
-          <button id="menu-toggle" class="text-gray-800 hover:text-purple-600 focus:outline-none">
+          <button id="menu-toggle" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
               viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 6h16M4 12h16M4 18h16" />
@@ -43,38 +48,46 @@
         </div>
         <!-- Navegação Desktop -->
         <nav class="hidden md:flex space-x-6">
-          <a href="#home" class="text-gray-800 hover:text-purple-600 font-medium transition">Home</a>
-          <a href="#produtos" class="text-gray-800 hover:text-purple-600 font-medium transition">Produtos</a>
-          <a href="#links-uteis" class="text-gray-800 hover:text-purple-600 font-medium transition">Links Úteis</a>
-          <a href="#mapa" class="text-gray-800 hover:text-purple-600 font-medium transition">Onde Estamos?</a>
-          <a href="#duvidas" class="text-gray-800 hover:text-purple-600 font-medium transition">Dúvidas</a>
-          <a href="#contato" class="text-gray-800 hover:text-purple-600 font-medium transition">Contato</a>
+          <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
+          <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
+          <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
+          <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
+          <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
+          <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
+          <!-- Botão para alternar entre os modos claro e escuro -->
+          <button
+            onclick="document.documentElement.classList.toggle('dark')" 
+            class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition"
+            title="Alternar modo escuro/claro">
+            🌓
+          </button>
         </nav>
       </div>
       <!-- Menu Mobile Expandido -->
       <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
         <nav class="flex flex-col space-y-3 mt-2">
-          <a href="#home" class="text-gray-800 hover:text-purple-600 font-medium transition">Home</a>
-          <a href="#produtos" class="text-gray-800 hover:text-purple-600 font-medium transition">Produtos</a>
-          <a href="#links-uteis" class="text-gray-800 hover:text-purple-600 font-medium transition">Links Úteis</a>
-          <a href="#mapa" class="text-gray-800 hover:text-purple-600 font-medium transition">Onde Estamos?</a>
-          <a href="#duvidas" class="text-gray-800 hover:text-purple-600 font-medium transition">Dúvidas</a>
-          <a href="#contato" class="text-gray-800 hover:text-purple-600 font-medium transition">Contato</a>
+          <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
+          <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
+          <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
+          <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
+          <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
+          <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
         </nav>
       </div>
     </header>
 
     <!-- Home -->
-    <section id="home" class="bg-purple-200 py-20 text-center">
-      <h2 class="text-4xl font-bold text-purple-800 mb-4 animate__animated animate__fadeInDown">
+    <section id="home" class="bg-purple-200 dark:bg-gray-800 py-20 text-center transition-colors duration-300">
+      <h2 class="text-4xl font-bold text-purple-800 dark:text-purple-300 mb-4 animate__animated animate__fadeInDown">
         Bem-vindo ao Setor de Expansão e Negócios
       </h2>
-      <p class="text-lg text-purple-700 animate__animated animate__fadeInUp">
+      <p class="text-lg text-purple-700 dark:text-purple-200 animate__animated animate__fadeInUp">
         Tudo o que você precisa saber para crescer conosco.
       </p>
       <!-- Link para contato -->
       <div class="mt-6 animate__animated animate__fadeInUp animate__delay-1s">
-        <a href="#" id="abrir-modal" class="inline-block px-6 py-3 bg-purple-800 text-white font-semibold rounded-full shadow-lg hover:bg-purple-700 transition duration-300">
+        <a href="#" id="abrir-modal"
+          class="inline-block px-6 py-3 bg-purple-800 dark:bg-purple-600 text-white font-semibold rounded-full shadow-lg hover:bg-purple-700 dark:hover:bg-purple-500 transition duration-300">
           Entre em contato com seu consultor
         </a>
       </div>
@@ -82,36 +95,47 @@
 
     <!-- Modal -->
     <div id="consultor-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center flex justify-center z-50">
-      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-left">
+      <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 w-full max-w-md text-left transition-colors duration-300">
         <!-- Título do modal -->
-        <h3 class="text-xl font-bold mb-4 text-purple-800 text-center">Identifique-se</h3>
-        <label for="nome-parceiro" class="block text-sm font-medium text-gray-700 mb-1">Digite seu nome:</label>
-        <input id="nome-parceiro" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Seu nome...">
-        <ul id="autocomplete-list" class="border border-gray-200 mt-2 rounded-md max-h-40 overflow-y-auto hidden bg-white"></ul>
+        <h3 class="text-xl font-bold mb-4 text-purple-800 dark:text-purple-300 text-center">Identifique-se</h3>
+        <label for="nome-parceiro" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          Digite seu nome:
+        </label>
+        <input id="nome-parceiro" type="text"
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+          placeholder="Seu nome...">
+        <ul id="autocomplete-list"
+          class="border border-gray-200 dark:border-gray-600 mt-2 rounded-md max-h-40 overflow-y-auto hidden bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+        </ul>
         <!-- Botão para contactar consultor -->
         <div id="contato-section" class="mt-4 hidden">
-          <p class="text-gray-700 mb-2">Consultor responsável encontrado:</p>
-          <a id="btn-whatsapp" target="_blank" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition duration-200">
+          <p class="text-gray-700 dark:text-gray-300 mb-2">Consultor responsável encontrado:</p>
+          <a id="btn-whatsapp" target="_blank"
+            class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition duration-200">
             Conversar via WhatsApp
           </a>
-          <p id="numero-visivel" class="mt-3 px-3 py-2 bg-purple-50 border border-purple-200 rounded-lg text-purple-800 text-sm font-medium select-text cursor-pointer hover:bg-purple-100 transition duration-200"></p>
+          <p id="numero-visivel"
+            class="mt-3 px-3 py-2 bg-purple-50 dark:bg-purple-900 border border-purple-200 dark:border-purple-700 rounded-lg text-purple-800 dark:text-purple-200 text-sm font-medium select-text cursor-pointer hover:bg-purple-100 dark:hover:bg-purple-800 transition duration-200">
+          </p>
         </div>
         <!-- Botão de redirecionamento caso o nome não seja localizado -->
         <div class="mt-4">
-          <a href="#contato" onclick="fecharModal()" 
-            class="block w-full text-center px-4 py-2 bg-purple-100 text-purple-800 font-semibold rounded-md shadow-sm hover:bg-purple-200 transition duration-200">
+          <a href="#contato" onclick="fecharModal()"
+            class="block w-full text-center px-4 py-2 bg-purple-100 dark:bg-purple-800 text-purple-800 dark:text-purple-200 font-semibold rounded-md shadow-sm hover:bg-purple-200 dark:hover:bg-purple-700 transition duration-200">
             Não localizou seu nome? Entre em contato conosco!
           </a>
         </div>
         <!-- Botão para fechar o modal -->
-        <button onclick="fecharModal()" class="mt-4 text-sm text-gray-500 hover:text-gray-800">Fechar</button>
+        <button onclick="fecharModal()" class="mt-4 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200">
+          Fechar
+        </button>
       </div>
     </div>
 
     <!-- Produtos -->
-    <section id="produtos" class="bg-purple-100 py-16 px-4">
+    <section id="produtos" class="bg-purple-100 dark:bg-gray-900 py-16 px-4 transition-colors duration-300">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-10 text-center text-purple-800">
+        <h2 class="text-3xl font-bold mb-10 text-center text-purple-800 dark:text-purple-300">
           Nossos Produtos
         </h2>
         <!-- Grid de produtos -->
@@ -120,42 +144,42 @@
             onclick="openModal('Graduação', 'https://drive.google.com/drive/folders/1j7G8VkDgSW9bhD2_4ZeD2hAdBZefEZ1c?usp=drive_link',
             'https://drive.google.com/drive/folders/1j7G8VkDgSW9bhD2_4ZeD2hAdBZefEZ1c?usp=drive_link',
             'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card">
+            class="produto-card bg-white dark:bg-gray-800 text-purple-800 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors duration-200 shadow-md rounded-lg px-6 py-4 font-semibold">
             Graduação
           </button>
           <button
             onclick="openModal('Segunda Graduação', 'https://drive.google.com/drive/folders/1vQ-CZ12uqy6HxTxKUt8etatLnzrtwOdn',
             'https://drive.google.com/drive/folders/1OItV_fNWQzupiVoRspbwwC_9xEvyi8M0?usp=drive_link',
             'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card">
+            class="produto-card bg-white dark:bg-gray-800 text-purple-800 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors duration-200 shadow-md rounded-lg px-6 py-4 font-semibold">
             Segunda Graduação
           </button>
           <button
             onclick="openModal('Pós-Graduação', 'https://drive.google.com/drive/folders/1KbladBVJgP7uXu1n8JRyA91XKmG9fnLr', 
             'https://drive.google.com/drive/folders/1Bwp3Bubc4vFUo0fj_XVWvhYhgmBjiz9J?usp=drive_link',
             'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card">
+            class="produto-card bg-white dark:bg-gray-800 text-purple-800 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors duration-200 shadow-md rounded-lg px-6 py-4 font-semibold">
             Pós-Graduação
           </button>
           <button
             onclick="openModal('Disciplinas Isoladas', 'https://drive.google.com/drive/folders/1BoXZxArm4zClzkfp7yIYHrf0XH5NVt4Z',
             'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
             'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card">
+            class="produto-card bg-white dark:bg-gray-800 text-purple-800 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors duration-200 shadow-md rounded-lg px-6 py-4 font-semibold">
             Disciplinas Isoladas
           </button>
           <button
             onclick="openModal('EJA', 'https://drive.google.com/drive/folders/136GloEDVBeldo-MzU-8DkfYGXQD1rG02',
             'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
             'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card">
+            class="produto-card bg-white dark:bg-gray-800 text-purple-800 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors duration-200 shadow-md rounded-lg px-6 py-4 font-semibold">
             EJA
           </button>
           <button
             onclick="openModal('Cursos Técnicos', 'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
             'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
             'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card">
+            class="produto-card bg-white dark:bg-gray-800 text-purple-800 dark:text-purple-200 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors duration-200 shadow-md rounded-lg px-6 py-4 font-semibold">
             Cursos Técnicos
           </button>
         </div>
@@ -164,25 +188,28 @@
 
     <!-- Modal dos produtos -->
     <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-      <div class="bg-white p-6 rounded shadow-lg max-w-md text-center relative">
+      <div class="bg-white dark:bg-gray-900 p-6 rounded shadow-lg max-w-md text-center relative">
         <!-- Botão para fechar modal -->
-        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl">
+        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 text-2xl">
           &times;
         </button>
         <!-- Título do modal -->
-        <h3 id="modal-title" class="text-xl font-bold text-purple-800 mb-4"></h3>
-        <p class="mb-6 text-gray-700">
+        <h3 id="modal-title" class="text-xl font-bold text-purple-800 dark:text-purple-300 mb-4"></h3>
+        <p class="mb-6 text-gray-700 dark:text-gray-300">
           Escolha abaixo uma das opções para acessar o material:
         </p>
         <!-- Conteúdo do modal -->
         <div class="flex flex-col gap-3">
-          <a id="modal-link-catalogo" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">
+          <a id="modal-link-catalogo" href="#" target="_blank"
+            class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">
             Ver Catálogo
           </a>
-          <a  id="modal-link-criativos" href="#" target="_blank" class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded">
+          <a id="modal-link-criativos" href="#" target="_blank"
+            class="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded">
             Ver Criativos
           </a>
-          <a id="modal-link-regulamento" href="#" target="_blank" class="bg-purple-400 hover:bg-purple-500 text-white font-semibold py-2 px-4 rounded">
+          <a id="modal-link-regulamento" href="#" target="_blank"
+            class="bg-purple-400 hover:bg-purple-500 text-white font-semibold py-2 px-4 rounded">
             Ver Regulamento
           </a>
         </div>
@@ -190,92 +217,92 @@
     </div>
 
     <!-- Links Úteis -->
-    <section id="links-uteis" class="bg-purple-300 py-16 px-4">
+    <section id="links-uteis" class="bg-purple-300 dark:bg-purple-950 py-16 px-4 transition-colors duration-300">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-10 text-center text-purple-800">
+        <h2 class="text-3xl font-bold mb-10 text-center text-purple-800 dark:text-purple-200">
           Links Úteis
         </h2>
-        <input type="text" id="pesquisa-links" placeholder="Pesquisar links..." class="w-full max-w-md mx-auto mb-8 px-4 py-2 rounded-lg shadow border border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-600 text-purple-800 placeholder-purple-500 flex justify-center"/>
-        <p id="mensagem-sem-resultado" class="text-center text-purple-800 font-semibold hidden">
+        <input type="text" id="pesquisa-links" placeholder="Pesquisar links..." class="w-full max-w-md mx-auto mb-8 px-4 py-2 rounded-lg shadow border border-purple-400 dark:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 text-purple-800 dark:text-purple-100 placeholder-purple-500 dark:placeholder-purple-300 bg-white dark:bg-purple-900"/>
+        <p id="mensagem-sem-resultado" class="text-center text-purple-800 dark:text-purple-200 font-semibold hidden">
         Nenhum resultado de pesquisa encontrado.
         </p>
         <!-- Grid de links -->
         <div id="cards-links" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <a href="https://drive.google.com/drive/folders/1RKWYgmAmNuozLH-QZJrD4M8oV-psSjdA" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Drive de Apoio</h3>
-            <p class="text-sm text-gray-600">Catálogos, criativos, regulamentos e materiais.</p>
+          <a href="https://drive.google.com/drive/folders/1RKWYgmAmNuozLH-QZJrD4M8oV-psSjdA" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Drive de Apoio</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Catálogos, criativos, regulamentos e materiais.</p>
           </a>
-          <a href="https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Regulamento de Preços</h3>
-            <p class="text-sm text-gray-600">Acesse nosso regulamento de preços vigente.</p>
+          <a href="https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Regulamento de Preços</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Acesse nosso regulamento de preços vigente.</p>
           </a>
-          <a href="https://drive.google.com/file/d/10n6qSyk5GFzmfM-NEG4YD5YJyX4qpotJ/view?usp=sharing" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Informativo</h3>
-            <p class="text-sm text-gray-600">Dúvidas sobre estágio, carga horária, informações acadêmicas e pedagógicas em gerais.</p>
+          <a href="https://drive.google.com/file/d/10n6qSyk5GFzmfM-NEG4YD5YJyX4qpotJ/view?usp=sharing" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Informativo</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Dúvidas sobre estágio, carga horária, informações acadêmicas e pedagógicas em gerais.</p>
           </a>
-          <a href="https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Criativos</h3>
-            <p class="text-sm text-gray-600">Materiais para divulgação com facilidade.</p>
+          <a href="https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Criativos</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Materiais para divulgação com facilidade.</p>
           </a>
-          <a href="https://parceiros.institutoprominas.com.br/auth/login" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Portal do Parceiro</h3>
-            <p class="text-sm text-gray-600">Plataforma para administração de matrículas, repasse e outras ferramentas úteis.</p>
+          <a href="https://parceiros.institutoprominas.com.br/auth/login" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Portal do Parceiro</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Plataforma para administração de matrículas, repasse e outras ferramentas úteis.</p>
           </a>
-          <a href="https://mail.google.com/" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Gmail</h3>
-            <p class="text-sm text-gray-600">Acesse seu e-mail institucional com facilidade.</p>
+          <a href="https://mail.google.com/" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Gmail</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Acesse seu e-mail institucional com facilidade.</p>
           </a>
-          <a href="https://faculdadeunica.pincelatomico.net.br/externos/processoseletivo/processo.php?hash=9188905e74c28e489b44e954ec0b9bca" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Processo Seletivo 2025/1 (ÚNICA EAD)</h3>
-            <p class="text-sm text-gray-600">Matrículas de Graduação pela Única.</p>
+          <a href="https://faculdadeunica.pincelatomico.net.br/externos/processoseletivo/processo.php?hash=9188905e74c28e489b44e954ec0b9bca" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Processo Seletivo 2025/1 (ÚNICA EAD)</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Matrículas de Graduação pela Única.</p>
           </a>
-          <a href="https://faculdadeunica.pincelatomico.net.br/externos/processoseletivo/processo.php?hash=9188905e74c28e489b44e954ec0b9bca" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Processo Seletivo 2025/1 (Faculdade Prominas de Montes Claros EAD)</h3>
-            <p class="text-sm text-gray-600">Matrículas de Graduação pela Faculdade Prominas.</p>
+          <a href="https://faculdadeunica.pincelatomico.net.br/externos/processoseletivo/processo.php?hash=9188905e74c28e489b44e954ec0b9bca" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Processo Seletivo 2025/1 (Faculdade Prominas de Montes Claros EAD)</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Matrículas de Graduação pela Faculdade Prominas.</p>
           </a>
-          <a href="https://faculdadeunica.pincelatomico.net.br/externos/processoseletivo/processo.php?hash=9188905e74c28e489b44e954ec0b9bca" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Processo Seletivo 2025/1 (Faculdade Montes Claros EAD)</h3>
-            <p class="text-sm text-gray-600">Matrículas de Graduação pela Faculdade Montes Claros.</p>
+          <a href="https://faculdadeunica.pincelatomico.net.br/externos/processoseletivo/processo.php?hash=9188905e74c28e489b44e954ec0b9bca" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Processo Seletivo 2025/1 (Faculdade Montes Claros EAD)</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Matrículas de Graduação pela Faculdade Montes Claros.</p>
           </a>
-          <a href="https://drive.google.com/drive/folders/1SSFpbVU_UNwhN64lAC5I3q_vXbhnXhID" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Contratos de Alunos</h3>
-            <p class="text-sm text-gray-600">Acesse os modelos de contratos dos alunos.</p>
+          <a href="https://drive.google.com/drive/folders/1SSFpbVU_UNwhN64lAC5I3q_vXbhnXhID" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Contratos de Alunos</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Acesse os modelos de contratos dos alunos.</p>
           </a>
-          <a href="https://drive.google.com/drive/folders/1otRaKZqaAREqVnIpGJkbSFjEjDIJzkam" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Diplomas e Certificados</h3>
-            <p class="text-sm text-gray-600">Acesse os modelos de diplomas e certificados para os alunos.</p>
+          <a href="https://drive.google.com/drive/folders/1otRaKZqaAREqVnIpGJkbSFjEjDIJzkam" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Diplomas e Certificados</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Acesse os modelos de diplomas e certificados para os alunos.</p>
           </a>
-          <a href="https://drive.google.com/drive/folders/1PWa_OlMdIBIdsZAr3SHTxLPw6oIAMtlH" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Convênios</h3>
-            <p class="text-sm text-gray-600">Acesse os documentos e informações sobre convênios.</p>
+          <a href="https://drive.google.com/drive/folders/1PWa_OlMdIBIdsZAr3SHTxLPw6oIAMtlH" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Convênios</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Acesse os documentos e informações sobre convênios.</p>
           </a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfteNS6wFAu9yr9y4ZJ-eAT6o9r7OLFmn6B_uhPm4efeXmyJA/viewform" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Alteração de Contratos - Pincel</h3>
-            <p class="text-sm text-gray-600">Formulários para alteração de valores do Pincel.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfteNS6wFAu9yr9y4ZJ-eAT6o9r7OLFmn6B_uhPm4efeXmyJA/viewform" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Alteração de Contratos - Pincel</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Formulários para alteração de valores do Pincel.</p>
           </a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSflA3Fgey7xEDd9ZLDH0G_30VQv2lZSNtx7_J6TBTUrZDo8Vw/viewform" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Alteração de Contratos - Gestor</h3>
-            <p class="text-sm text-gray-600">Formulários para alteração de valores do Gestor.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSflA3Fgey7xEDd9ZLDH0G_30VQv2lZSNtx7_J6TBTUrZDo8Vw/viewform" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Alteração de Contratos - Gestor</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Formulários para alteração de valores do Gestor.</p>
           </a>
-          <a href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MTU0NTA=" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">MEC da Única</h3>
-            <p class="text-sm text-gray-600">Acesse as informações sobre a Única no MEC.</p>
+          <a href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MTU0NTA=" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">MEC da Única</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Acesse as informações sobre a Única no MEC.</p>
           </a>
-          <a href="https://docs.google.com/document/d/138S-Vs8TPwzdhlD1siYrNqGFWIjnpdGJ2OmK71YaNVA/edit" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Modelo de Recibo</h3>
-            <p class="text-sm text-gray-600">O modelo de recibo para dar baixa nas matrículas.</p>
+          <a href="https://docs.google.com/document/d/138S-Vs8TPwzdhlD1siYrNqGFWIjnpdGJ2OmK71YaNVA/edit" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Modelo de Recibo</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">O modelo de recibo para dar baixa nas matrículas.</p>
           </a>
-          <a href="https://drive.google.com/drive/folders/1fWh-miidqbpFDH_pgbOhnqVrqrW-j2Ze" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Ementas de Disciplinas Isoladas</h3>
-            <p class="text-sm text-gray-600">Link do Drive contendo a listagem de ementas das Disciplinas Isoladas.</p>
+          <a href="https://drive.google.com/drive/folders/1fWh-miidqbpFDH_pgbOhnqVrqrW-j2Ze" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Ementas de Disciplinas Isoladas</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Link do Drive contendo a listagem de ementas das Disciplinas Isoladas.</p>
           </a>
-          <a href="https://faculdadeunica.pincelatomico.net.br/externos/fale_conosco/" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Análise de Aproveitamento</h3>
-            <p class="text-sm text-gray-600">Link para solicitar análise de aproveitamento e dispensa de disciplinas.</p>
+          <a href="https://faculdadeunica.pincelatomico.net.br/externos/fale_conosco/" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Análise de Aproveitamento</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Link para solicitar análise de aproveitamento e dispensa de disciplinas.</p>
           </a>
-          <a href="https://docs.google.com/spreadsheets/d/1Gakrei6M2hVaHsMSshz_7vIFNFqNVVzZ/edit?usp=sharing&ouid=113210814936649065024&rtpof=true&sd=true" target="_blank" class="block bg-white p-4 rounded-lg shadow hover:bg-purple-50 transition hidden hidden-link">
-            <h3 class="text-lg font-semibold text-purple-700 mb-2">Formulário de aproveitamento para Segunda Graduação</h3>
-            <p class="text-sm text-gray-600">Link para solicitar e verificar análises de aproveitamento de Segunda Graduação.</p>
+          <a href="https://docs.google.com/spreadsheets/d/1Gakrei6M2hVaHsMSshz_7vIFNFqNVVzZ/edit?usp=sharing&ouid=113210814936649065024&rtpof=true&sd=true" target="_blank" class="block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition hidden hidden-link">
+            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Formulário de aproveitamento para Segunda Graduação</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Link para solicitar e verificar análises de aproveitamento de Segunda Graduação.</p>
           </a>
         </div>
         <div class="text-center mt-8">
@@ -298,52 +325,89 @@
     </section>
 
     <!-- Mapa dos Polos -->
-    <section id="mapa" class="py-16 px-4 bg-white relative">
+    <section id="mapa" class="py-16 px-4 bg-white dark:bg-gray-900 relative transition-colors duration-300">
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
         <!-- Lista de Polos -->
         <div class="w-full md:w-2/5">
-          <h2 class="text-3xl font-bold mb-4 text-purple-800">Onde Estamos</h2>
-          <p class="mb-4 text-gray-700">Confira a lista de polos:</p>
+          <h2 class="text-3xl font-bold mb-4 text-purple-800 dark:text-purple-300">Onde Estamos</h2>
+          <p class="mb-4 text-gray-700 dark:text-gray-300">Confira a lista de polos:</p>
           <!-- Campo de pesquisa -->
-          <input type="text" id="city-search" placeholder="Pesquisar polos..." class="w-full p-3 border border-purple-400 rounded-lg mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition"/>
+          <input
+            type="text"
+            id="city-search"
+            placeholder="Pesquisar polos..."
+            class="w-full p-3 border border-purple-400 rounded-lg mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition bg-white dark:bg-gray-800 dark:border-purple-600 dark:text-white"
+          />
           <!-- Lista de localidades -->
-          <ul id="location-list" class="border border-gray-300 rounded-lg max-h-80 overflow-y-auto divide-y divide-gray-200 bg-gray-50 shadow-sm transition-all duration-300 ease-in-out">
+          <ul
+            id="location-list"
+            class="border border-gray-300 dark:border-gray-700 rounded-lg max-h-80 overflow-y-auto divide-y divide-gray-200 dark:divide-gray-600 bg-gray-50 dark:bg-gray-800 shadow-sm transition-all duration-300 ease-in-out"
+          >
             <!-- Placeholder dinâmico -->
-            <li id="empty-placeholder" class="p-3 text-gray-500 italic text-center">Nenhum polo encontrado</li>
+            <li id="empty-placeholder" class="p-3 text-gray-500 dark:text-gray-400 italic text-center">
+              Nenhum polo encontrado
+            </li>
           </ul>
         </div>
         <!-- Mapa -->
-        <div id="divmap" class="flex-1 h-[500px] rounded-xl overflow-hidden shadow-lg border-2 border-purple-300">
+        <div
+          id="divmap"
+          class="flex-1 h-[500px] rounded-xl overflow-hidden shadow-lg border-2 border-purple-300 dark:border-purple-700"
+        >
           <div id="map" class="w-full h-full"></div>
         </div>
       </div>
     </section>
 
     <!-- Dúvidas -->
-    <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto" x-data="faqSearch()" x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()">
-      <h2 class="text-3xl font-bold mb-6 text-purple-800">
+    <section id="duvidas"
+      class="py-16 px-4 max-w-4xl mx-auto transition-colors duration-300"
+      x-data="faqSearch()"
+      x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()"
+    >
+      <h2 class="text-3xl font-bold mb-6 text-purple-800 dark:text-purple-300">
         Dúvidas mais comuns
       </h2>
+
       <!-- Campo de pesquisa -->
-      <input type="text" placeholder="Digite uma palavra-chave referente a sua dúvida..."
-        x-model="search" class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500"/>
+      <input
+        type="text"
+        placeholder="Digite uma palavra-chave referente a sua dúvida..."
+        x-model="search"
+        class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+      />
+
       <!-- Lista de dúvidas -->
       <div class="space-y-4">
         <template x-for="(faq, index) in limitedFaqs" :key="index">
           <div>
-            <button @click="selected !== index ? selected = index : selected = null"
-              class="w-full text-left bg-white p-4 rounded shadow font-semibold text-purple-700" x-text="faq.pergunta"></button>
-            <div x-show="selected === index" x-transition class="p-4 bg-purple-50 border rounded" x-html="faq.resposta"></div>
+            <button
+              @click="selected !== index ? selected = index : selected = null"
+              class="w-full text-left bg-white dark:bg-gray-800 p-4 rounded shadow font-semibold text-purple-700 dark:text-purple-300 transition-colors duration-300"
+              x-text="faq.pergunta"
+            ></button>
+            <div
+              x-show="selected === index"
+              x-transition
+              class="p-4 bg-purple-50 dark:bg-gray-900 border dark:border-gray-700 rounded text-gray-800 dark:text-gray-200"
+              x-html="faq.resposta"
+            ></div>
           </div>
         </template>
+
         <!-- Caso nenhuma dúvida seja encontrada -->
-        <div x-show="filteredFaqs.length === 0" class="text-gray-500 text-center mt-6">
+        <div
+          x-show="filteredFaqs.length === 0"
+          class="text-gray-500 dark:text-gray-400 text-center mt-6"
+        >
           Nenhuma dúvida encontrada com essa palavra-chave.
         </div>
         <!-- Botão "Ver mais" -->
         <div class="text-center mt-6" x-show="filteredFaqs.length > visibleCount">
-          <button @click="showMore"
-            class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 transition">
+          <button
+            @click="showMore"
+            class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 transition"
+          >
             Ver mais dúvidas
           </button>
         </div>
@@ -351,103 +415,122 @@
     </section>
 
     <!-- Contato -->
-    <section id="contato" class="bg-purple-100 py-16 px-4">
+    <section id="contato" class="bg-purple-100 dark:bg-gray-900 py-16 px-4">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-10 text-purple-800 text-center">Fale Conosco</h2>
+        <h2 class="text-3xl font-bold mb-10 text-purple-800 dark:text-purple-300 text-center">Fale Conosco</h2>
         <div class="flex flex-col md:flex-row gap-12">
+          
           <!-- Coluna do Formulário -->
           <div class="md:w-1/2">
             <form id="contatoForm"
                   action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
                   method="POST"
                   onsubmit="handleFormSubmit(event)"
-                  class="space-y-4 bg-white p-6 rounded-lg shadow">
+                  class="space-y-4 bg-white dark:bg-gray-800 p-6 rounded-lg shadow dark:shadow-lg">
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html" />
               <div>
-                <label for="nome" class="block text-purple-700 font-semibold">Nome</label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome" class="w-full p-3 rounded border" required />
+                <label for="nome" class="block text-purple-700 dark:text-purple-300 font-semibold">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome"
+                      class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                      required />
               </div>
               <div>
-                <label for="email" class="block text-purple-700 font-semibold">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Seu e-mail" class="w-full p-3 rounded border" required />
+                <label for="email" class="block text-purple-700 dark:text-purple-300 font-semibold">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Seu e-mail"
+                      class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                      required />
               </div>
               <div>
-                <label for="telefone" class="block text-purple-700 font-semibold">Telefone</label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" class="w-full p-3 rounded border" />
+                <label for="telefone" class="block text-purple-700 dark:text-purple-300 font-semibold">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000"
+                      class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" />
               </div>
               <div>
-                <label for="mensagem" class="block text-purple-700 font-semibold">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." class="w-full p-3 rounded border h-32" required></textarea>
+                <label for="mensagem" class="block text-purple-700 dark:text-purple-300 font-semibold">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..."
+                          class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-32"
+                          required></textarea>
               </div>
-              <button type="submit" class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800 w-full">
+              <button type="submit"
+                      class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800 transition w-full">
                 Enviar
               </button>
             </form>
           </div>
+
           <!-- Coluna de Contatos Importantes -->
-          <div class="md:w-1/2 bg-white p-6 rounded-lg shadow-lg space-y-6">
+          <div class="md:w-1/2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg space-y-6">
+            
             <!-- Bloco: Atendimento ao Aluno -->
-            <div class="border-l-4 border-purple-300 pl-4 space-y-4">
-              <h4 class="text-lg font-semibold text-purple-700">Atendimento ao Aluno</h4>
+            <div class="border-l-4 border-purple-300 dark:border-purple-500 pl-4 space-y-4">
+              <h4 class="text-lg font-semibold text-purple-700 dark:text-purple-300">Atendimento ao Aluno</h4>
               <div>
-                <p class="text-gray-700">
+                <p class="text-gray-700 dark:text-gray-200">
                   <strong>WhatsApp:</strong><br>
-                  <a href="https://wa.me/+5531972238868" target="_blank" class="inline-block mt-1 px-3 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 transition">
+                  <a href="https://wa.me/+5531972238868" target="_blank"
+                    class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
                     (31) 97223-8868
                   </a>
                 </p>
               </div>
               <div>
-                <p class="text-gray-700">
+                <p class="text-gray-700 dark:text-gray-200">
                   <strong>E-mail:</strong><br>
-                  <a href="mailto:atendimento@uniunica.edu.br" class="inline-block mt-1 px-3 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 transition">
+                  <a href="mailto:atendimento@uniunica.edu.br"
+                    class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
                     atendimento@uniunica.edu.br
                   </a>
                 </p>
               </div>
               <div>
-                <p class="text-gray-700">
+                <p class="text-gray-700 dark:text-gray-200">
                   <strong>Telefone:</strong><br>
-                  <span class="inline-block mt-1 px-3 py-1 bg-purple-100 text-purple-800 rounded">
+                  <span class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded">
                     0800 724 2300
                   </span>
                 </p>
               </div>
             </div>
+
             <!-- Bloco: Outros Canais -->
-            <div class="border-t pt-4 space-y-4">
-              <h4 class="text-lg font-semibold text-purple-700">Nossos Canais</h4>
+            <div class="border-t border-gray-200 dark:border-gray-600 pt-4 space-y-4">
+              <h4 class="text-lg font-semibold text-purple-700 dark:text-purple-300">Nossos Canais</h4>
               <div>
-                <p class="text-gray-700">
+                <p class="text-gray-700 dark:text-gray-200">
                   <strong>Site Oficial:</strong><br>
-                  <a href="https://uniunica.edu.br" target="_blank" class="inline-block mt-1 px-3 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 transition">
+                  <a href="https://uniunica.edu.br" target="_blank"
+                    class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
                     uniunica.edu.br
                   </a>
                 </p>
               </div>
               <div>
-                <p class="text-gray-700">
+                <p class="text-gray-700 dark:text-gray-200">
                   <strong>Redes Sociais:</strong><br>
-                  <a href="https://www.instagram.com/uniun1ca/" target="_blank" class="inline-block mt-1 mr-2 px-3 py-1 bg-pink-100 text-pink-800 rounded hover:bg-pink-200 transition">
+                  <a href="https://www.instagram.com/uniun1ca/" target="_blank"
+                    class="inline-block mt-1 mr-2 px-3 py-1 bg-pink-100 dark:bg-pink-700 text-pink-800 dark:text-white rounded hover:bg-pink-200 dark:hover:bg-pink-600 transition">
                     Instagram
                   </a>
-                  <a href="https://www.facebook.com/uniun1ca/" target="_blank" class="inline-block mt-1 px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 transition">
+                  <a href="https://www.facebook.com/uniun1ca/" target="_blank"
+                    class="inline-block mt-1 px-3 py-1 bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white rounded hover:bg-blue-200 dark:hover:bg-blue-600 transition">
                     Facebook
                   </a>
                 </p>
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </section>
 
     <!-- Rodapé -->
-    <footer class="bg-white border-t py-6">
+    <footer class="bg-white dark:bg-gray-900 border-t dark:border-gray-700 py-6">
       <div class="max-w-7xl mx-auto px-4 text-center">
-        <p class="text-sm text-gray-500 tracking-wide">
-          © 2025 <span class="font-semibold text-purple-700">Centro Universitário Única</span> · <span class="font-semibold text-purple-700">Expansão e Negócios</span>
+        <p class="text-sm text-gray-500 dark:text-gray-400 tracking-wide">
+          © 2025 <span class="font-semibold text-purple-700 dark:text-purple-400">Centro Universitário Única</span> · 
+          <span class="font-semibold text-purple-700 dark:text-purple-400">Expansão e Negócios</span>
         </p>
       </div>
     </footer>
