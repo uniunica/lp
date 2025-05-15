@@ -82,7 +82,8 @@ E-mail: ${email}`.trim();
       locationList.appendChild(li);
     });
   }
-
+  // Inicia carregando os dados
+  await carregarPolos();
   // Busca com filtro dinâmico
   searchInput.addEventListener("input", function () {
     const query = this.value.toLowerCase();
@@ -98,7 +99,4 @@ E-mail: ${email}`.trim();
       renderLocationList(filtered);
     }
   });
-
-  // Inicia carregando os dados
-  await carregarPolos();
 });
