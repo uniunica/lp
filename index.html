@@ -320,7 +320,7 @@
     </section>
 
     <!-- Dúvidas -->
-    <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto" x-data="faqSearch()">
+    <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto" x-data="faqSearch()" x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()">
       <h2 class="text-3xl font-bold mb-6 text-purple-800">
         Dúvidas mais comuns
       </h2>
