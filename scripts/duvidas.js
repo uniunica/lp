@@ -3,6 +3,7 @@ function faqSearch() {
   return {
     search: "",
     selected: null,
+    visibleCount: 5,
     faqs: [
       {
         pergunta: "Onde encontro os preços atuais dos nossos produtos?",
@@ -93,9 +94,8 @@ function faqSearch() {
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/\s+/g, " ")
         .trim();
-
       if (!keyword) return this.faqs;
-
+      // Retornoa as perguntas e respostas que contêm a palavra-chave
       return this.faqs.filter(
         (f) =>
           f.pergunta
@@ -110,5 +110,16 @@ function faqSearch() {
             .includes(keyword)
       );
     },
+    get limitedFaqs() {
+      return this.filteredFaqs.slice(0, this.visibleCount);
+    },
+    // Método para exibir mais perguntas
+    showMore() {
+      this.visibleCount += 5;
+    },
+    // Método para ocultar perguntas
+    resetVisible() {
+      this.visibleCount = 5;
+    }
   };
 }
