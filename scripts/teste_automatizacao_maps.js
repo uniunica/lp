@@ -84,18 +84,33 @@ E-mail: ${email}`.trim();
   }
   // Inicia carregando os dados
   await carregarPolos();
-  // Busca com filtro dinâmico
+  // Função para normalizar texto: remove acentos, espaços extras e converte para minúsculas
+  function normalizarTexto(texto) {
+    return texto
+      .normalize("NFD") // Separa acentos das letras
+      .replace(/[\u0300-\u036f]/g, "") // Remove os acentos
+      .replace(/\s+/g, " ") // Reduz múltiplos espaços a um único espaço
+      .trim() // Remove espaços no início/fim
+      .toLowerCase(); // Converte para minúsculas
+  }
+
+  // Busca com filtro dinâmico robusta
   searchInput.addEventListener("input", function () {
-    const query = this.value.toLowerCase();
+    const query = normalizarTexto(this.value);
     const citiesData = simplemaps_countrymap_mapdata.locations;
+
     if (query === "") {
       renderLocationList(Object.values(citiesData));
     } else {
-      const filtered = Object.values(citiesData).filter(
-        (city) =>
-          city.name.toLowerCase().includes(query) ||
-          city.description.toLowerCase().includes(query)
-      );
+      const filtered = Object.values(citiesData).filter((city) => {
+        const nomeNormalizado = normalizarTexto(city.name);
+        const descricaoNormalizada = normalizarTexto(city.description);
+        return (
+          nomeNormalizado.includes(query) ||
+          descricaoNormalizada.includes(query)
+        );
+      });
+
       renderLocationList(filtered);
     }
   });
