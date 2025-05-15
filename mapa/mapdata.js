@@ -1,321 +1,140 @@
-async function carregarPolos() {
-  const apiKey = "AIzaSyDqOzQWHPmUxy_6XSJM0TpFrcFyeAShVq8";
-  const sheetId = "1IxAnU18qxiEf-TjvqBEEj9L1W3CsY3-DHDxREV4APmk";
-  const range = "A2:N"; // Colunas de A até N (incluindo nome, dados e coordenadas)
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-  // Intervalo de células a serem lidas
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    // Inicializa a estrutura de dados do mapa
-    simplemaps_countrymap_mapdata.locations = {};
-    data.values.forEach((row, index) => {
-      const [
-        nomePolo, // A // B ignorado
-        ,
-        responsavel, // C
-        endereco, // D
-        cidade, // E
-        estado, // F
-        cep, // G
-        telefone, // H
-        email, // I // J ignorado // K ignorado // L ignorado
-        ,
-        ,
-        ,
-        lat, // M
-        lng, // N
-      ] = row;
-      // Cria a descrição com os dados combinados
-      const descricao = `Responsável: ${responsavel}\nEndereço: ${endereco}\nCidade: ${cidade} - ${estado}\nCEP: ${cep}\nTelefone: ${telefone}\nEmail: ${email}`;
-      // Adiciona ao objeto de localizações
-      simplemaps_countrymap_mapdata.locations[index] = {
-        name: nomePolo,
-        lat: lat,
-        lng: lng,
-        description: descricao,
-      };
+document.addEventListener("DOMContentLoaded", async () => {
+  const searchInput = document.getElementById("city-search");
+  const locationList = document.getElementById("location-list");
+
+  // Carrega os polos da planilha do Google Sheets
+  async function carregarPolos() {
+    const apiKey = "AIzaSyDqOzQWHPmUxy_6XSJM0TpFrcFyeAShVq8";
+    const sheetId = "1IxAnU18qxiEf-TjvqBEEj9L1W3CsY3-DHDxREV4APmk";
+    const range = "A2:N"; // Inclui até coluna N
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+      const rows = json.values;
+
+      const newLocations = {};
+
+      rows.forEach((row, index) => {
+        const name = row[0]?.trim(); // Coluna A – Nome do Polo
+        const responsavel = row[2]?.trim() || ""; // Coluna C
+        const endereco = row[3]?.trim() || ""; // Coluna D
+        const cidade = row[4]?.trim() || ""; // Coluna E
+        const estado = row[5]?.trim() || ""; // Coluna F
+        const cep = row[6]?.trim() || ""; // Coluna G
+        const telefone = row[7]?.trim() || ""; // Coluna H
+        const email = row[8]?.trim() || ""; // Coluna I
+
+        const lat = parseFloat(row[12]); // Coluna M
+        const lng = parseFloat(row[13]); // Coluna N
+
+        const description = `
+Responsável: ${responsavel}
+Endereço: ${endereco}
+Cidade: ${cidade}
+Estado: ${estado}
+CEP: ${cep}
+Telefone: ${telefone}
+E-mail: ${email}`.trim();
+
+        if (name && !isNaN(lat) && !isNaN(lng)) {
+          newLocations[`loc_${index}`] = {
+            name,
+            description,
+            lat,
+            lng,
+          };
+        }
+      });
+
+      simplemaps_countrymap_mapdata.locations = newLocations;
+      renderLocationList(Object.values(newLocations));
+    } catch (error) {
+      console.error("Erro ao carregar polos:", error);
+    }
+  }
+
+  // Renderiza a lista de locais
+  function renderLocationList(cityList) {
+    locationList.innerHTML = "";
+
+    const emptyPlaceholder = document.createElement("li");
+    emptyPlaceholder.id = "empty-placeholder";
+    emptyPlaceholder.className = "p-3 text-gray-500 italic text-center";
+    emptyPlaceholder.textContent = "Nenhum polo encontrado";
+
+    if (cityList.length === 0) {
+      locationList.appendChild(emptyPlaceholder);
+      return;
+    }
+
+    cityList.forEach((city) => {
+      const li = document.createElement("li");
+      li.classList.add("px-4", "py-2", "hover:bg-purple-100", "cursor-pointer");
+      li.innerHTML = `
+        <strong>${city.name}</strong><br>
+        <span class="text-sm text-gray-600">${city.description}</span>
+      `;
+      li.addEventListener("click", () => {
+        focusCityOnMap(city.name);
+      });
+      locationList.appendChild(li);
     });
-  } catch (error) {
-    console.error("Erro ao carregar polos:", error);
   }
-  if (
-    typeof simplemaps_countrymap !== "undefined" &&
-    typeof simplemaps_countrymap.load === "function"
-  ) {
-    simplemaps_countrymap.load();
+
+  // Busca com filtro dinâmico
+  searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    const citiesData = simplemaps_countrymap_mapdata.locations;
+    if (query === "") {
+      renderLocationList(Object.values(citiesData));
+    } else {
+      const filtered = Object.values(citiesData).filter(
+        (city) =>
+          city.name.toLowerCase().includes(query) ||
+          city.description.toLowerCase().includes(query)
+      );
+      renderLocationList(filtered);
+    }
+  });
+
+  // Centraliza e destaca cidade no mapa
+  function focusCityOnMap(cityName) {
+    const citiesData = simplemaps_countrymap_mapdata.locations;
+    const cityKey = Object.keys(citiesData).find(
+      (key) => citiesData[key].name === cityName
+    );
+    if (cityKey && simplemaps_countrymap) {
+      const city = citiesData[cityKey];
+      const stateKey = getStateKey(city.lat, city.lng);
+      if (stateKey) {
+        simplemaps_countrymap.set_zoom(4);
+        simplemaps_countrymap.highlight_region(stateKey);
+      }
+      showCityPopup(city);
+    }
   }
-}
-var simplemaps_countrymap_mapdata = {
-  main_settings: {
-    //General settings
-    width: "responsive", //'700' or 'responsive'
-    background_color: "#FFFFFF",
-    background_transparent: "yes",
-    border_color: "#ffffff",
-    state_description: "",
-    state_color: "#d454da",
-    state_hover_color: "#c82ecf",
-    state_url: "",
-    border_size: 1.5,
-    all_states_inactive: "no",
-    all_states_zoomable: "yes",
 
-    //Location defaults
-    location_description: "Polo",
-    location_url: "",
-    location_color: "#560180",
-    location_opacity: 0.8,
-    location_hover_opacity: 1,
-    location_size: "20",
-    location_type: "marker",
-    location_image_source: "frog.png",
-    location_border_color: "#FFFFFF",
-    location_border: 2,
-    location_hover_border: 2.5,
-    all_locations_inactive: "no",
-    all_locations_hidden: "no",
+  // Exibe popup com nome e descrição da cidade
+  function showCityPopup(cityData) {
+    const popup = document.getElementById("city-info-popup");
+    popup.innerHTML = `
+      <h3 class="text-lg font-bold text-purple-800 mb-2">${cityData.name}</h3>
+      <p class="text-sm text-gray-700 whitespace-pre-line">${cityData.description}</p>
+    `;
+    popup.style.position = "absolute";
+    popup.style.top = "50%";
+    popup.style.left = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    popup.classList.remove("hidden");
+  }
 
-    //Label defaults
-    label_color: "#ffffff",
-    label_hover_color: "#ffffff",
-    label_size: 16,
-    label_font: "Arial",
-    label_display: "auto",
-    label_scale: "yes",
-    hide_labels: "no",
-    hide_eastern_labels: "no",
+  // Função fictícia – você pode substituir por lógica real se quiser destacar estados
+  function getStateKey(lat, lng) {
+    return null; // ou lógica real baseada nas coordenadas
+  }
 
-    //Zoom settings
-    zoom: "yes",
-    manual_zoom: "yes",
-    back_image: "no",
-    initial_back: "no",
-    initial_zoom: "-1",
-    initial_zoom_solo: "no",
-    region_opacity: 1,
-    region_hover_opacity: 0.6,
-    zoom_out_incrementally: "yes",
-    zoom_percentage: 0.99,
-    zoom_time: 0.5,
-
-    //Popup settings
-    popup_color: "white",
-    popup_opacity: 0.9,
-    popup_shadow: 1,
-    popup_corners: 5,
-    popup_font: "12px/1.5 Verdana, Arial, Helvetica, sans-serif",
-    popup_nocss: "no",
-
-    //Advanced settings
-    div: "map",
-    auto_load: "yes",
-    url_new_tab: "no",
-    images_directory: "default",
-    fade_time: 0.1,
-    link_text: "View Website",
-    popups: "detect",
-    state_image_url: "",
-    state_image_position: "",
-    location_image_url: "",
-  },
-  state_specific: {
-    BRAC: {
-      name: "Acre",
-    },
-    BRAL: {
-      name: "Alagoas",
-    },
-    BRAM: {
-      name: "Amazonas",
-    },
-    BRAP: {
-      name: "Amapá",
-    },
-    BRBA: {
-      name: "Bahia",
-    },
-    BRCE: {
-      name: "Ceará",
-    },
-    BRDF: {
-      name: "Distrito Federal",
-    },
-    BRES: {
-      name: "Espírito Santo",
-    },
-    BRGO: {
-      name: "Goiás",
-    },
-    BRMA: {
-      name: "Maranhão",
-    },
-    BRMG: {
-      name: "Minas Gerais",
-    },
-    BRMS: {
-      name: "Mato Grosso do Sul",
-    },
-    BRMT: {
-      name: "Mato Grosso",
-    },
-    BRPA: {
-      name: "Pará",
-    },
-    BRPB: {
-      name: "Paraíba",
-    },
-    BRPE: {
-      name: "Pernambuco",
-    },
-    BRPI: {
-      name: "Piauí",
-    },
-    BRPR: {
-      name: "Paraná",
-    },
-    BRRJ: {
-      name: "Rio de Janeiro",
-    },
-    BRRN: {
-      name: "Rio Grande do Norte",
-    },
-    BRRO: {
-      name: "Rondônia",
-    },
-    BRRR: {
-      name: "Roraima",
-    },
-    BRRS: {
-      name: "Rio Grande do Sul",
-    },
-    BRSC: {
-      name: "Santa Catarina",
-    },
-    BRSE: {
-      name: "Sergipe",
-    },
-    BRSP: {
-      name: "São Paulo",
-    },
-    BRTO: {
-      name: "Tocantins",
-    },
-  },
-  locations: {},
-  labels: {
-    BRAC: {
-      name: "Acre",
-      parent_id: "BRAC",
-    },
-    BRAL: {
-      name: "Alagoas",
-      parent_id: "BRAL",
-    },
-    BRAM: {
-      name: "Amazonas",
-      parent_id: "BRAM",
-    },
-    BRAP: {
-      name: "Amapá",
-      parent_id: "BRAP",
-    },
-    BRBA: {
-      name: "Bahia",
-      parent_id: "BRBA",
-    },
-    BRCE: {
-      name: "Ceará",
-      parent_id: "BRCE",
-    },
-    BRDF: {
-      name: "Distrito Federal",
-      parent_id: "BRDF",
-    },
-    BRES: {
-      name: "Espírito Santo",
-      parent_id: "BRES",
-    },
-    BRGO: {
-      name: "Goiás",
-      parent_id: "BRGO",
-    },
-    BRMA: {
-      name: "Maranhão",
-      parent_id: "BRMA",
-    },
-    BRMG: {
-      name: "Minas Gerais",
-      parent_id: "BRMG",
-    },
-    BRMS: {
-      name: "Mato Grosso do Sul",
-      parent_id: "BRMS",
-    },
-    BRMT: {
-      name: "Mato Grosso",
-      parent_id: "BRMT",
-    },
-    BRPA: {
-      name: "Pará",
-      parent_id: "BRPA",
-    },
-    BRPB: {
-      name: "Paraíba",
-      parent_id: "BRPB",
-    },
-    BRPE: {
-      name: "Pernambuco",
-      parent_id: "BRPE",
-    },
-    BRPI: {
-      name: "Piauí",
-      parent_id: "BRPI",
-    },
-    BRPR: {
-      name: "Paraná",
-      parent_id: "BRPR",
-    },
-    BRRJ: {
-      name: "Rio de Janeiro",
-      parent_id: "BRRJ",
-    },
-    BRRN: {
-      name: "Rio Grande do Norte",
-      parent_id: "BRRN",
-    },
-    BRRO: {
-      name: "Rondônia",
-      parent_id: "BRRO",
-    },
-    BRRR: {
-      name: "Roraima",
-      parent_id: "BRRR",
-    },
-    BRRS: {
-      name: "Rio Grande do Sul",
-      parent_id: "BRRS",
-    },
-    BRSC: {
-      name: "Santa Catarina",
-      parent_id: "BRSC",
-    },
-    BRSE: {
-      name: "Sergipe",
-      parent_id: "BRSE",
-    },
-    BRSP: {
-      name: "São Paulo",
-      parent_id: "BRSP",
-    },
-    BRTO: {
-      name: "Tocantins",
-      parent_id: "BRTO",
-    },
-  },
-  legend: {
-    entries: [],
-  },
-  regions: {},
-};
-document.addEventListener("DOMContentLoaded", carregarPolos);
+  // Inicia carregando os dados
+  await carregarPolos();
+});
