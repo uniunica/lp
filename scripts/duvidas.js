@@ -39,6 +39,51 @@ function faqSearch() {
         resposta:
           "Para solicitar a Pós gratuita, você deverá preencher o formulário de solicitação de Pós gratuita, solicite com seu consultor",
       },
+      {
+        pergunta: "Como solicitar o aproveitamento para alunos de Graduação e Segunda Graduação?",
+        resposta:
+          "Para solicitação de aproveitamento acesse o link do <a href='https://faculdadeunica.pincelatomico.net.br/externos/fale_conosco/2'> Fale Conosco </a>. Preencher TODOS os campos solicitados, anexando o arquivo a ser analisado (histórico de notas), sem esquecer e-mail para receber o retorno com a análise (ATENÇÃO! Se o e-mail for informado incorretamente, o retorno não será enviado).",
+      },
+      {
+        pergunta: "Como solicitar o repasse dos produtos do Pincel?",
+        resposta:
+          "É enviado até o 5° dia útil do mês um e-mail com o valor que o parceiro tem a receber junto às informações para o recebimento do mesmo. Solicitar diretamente no e-mail: financeiro@unicaead.com.br",
+      },
+      {
+        pergunta: "Como cadastrar CNPJ no portal do parceiro?",
+        resposta:
+          "No campo “Administrativo”, o parceiro deverá clicar na opção “Dados empresariais” e em seguida “Cadastrar nova empresa”.",
+      },
+      {
+        pergunta: "Onde encontro as matrizes curriculares?",
+        resposta:
+          "No drive geral na pasta de Matrizes e Modalidades.",
+      },
+      {
+        pergunta: "Quando e como o aluno receberá o acesso ao portal?",
+        resposta:
+          "O aluno recebe acesso ao portal assim que ele realiza o pagamento da taxa de matrícula, será enviado um e-mail com todas as orientações de passo a passo para acesso.",
+      },
+      {
+        pergunta: "Como solicitar a baixa da matrícula quando o valor é pago em mãos?",
+        resposta:
+          "Ao receber em mãos o valor da  taxa de matrícula, o parceiro deve preencher um recibo onde conste os dados do aluno, encaminhar ao setor “baixas polo” via e-mail: baixaspolo@grupoprominas.com.br e assim é feita a baixa da matrícula do aluno. O exemplo do recibo está disponível na seção de links úteis acima.",
+      },
+      {
+        pergunta: "Dúvidas sobre estágio (para alunos que questionam antes de efetivar a matrícula)",
+        resposta:
+          "Temos o documento de informativo com todas as informações de carga horário e período encontrado acima na seção de Links úteis e temos o setor NESE (Núcleo de Empregabilidade e Estágio) que está à disposição para orientar o aluno durante todo o período de estágio.",
+      },
+      {
+        pergunta: "Os curos de Graduação são feitos de forma 100% presencial?",
+        resposta:
+          "Os cursos de Graduação são a distância, caso o curso tenha estágio obrigatório, ou o aluno tenha alguma atividade presencial será devidamente orientado no portal.",
+      },
+      {
+        pergunta: "Como solicitar a placa?",
+        resposta:
+          "Todo o passo a passo está no documento abaixo: <a href='https://drive.google.com/file/d/1DSYXQVAC7rtqhMSa_08aYudnQKAHl4gO/view?usp=sharing' class='text-purple-600 underline'>Passo a Passo para solicitar a placa</a>.",
+      },
       // Adicione mais dúvidas aqui
     ],
     get filteredFaqs() {
