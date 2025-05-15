@@ -352,32 +352,94 @@
 
     <!-- Contato -->
     <section id="contato" class="bg-purple-100 py-16 px-4">
-      <div class="max-w-3xl mx-auto">
-          <h2 class="text-3xl font-bold mb-6 text-purple-800">Fale Conosco</h2>
-          <form id="contatoForm" action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
-              method="POST" onsubmit="handleFormSubmit(event)" class="space-y-4">
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html" />
-          <div>
-              <label for="nome" class="block text-purple-700 font-semibold">Nome</label>
-              <input type="text" id="nome" name="nome" placeholder="Seu nome" class="w-full p-3 rounded border" required />
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-10 text-purple-800 text-center">Fale Conosco</h2>
+        <div class="flex flex-col md:flex-row gap-12">
+          <!-- Coluna do Formulário -->
+          <div class="md:w-1/2">
+            <form id="contatoForm"
+                  action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
+                  method="POST"
+                  onsubmit="handleFormSubmit(event)"
+                  class="space-y-4 bg-white p-6 rounded-lg shadow">
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html" />
+              <div>
+                <label for="nome" class="block text-purple-700 font-semibold">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" class="w-full p-3 rounded border" required />
+              </div>
+              <div>
+                <label for="email" class="block text-purple-700 font-semibold">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Seu e-mail" class="w-full p-3 rounded border" required />
+              </div>
+              <div>
+                <label for="telefone" class="block text-purple-700 font-semibold">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" class="w-full p-3 rounded border" />
+              </div>
+              <div>
+                <label for="mensagem" class="block text-purple-700 font-semibold">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." class="w-full p-3 rounded border h-32" required></textarea>
+              </div>
+              <button type="submit" class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800 w-full">
+                Enviar
+              </button>
+            </form>
           </div>
-          <div>
-              <label for="email" class="block text-purple-700 font-semibold">E-mail</label>
-              <input type="email" id="email" name="email" placeholder="Seu e-mail" class="w-full p-3 rounded border" required />
+          <!-- Coluna de Contatos Importantes -->
+          <div class="md:w-1/2 bg-white p-6 rounded-lg shadow-lg space-y-6">
+            <!-- Bloco: Atendimento ao Aluno -->
+            <div class="border-l-4 border-purple-300 pl-4 space-y-4">
+              <h4 class="text-lg font-semibold text-purple-700">Atendimento ao Aluno</h4>
+              <div>
+                <p class="text-gray-700">
+                  <strong>WhatsApp:</strong><br>
+                  <a href="https://wa.me/+5531972238868" target="_blank" class="inline-block mt-1 px-3 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 transition">
+                    (31) 97223-8868
+                  </a>
+                </p>
+              </div>
+              <div>
+                <p class="text-gray-700">
+                  <strong>E-mail:</strong><br>
+                  <a href="mailto:atendimento@uniunica.edu.br" class="inline-block mt-1 px-3 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 transition">
+                    atendimento@uniunica.edu.br
+                  </a>
+                </p>
+              </div>
+              <div>
+                <p class="text-gray-700">
+                  <strong>Telefone:</strong><br>
+                  <span class="inline-block mt-1 px-3 py-1 bg-purple-100 text-purple-800 rounded">
+                    0800 724 2300
+                  </span>
+                </p>
+              </div>
+            </div>
+            <!-- Bloco: Outros Canais -->
+            <div class="border-t pt-4 space-y-4">
+              <h4 class="text-lg font-semibold text-purple-700">Nossos Canais</h4>
+              <div>
+                <p class="text-gray-700">
+                  <strong>Site Oficial:</strong><br>
+                  <a href="https://uniunica.edu.br" target="_blank" class="inline-block mt-1 px-3 py-1 bg-purple-100 text-purple-800 rounded hover:bg-purple-200 transition">
+                    uniunica.edu.br
+                  </a>
+                </p>
+              </div>
+              <div>
+                <p class="text-gray-700">
+                  <strong>Redes Sociais:</strong><br>
+                  <a href="https://www.instagram.com/uniun1ca/" target="_blank" class="inline-block mt-1 mr-2 px-3 py-1 bg-pink-100 text-pink-800 rounded hover:bg-pink-200 transition">
+                    Instagram
+                  </a>
+                  <a href="https://www.facebook.com/uniun1ca/" target="_blank" class="inline-block mt-1 px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 transition">
+                    Facebook
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
-          <div>
-              <label for="telefone" class="block text-purple-700 font-semibold">Telefone</label>
-              <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" class="w-full p-3 rounded border" />
-          </div>
-          <div>
-              <label for="mensagem" class="block text-purple-700 font-semibold">Mensagem</label>
-              <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." class="w-full p-3 rounded border h-32" required></textarea>
-          </div>
-          <button type="submit" class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800">
-              Enviar
-          </button>
-          </form>
+        </div>
       </div>
     </section>
 
