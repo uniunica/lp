@@ -93,7 +93,7 @@ function mostrarContato(nome) {
       "NOVATOS": "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-100",
     };
     // Remove todas as cores anteriores
-    numeroVisivel.className = "mt-3 px-3 py-2 border rounded-lg text-sm font-medium select-text cursor-pointer transition duration-200 hover:bg-purple-100 dark:hover:bg-purple-800";
+    numeroVisivel.className = "mt-3 px-3 py-2 border rounded-lg text-sm font-medium select-text cursor-pointer transition duration-200 dark:hover:bg-purple-800";
     // Adiciona a nova cor com base na carteira
     const corClasse = coresPorCarteira[carteira];
     if (corClasse) {
