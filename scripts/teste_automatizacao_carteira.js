@@ -80,12 +80,28 @@ function mostrarContato(nome) {
   const carteira = parceiros[nome];
   if (carteira && carteiras[carteira]) {
     const numero = carteiras[carteira];
-    // Link do botão para WhatsApp
-    btnWhatsapp.href = `https://wa.me/${numero}`;
-    // Mostrar o número de WhatsApp
     const numeroVisivel = document.getElementById("numero-visivel");
+    // Atualiza o texto do número visível
     numeroVisivel.textContent = `${numero}`;
-    // Seleciona automaticamente o número
+    // Define as cores por carteira
+    const coresPorCarteira = {
+      "Carteira 1": "bg-yellow-100 dark:bg-yellow-700 text-yellow-800 dark:text-yellow-100",
+      "Carteira 2": "bg-green-100 dark:bg-green-700 text-green-800 dark:text-green-100",
+      "Carteira 4": "bg-pink-100 dark:bg-pink-700 text-pink-800 dark:text-pink-100",
+      "Carteira 5": "bg-red-100 dark:bg-red-700 text-red-800 dark:text-red-100",
+      "Carteira 6": "bg-amber-200 dark:bg-amber-700 text-amber-900 dark:text-amber-100",
+      "NOVATOS": "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-100",
+    };
+    // Remove todas as cores anteriores
+    numeroVisivel.className = "mt-3 px-3 py-2 border rounded-lg text-sm font-medium select-text cursor-pointer transition duration-200 hover:bg-purple-100 dark:hover:bg-purple-800";
+    // Adiciona a nova cor com base na carteira
+    const corClasse = coresPorCarteira[carteira];
+    if (corClasse) {
+      numeroVisivel.classList.add(...corClasse.split(" "));
+    }
+    // Atualiza o link do botão de WhatsApp
+    btnWhatsapp.href = `https://wa.me/${numero}`;
+    // Seleciona automaticamente o número ao clicar
     numeroVisivel.onclick = function () {
       const range = document.createRange();
       range.selectNodeContents(numeroVisivel);
@@ -98,4 +114,3 @@ function mostrarContato(nome) {
   }
 }
 document.addEventListener("DOMContentLoaded", carregarParceiros);
-
