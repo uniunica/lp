@@ -108,6 +108,7 @@
         <label for="nome-parceiro" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           Digite seu nome:
         </label>
+        <!-- Campo de texto para o nome do parceiro -->
         <input id="nome-parceiro" type="text"
           class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
           placeholder="Seu nome...">
@@ -360,64 +361,38 @@
           </ul>
         </div>
         <!-- Mapa -->
-        <div
-          id="divmap"
-          class="flex-1 h-[500px] rounded-xl overflow-hidden shadow-lg border-2 border-purple-300 dark:border-purple-700"
-        >
+        <div id="divmap" class="flex-1 h-[500px] rounded-xl overflow-hidden shadow-lg border-2 border-purple-300 dark:border-purple-700">
           <div id="map" class="w-full h-full"></div>
         </div>
       </div>
     </section>
 
     <!-- Dúvidas -->
-    <section id="duvidas"
-      class="py-16 px-4 max-w-4xl mx-auto transition-colors duration-300"
-      x-data="faqSearch()"
-      x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()"
-    >
+    <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto transition-colors duration-300"
+      x-data="faqSearch()" x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()">
       <h2 class="text-3xl font-bold mb-6 text-purple-800 dark:text-purple-300">
         Dúvidas mais comuns
       </h2>
-
       <!-- Campo de pesquisa -->
-      <input
-        type="text"
-        placeholder="Digite uma palavra-chave referente a sua dúvida..."
-        x-model="search"
-        class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white"
-      />
-
+      <input type="text" placeholder="Digite uma palavra-chave referente a sua dúvida..."
+        x-model="search" class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white"/>
       <!-- Lista de dúvidas -->
       <div class="space-y-4">
         <template x-for="(faq, index) in limitedFaqs" :key="index">
           <div>
-            <button
-              @click="selected !== index ? selected = index : selected = null"
-              class="w-full text-left bg-white dark:bg-gray-800 p-4 rounded shadow font-semibold text-purple-700 dark:text-purple-300 transition-colors duration-300"
-              x-text="faq.pergunta"
-            ></button>
-            <div
-              x-show="selected === index"
-              x-transition
-              class="p-4 bg-purple-50 dark:bg-gray-900 border dark:border-gray-700 rounded text-gray-800 dark:text-gray-200"
-              x-html="faq.resposta"
-            ></div>
+            <button @click="selected !== index ? selected = index : selected = null"
+              class="w-full text-left bg-white dark:bg-gray-800 p-4 rounded shadow font-semibold text-purple-700 dark:text-purple-300 transition-colors duration-300" x-text="faq.pergunta"></button>
+            <div x-show="selected === index" x-transition
+              class="p-4 bg-purple-50 dark:bg-gray-900 border dark:border-gray-700 rounded text-gray-800 dark:text-gray-200" x-html="faq.resposta"></div>
           </div>
         </template>
-
         <!-- Caso nenhuma dúvida seja encontrada -->
-        <div
-          x-show="filteredFaqs.length === 0"
-          class="text-gray-500 dark:text-gray-400 text-center mt-6"
-        >
+        <div x-show="filteredFaqs.length === 0" class="text-gray-500 dark:text-gray-400 text-center mt-6">
           Nenhuma dúvida encontrada com essa palavra-chave.
         </div>
         <!-- Botão "Ver mais" -->
         <div class="text-center mt-6" x-show="filteredFaqs.length > visibleCount">
-          <button
-            @click="showMore"
-            class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 transition"
-          >
+          <button @click="showMore" class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 transition">
             Ver mais dúvidas
           </button>
         </div>
@@ -429,7 +404,6 @@
       <div class="max-w-6xl mx-auto">
         <h2 class="text-3xl font-bold mb-10 text-purple-800 dark:text-purple-300 text-center">Fale Conosco</h2>
         <div class="flex flex-col md:flex-row gap-12">
-          
           <!-- Coluna do Formulário -->
           <div class="md:w-1/2">
             <form id="contatoForm"
@@ -468,10 +442,8 @@
               </button>
             </form>
           </div>
-
           <!-- Coluna de Contatos Importantes -->
           <div class="md:w-1/2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg space-y-6">
-            
             <!-- Bloco: Atendimento ao Aluno -->
             <div class="border-l-4 border-purple-300 dark:border-purple-500 pl-4 space-y-4">
               <h4 class="text-lg font-semibold text-purple-700 dark:text-purple-300">Atendimento ao Aluno</h4>
@@ -502,7 +474,6 @@
                 </p>
               </div>
             </div>
-
             <!-- Bloco: Outros Canais -->
             <div class="border-t border-gray-200 dark:border-gray-600 pt-4 space-y-4">
               <h4 class="text-lg font-semibold text-purple-700 dark:text-purple-300">Nossos Canais</h4>
@@ -529,7 +500,6 @@
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -546,19 +516,13 @@
     </footer>
 
     <!-- Popup -->
-    <div
-      x-data="{ show: false }"
-      x-show="show"
-      x-transition
-      x-init="
+    <div x-data="{ show: false }" x-show="show" x-transition x-init="
         window.addEventListener('form-enviado', () => {
           show = true;
           setTimeout(() => show = false, 4000);
         })
-      "
-      class="fixed inset-0 flex items-center justify-center z-50"
-      style="display: none"
-      id="popupSuccess">
+      " class="fixed inset-0 flex items-center justify-center z-50"
+      style="display: none" id="popupSuccess">
       <div class="bg-white rounded-lg p-6 shadow-xl border border-green-300 animate__animated animate__fadeInDown">
         <div class="text-green-600 text-2xl font-semibold mb-2">
           ✅ Mensagem Enviada!
