@@ -30,13 +30,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         const lng = parseFloat(row[13]); // Coluna N
 
         const description = `
-Responsável: ${responsavel}
-Endereço: ${endereco}
-Cidade: ${cidade}
-Estado: ${estado}
-CEP: ${cep}
-Telefone: ${telefone}
-E-mail: ${email}`.trim();
+          <strong>Responsável:</strong> ${responsavel}<br>
+          <strong>Endereço:</strong> ${endereco}<br>
+          <strong>Cidade:</strong> ${cidade}<br>
+          <strong>Estado:</strong> ${estado}<br>
+          <strong>CEP:</strong> ${cep}<br>
+          <strong>Telefone:</strong> ${telefone}<br>
+          <strong>E-mail:</strong> ${email}`.trim();
 
         if (name && !isNaN(lat) && !isNaN(lng)) {
           newLocations[`loc_${index}`] = {
