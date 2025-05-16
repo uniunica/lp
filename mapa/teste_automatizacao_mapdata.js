@@ -27,7 +27,14 @@ async function carregarPolos() {
         lng, // N
       ] = row;
       // Cria a descrição com os dados combinados
-      const descricao = `Responsável: ${responsavel}\nEndereço: ${endereco}\nCidade: ${cidade} - ${estado}\nCEP: ${cep}\nTelefone: ${telefone}\nEmail: ${email}`;
+      const descricao = `
+        <strong>Responsável:</strong> ${responsavel}<br>
+        <strong>Endereço:</strong> ${endereco}<br>
+        <strong>Cidade:</strong> ${cidade} - ${estado}<br>
+        <strong>CEP:</strong> ${cep}<br>
+        <strong>Telefone:</strong> ${telefone}<br>
+        <strong>Email:</strong> ${email}
+      `.trim();
       // Adiciona ao objeto de localizações
       simplemaps_countrymap_mapdata.locations[index] = {
         name: nomePolo,
