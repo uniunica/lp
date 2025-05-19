@@ -8,26 +8,17 @@
     <meta property="og:title" content="Setor de Expansão e Negócios - UniÚnica" />
     <meta property="og:description" content="Conheça nossos produtos, acesse links úteis, veja onde estamos e tire suas dúvidas" />
     <meta property="og:image" content="logo.png" />
-    <meta property="og:url" content="https://uniunica.github.io/lp/#" />
+    <meta property="og:url" content="https://uniunica.github.io/lp/" />
     <meta property="og:type" content="website" />
     <!-- Título -->
     <title>Setor de Expansão e Negócios</title>
     <!-- CSS Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class'
-      }
-    </script>
+    <script rel="preload" src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine JS -->
     <script src="https://unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <!-- Estilo -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.png" type="image/png" />
-    <!-- Script para o mapa -->
-    <script type="text/javascript" src="mapa/teste_automatizacao_mapdata.js"></script>
-    <script type="text/javascript" src="mapa/countrymap.js"></script>
   </head>
   <body class="font-sans antialiased text-gray-900 bg-purple-50 dark:bg-gray-900 dark:text-white">
     <!-- Topo -->
@@ -55,11 +46,10 @@
           <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
           <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
           <!-- Botão para alternar entre os modos claro e escuro -->
-          <button
-            onclick="document.documentElement.classList.toggle('dark')" 
-            class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition"
-            title="Alternar modo escuro/claro">
-            🌓
+          <button id="theme-toggle-desktop" aria-label="Alternar tema claro e escuro" aria-pressed="false" 
+            class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
+            <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
+            <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
           </button>
         </nav>
       </div>
@@ -73,11 +63,10 @@
           <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
           <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
           <!-- Botão para alternar entre os modos claro e escuro -->
-          <button
-            onclick="document.documentElement.classList.toggle('dark')" 
-            class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition"
-            title="Alternar modo escuro/claro">
-            🌓
+          <button id="theme-toggle-desktop" aria-label="Alternar tema claro e escuro" aria-pressed="false" 
+            class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
+            <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
+            <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
           </button>
         </nav>
       </div>
@@ -359,7 +348,42 @@
               Nenhum polo encontrado
             </li>
           </ul>
+
+          <!-- Botão para abrir o modal -->
+          <div class="mt-6 text-center">
+            <button id="open-modal-location" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300">
+              Encontre o Polo mais próximo
+            </button>
+          </div>
+          <!-- Modal -->
+          <div id="modal-location" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 hidden justify-center items-center px-4" >
+            <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-xl max-w-md w-full relative">
+              <!-- Botão de fechar -->
+              <button id="close-modal" class="absolute top-2 right-2 text-gray-600 dark:text-gray-300 hover:text-red-500 transition text-xl font-bold">
+                &times;
+              </button>
+              <h3 class="text-2xl font-bold mb-4 text-purple-800 dark:text-purple-300 text-center">Polo mais próximo</h3>
+              <!-- Input da cidade -->
+              <div class="mb-4">
+                <label for="cidade" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Digite sua cidade:</label>
+                <input type="text" id="cidade" placeholder="Ex: Belo Horizonte" class="w-full p-3 border border-purple-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:text-white dark:border-purple-600"/>
+              </div>
+              <!-- Resultado do polo mais próximo -->
+              <div id="resultado-polo" class="mb-4 hidden">
+                <p class="text-gray-800 dark:text-gray-200"><strong>Polo mais próximo:</strong> <span class="text-purple-700 dark:text-purple-400" id="polo-nome"></span></p>
+              </div>
+              <!-- Distância e rota -->
+              <div id="resultado-distancia" class="hidden">
+                <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Distância:</strong> <span id="distancia-km" class="text-purple-700 dark:text-purple-400"></span> km</p>
+                <a id="rota-link" href="#" target="_blank" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold transition">
+                  Ver rota no Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
+
         <!-- Mapa -->
         <div id="divmap" class="flex-1 h-[500px] rounded-xl overflow-hidden shadow-lg border-2 border-purple-300 dark:border-purple-700">
           <div id="map" class="w-full h-full"></div>
@@ -533,19 +557,24 @@
       </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts geral -->
+    <script src="scripts/main.js"></script>
+    <!-- Script para seção de produtos -->
     <script src="scripts/produtos.js"></script>
+    <!-- Script para seção de link -->
     <script src="scripts/links.js"></script>
+    <!-- Script para seção de mapas -->
     <script src="scripts/teste_automatizacao_maps.js"></script>
+        <!-- Script para o mapa -->
+    <script src="mapa/teste_automatizacao_mapdata.js" defer></script>
+    <script src="mapa/countrymap.js" defer></script>
+    <!-- Script para modal de localizar -->
+    <script src="scripts/localizar_polo_proximo.js"></script>
+    <!-- Script para seção de formulario -->
     <script src="scripts/formulario.js"></script>
+    <!-- Script para seção de dúvidas -->
     <script src="scripts/duvidas.js"></script>
+    <!-- Script para modal de carteiras -->
     <script src="scripts/teste_automatizacao_carteira.js"></script>
-    <script>
-      // Toggle do menu mobile
-      document.getElementById("menu-toggle").addEventListener("click", function () {
-        const menu = document.getElementById("mobile-menu");
-        menu.classList.toggle("hidden");
-      });
-    </script>
   </body>
 </html>
