@@ -48,12 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
       rows.forEach((row) => {
         const municipio = row[0]?.trim();
         const polo = row[3]?.trim(); // Coluna F
+        const unidade = row[7]?.trim(); // Coluna J
         const distancia = row[8]?.trim(); // Coluna K
 
         if (municipio && polo && distancia) {
           municipiosData[normalizarTexto(municipio)] = {
             nomeOriginal: municipio,
             polo,
+            unidade,
             distancia,
           };
         }
@@ -94,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const dados = municipiosData[cidadeEncontrada];
 
       poloNome.textContent = dados.polo;
+      document.getElementById("unidade-nome").textContent = dados.unidade;
       distanciaKm.textContent = dados.distancia;
 
       const origem = encodeURIComponent(inputCidade.value);
