@@ -32,10 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   // Função para carregar dados da aba 2
   async function carregarMunicipios() {
-    const apiKey = "AIzaSyDqOzQWHPmUxy_6XSJM0TpFrcFyeAShVq8";
+    const apiKey = "AIzaSyDqOzQWHPmUxy_6XSJM0TpFrcFyeAShVq8"; // CUIDADO com a chave de API exposta!
     const sheetId = "1IxAnU18qxiEf-TjvqBEEj9L1W3CsY3-DHDxREV4APmk";
     const sheetName = "Sheet3"; // Nome exato da aba
+    // CORREÇÃO AQUI: Use template literals (crases)
     const range = `${sheetName}!C2:K`; // Começa na linha 2, vai da coluna C à K
+    // CORREÇÃO AQUI: Use template literals (crases)
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
     try {
