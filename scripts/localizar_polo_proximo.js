@@ -51,23 +51,33 @@ document.addEventListener("DOMContentLoaded", () => {
         const distancia = row[8]?.trim(); // Coluna K
 
         if (municipio && polo && distancia) {
-          municipiosData[municipio.toLowerCase()] = {
-            polo,
-            distancia,
-          };
+          municipiosData[normalizarTexto(municipio)] = { polo, distancia };
         }
       });
     } catch (error) {
       console.error("Erro ao carregar municípios:", error);
     }
+    const datalist = document.getElementById("lista-cidades");
+    Object.keys(municipiosData).forEach((cidade) => {
+      const option = document.createElement("option");
+      option.value = cidade;
+      datalist.appendChild(option);
+    });
   }
 
   // Carrega os dados ao iniciar
   carregarMunicipios();
 
+  function normalizarTexto(texto) {
+    return texto
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
   // Autocompletar básico (nativo com datalist)
   inputCidade.addEventListener("input", () => {
-    const cidadeDigitada = inputCidade.value.toLowerCase();
+    const cidadeDigitada = normalizarTexto(inputCidade.value);
     const dados = municipiosData[cidadeDigitada];
 
     if (dados) {
