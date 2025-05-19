@@ -51,16 +51,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const distancia = row[8]?.trim(); // Coluna K
 
         if (municipio && polo && distancia) {
-          municipiosData[normalizarTexto(municipio)] = { polo, distancia };
+          municipiosData[normalizarTexto(municipio)] = {
+            nomeOriginal: municipio,
+            polo,
+            distancia,
+          };
         }
       });
     } catch (error) {
       console.error("Erro ao carregar municípios:", error);
     }
     const datalist = document.getElementById("lista-cidades");
-    Object.keys(municipiosData).forEach((cidade) => {
+    Object.entries(municipiosData).forEach(([cidadeNormalizada, dados]) => {
       const option = document.createElement("option");
-      option.value = cidade;
+      option.value = dados.nomeOriginal; // Mostrar o nome correto ao usuário
+      option.setAttribute("data-normalizado", cidadeNormalizada); // Guardar versão normalizada
       datalist.appendChild(option);
     });
   }
@@ -70,22 +75,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function normalizarTexto(texto) {
     return texto
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
+      .normalize("NFD") // Separa acentos das letras
+      .replace(/[\u0300-\u036f]/g, "") // Remove os acentos
+      .replace(/\s+/g, " ") // Reduz múltiplos espaços a um único espaço
+      .trim() // Remove espaços no início/fim
+      .toLowerCase(); // Converte para minúsculas
   }
 
   // Autocompletar básico (nativo com datalist)
   inputCidade.addEventListener("input", () => {
     const cidadeDigitada = normalizarTexto(inputCidade.value);
-    const dados = municipiosData[cidadeDigitada];
+    // Verifique se há correspondência mesmo com variações de acento
+    const cidadeEncontrada = Object.keys(municipiosData).find(
+      (cidade) => cidade === cidadeDigitada
+    );
 
-    if (dados) {
-      // Exibe os dados no modal
+    if (cidadeEncontrada) {
+      const dados = municipiosData[cidadeEncontrada];
+
       poloNome.textContent = dados.polo;
       distanciaKm.textContent = dados.distancia;
 
-      // Gera link de rota no Google Maps
       const origem = encodeURIComponent(inputCidade.value);
       const destino = encodeURIComponent(dados.polo);
       rotaLink.href = `https://www.google.com/maps/dir/?api=1&origin=${origem}&destination=${destino}`;
@@ -93,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
       resultadoPolo.classList.remove("hidden");
       resultadoDistancia.classList.remove("hidden");
     } else {
-      // Oculta se cidade não encontrada
       resultadoPolo.classList.add("hidden");
       resultadoDistancia.classList.add("hidden");
     }
