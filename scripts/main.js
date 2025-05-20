@@ -1,3 +1,7 @@
+// Configuração do DarkMode
+tailwind.config = {
+  darkMode: "class",
+};
 // Toggle do menu mobile
 document.getElementById("menu-toggle").addEventListener("click", function () {
   const menu = document.getElementById("mobile-menu");
