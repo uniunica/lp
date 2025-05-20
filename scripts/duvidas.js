@@ -76,7 +76,7 @@ function faqSearch() {
           "Temos o documento de informativo com todas as informações de carga horário e período encontrado acima na seção de Links úteis e temos o setor NESE (Núcleo de Empregabilidade e Estágio) que está à disposição para orientar o aluno durante todo o período de estágio.",
       },
       {
-        pergunta: "Os curos de Graduação são feitos de forma 100% presencial?",
+        pergunta: "Os cursos de Graduação são feitos de forma 100% presencial?",
         resposta:
           "Os cursos de Graduação são a distância, caso o curso tenha estágio obrigatório, ou o aluno tenha alguma atividade presencial será devidamente orientado no portal.",
       },
