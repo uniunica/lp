@@ -76,11 +76,6 @@ function faqSearch() {
           "Temos o documento de informativo com todas as informações de carga horário e período encontrado acima na seção de Links úteis e temos o setor NESE (Núcleo de Empregabilidade e Estágio) que está à disposição para orientar o aluno durante todo o período de estágio.",
       },
       {
-        pergunta: "Os cursos de Graduação são feitos de forma 100% presencial?",
-        resposta:
-          "Os cursos de Graduação são a distância, caso o curso tenha estágio obrigatório, ou o aluno tenha alguma atividade presencial será devidamente orientado no portal.",
-      },
-      {
         pergunta: "Como solicitar a placa?",
         resposta:
           "Todo o passo a passo está no documento abaixo: <a href='https://drive.google.com/file/d/1DSYXQVAC7rtqhMSa_08aYudnQKAHl4gO/view?usp=sharing' class='text-purple-600 underline'>Passo a Passo para solicitar a placa</a>.",
