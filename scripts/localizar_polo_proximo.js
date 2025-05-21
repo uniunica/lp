@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sheetId = "1IxAnU18qxiEf-TjvqBEEj9L1W3CsY3-DHDxREV4APmk";
     const sheetName = "Sheet3"; // Nome exato da aba
     // CORREÇÃO AQUI: Use template literals (crases)
-    const range = `${sheetName}!C2:H`; // Começa na linha 2, vai da coluna C à K
+    const range = `${sheetName}!C2:K`; // Começa na linha 2, vai da coluna C à K
     // CORREÇÃO AQUI: Use template literals (crases)
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
       rows.forEach((row) => {
         const municipio = row[0]?.trim();
         const polo = row[3]?.trim(); // Coluna F
-        const unidade = row[4]?.trim(); // Coluna G
-        const distancia = row[5]?.trim(); // Coluna H
+        const unidade = row[7]?.trim(); // Coluna J
+        const distancia = row[8]?.trim(); // Coluna K
 
         if (municipio && polo && distancia) {
           municipiosData[normalizarTexto(municipio)] = {
