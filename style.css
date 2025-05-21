@@ -18,3 +18,18 @@ html {
 #popupSuccess {
   display: none;
 }
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+.animate-\[dash_5s_linear_infinite\] {
+  stroke-dashoffset: 0;
+  animation: dash 5s linear infinite;
+}
+input[type="checkbox"] {
+  transition: all 0.2s ease;
+}
+input[type="checkbox"]:checked {
+  transform: scale(1.1);
+}
