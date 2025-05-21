@@ -18,6 +18,7 @@ html {
 #popupSuccess {
   display: none;
 }
+/* Animação do tracejado */
 @keyframes dash {
   to {
     stroke-dashoffset: -100;
@@ -27,6 +28,7 @@ html {
   stroke-dashoffset: 0;
   animation: dash 5s linear infinite;
 }
+/* Estilização do checkbox */
 input[type="checkbox"] {
   transition: all 0.2s ease;
 }
