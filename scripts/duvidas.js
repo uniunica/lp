@@ -1,7 +1,7 @@
 // Configuração da API do Google Sheets
 const FAQ_API_KEY = "AIzaSyDqOzQWHPmUxy_6XSJM0TpFrcFyeAShVq8";
 const FAQ_SHEET_ID = "1L4hYbKU17cqu0QmjdgbcB-UYtKZ5GbUL7OJJpN1eQj4";
-const FAQ_RANGE = "A2:C"; // Colunas: Pergunta, Resposta, Link (opcional)
+const FAQ_RANGE = "A2:D"; // Colunas: Pergunta, Resposta, Link (opcional)
 
 // Função principal para carregar e gerenciar as dúvidas
 function faqSearch() {
@@ -24,7 +24,7 @@ function faqSearch() {
         const data = await response.json();
 
         this.faqs = data.values.map((row) => {
-          const [pergunta, resposta, link] = row;
+          const [pergunta, ignorar, link, resposta] = row;
           // Formata a resposta incluindo o link se existir
           const respostaFormatada = link
             ? resposta.replace(
