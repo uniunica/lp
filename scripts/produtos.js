@@ -1,12 +1,19 @@
-//Função para abrir modal de produtos com informações
-function openModal(titulo, linkCatalogo, linkCriativos, linkRegulamento) {
-  document.getElementById("modal-title").textContent = titulo;
-  document.getElementById("modal-link-catalogo").href = linkCatalogo;
-  document.getElementById("modal-link-criativos").href = linkCriativos;
-  document.getElementById("modal-link-regulamento").href = linkRegulamento;
-  document.getElementById("modal").classList.remove("hidden");
+function openModal(title, catalogLink, creativeLink, regulationLink) {
+  document.getElementById("modal-title").textContent = title;
+  document.getElementById("modal-link-catalogo").href = catalogLink;
+  document.getElementById("modal-link-criativos").href = creativeLink;
+  document.getElementById("modal-link-regulamento").href = regulationLink;
+
+  const modal = document.getElementById("modal");
+  modal.classList.remove("hidden");
+  setTimeout(() => {
+    modal.querySelector(".modal-content").classList.add("opacity-100", "scale-100");
+  }, 50);
 }
-//Função para fechar modal de produtos
 function closeModal() {
-  document.getElementById("modal").classList.add("hidden");
+  const modalContent = document.querySelector("#modal .modal-content");
+  modalContent.classList.remove("opacity-100", "scale-100");
+  setTimeout(() => {
+    document.getElementById("modal").classList.add("hidden");
+  }, 300);
 }

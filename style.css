@@ -35,3 +35,10 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   transform: scale(1.1);
 }
+/* Estilização da animação de fundo */
+.bg-opacity-50 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
