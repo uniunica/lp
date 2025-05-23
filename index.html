@@ -395,7 +395,7 @@
     <!-- Dúvidas -->
     <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto transition-colors duration-300"
       x-data="faqSearch()" x-init="init" x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()">
-      <h2 class="text-3xl font-bold mb-6 text-purple-800 dark:text-purple-300">
+      <h2 class="text-4xl font-extrabold mb-10 text-center text-purple-800 dark:text-purple-300 tracking-tight">
         Dúvidas mais comuns
       </h2>
       <!-- Campo de pesquisa -->
@@ -417,7 +417,7 @@
         </div>
         <!-- Botão "Ver mais" -->
         <div class="text-center mt-6" x-show="filteredFaqs.length > visibleCount">
-          <button @click="showMore" class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 transition">
+          <button @click="showMore" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-500 text-white text-lg font-semibold rounded-full shadow hover:from-purple-700 hover:to-purple-600 transition duration-300">
             Ver mais dúvidas
           </button>
         </div>
