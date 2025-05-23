@@ -53,16 +53,25 @@ document.addEventListener("DOMContentLoaded", () => {
         cardLink.href = linkUrl;
         cardLink.target = "_blank";
         cardLink.rel = "noopener";
-        cardLink.className =
-          "block bg-white dark:bg-purple-900 p-4 rounded-lg shadow hover:bg-purple-50 dark:hover:bg-purple-800 transition";
+        // Estilização moderna com hover, sombras suaves e transições
+        cardLink.className = `
+          group block rounded-2xl p-5 bg-white/60 dark:bg-purple-900/70
+          backdrop-blur border border-purple-200 dark:border-purple-700
+          shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1
+        `;
 
         const h3 = document.createElement("h3");
-        h3.className =
-          "text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2";
+        h3.className = `
+          text-xl font-bold text-purple-800 dark:text-purple-300 mb-2
+          group-hover:underline transition-colors duration-300
+        `;
         h3.textContent = titulo;
 
         const p = document.createElement("p");
-        p.className = "text-sm text-gray-600 dark:text-gray-300";
+        p.className = `
+          text-sm text-gray-700 dark:text-gray-300
+          leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-200 transition-colors duration-300
+        `;
         p.textContent = descricao || ""; // Usa string vazia se não houver descrição
 
         cardLink.appendChild(h3);
