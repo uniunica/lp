@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const emptyPlaceholder = document.createElement("li");
     emptyPlaceholder.id = "empty-placeholder";
-    emptyPlaceholder.className = "p-3 text-gray-500 italic text-center";
+    emptyPlaceholder.className = "p-4 text-gray-500 italic text-center";
     emptyPlaceholder.textContent = "Nenhum polo encontrado";
 
     if (cityList.length === 0) {
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       li.classList.add("px-4", "py-2", "hover:bg-purple-100", "cursor-pointer");
       li.innerHTML = `
         <strong>${city.name}</strong><br>
-        <span class="text-sm text-gray-600">${city.description}</span>
+        <span class="text-sm text-gray-700 dark:text-gray-400 mt-1">${city.description}</span>
       `;
       li.addEventListener("click", () => {
         focusCityOnMap(city.name);
