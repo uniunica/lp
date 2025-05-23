@@ -427,51 +427,74 @@
     <!-- Contato -->
     <section id="contato" class="bg-purple-100 dark:bg-gray-900 py-16 px-4">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-10 text-purple-800 dark:text-purple-300 text-center">Fale Conosco</h2>
+        <h2 class="text-4xl font-extrabold mb-10 text-center text-purple-800 dark:text-purple-300 tracking-tight">Fale Conosco</h2>
         <div class="flex flex-col md:flex-row gap-12">
           <!-- Coluna do Formulário -->
           <div class="md:w-1/2">
-            <form id="contatoForm"
-                  action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
-                  method="POST"
-                  onsubmit="handleFormSubmit(event)"
-                  class="space-y-4 bg-white dark:bg-gray-800 p-6 rounded-lg shadow dark:shadow-lg">
+            <form id="contatoForm" action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
+              method="POST" onsubmit="handleFormSubmit(event)"
+              class="space-y-6 bg-white/60 dark:bg-gray-900/60 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-purple-200 dark:border-purple-700 transition-all duration-300">
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html" />
+              <!-- Nome -->
               <div>
-                <label for="nome" class="block text-purple-700 dark:text-purple-300 font-semibold">Nome</label>
-                <input type="text" id="nome" name="nome" placeholder="Seu nome"
-                      class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                      required />
+                <label for="nome" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Nome</label>
+                <div class="relative">
+                  <input type="text" id="nome" name="nome" placeholder="Seu nome"
+                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300"
+                        required />
+                  <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
               </div>
+              <!-- Email -->
               <div>
-                <label for="email" class="block text-purple-700 dark:text-purple-300 font-semibold">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Seu e-mail"
-                      class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                      required />
+                <label for="email" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">E-mail</label>
+                <div class="relative">
+                  <input type="email" id="email" name="email" placeholder="Seu e-mail"
+                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300"
+                        required />
+                  <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                </div>
               </div>
+              <!-- Telefone -->
               <div>
-                <label for="telefone" class="block text-purple-700 dark:text-purple-300 font-semibold">Telefone</label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000"
-                      class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" />
+                <label for="telefone" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Telefone</label>
+                <div class="relative">
+                  <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000"
+                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300" />
+                  <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
+                    <i class="fas fa-phone-alt"></i>
+                  </span>
+                </div>
               </div>
+              <!-- Mensagem -->
               <div>
-                <label for="mensagem" class="block text-purple-700 dark:text-purple-300 font-semibold">Mensagem</label>
+                <label for="mensagem" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Mensagem</label>
                 <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..."
-                          class="w-full p-3 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 h-32"
+                          class="w-full p-4 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300 h-32 resize-none"
                           required></textarea>
               </div>
+              <!-- Botão -->
               <button type="submit"
-                      class="bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800 transition w-full">
-                Enviar
+                class="w-full py-3 rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white font-bold text-lg tracking-wide shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+                Enviar Mensagem
               </button>
             </form>
           </div>
           <!-- Coluna de Contatos Importantes -->
-          <div class="md:w-1/2 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg space-y-6">
+          <div class="md:w-1/2 bg-gradient-to-br from-white via-gray-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-2xl space-y-8 transition-all duration-300">
             <!-- Bloco: Atendimento ao Aluno -->
             <div class="border-l-4 border-purple-300 dark:border-purple-500 pl-4 space-y-4">
-              <h4 class="text-lg font-semibold text-purple-700 dark:text-purple-300">Atendimento ao Aluno</h4>
+              <h4 class="text-xl font-bold text-purple-800 dark:text-purple-300 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6m2 5H7a2 2 0 01-2-2V7a2 2 0 012-2h3l2-2h2l2 2h3a2 2 0 012 2v12a2 2 0 01-2 2z" />
+                </svg>
+                Atendimento ao Aluno
+              </h4>
               <div>
                 <p class="text-gray-700 dark:text-gray-200">
                   <strong>WhatsApp:</strong><br>
@@ -501,7 +524,12 @@
             </div>
             <!-- Bloco: Outros Canais -->
             <div class="border-t border-gray-200 dark:border-gray-600 pt-4 space-y-4">
-              <h4 class="text-lg font-semibold text-purple-700 dark:text-purple-300">Nossos Canais</h4>
+              <h4 class="text-xl font-bold text-purple-800 dark:text-purple-300 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+                </svg>
+                Nossos Canais
+              </h4>
               <div>
                 <p class="text-gray-700 dark:text-gray-200">
                   <strong>Site Oficial:</strong><br>
