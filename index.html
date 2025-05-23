@@ -97,17 +97,20 @@
     <div id="consultor-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center flex justify-center z-50">
       <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 w-full max-w-md text-left transition-colors duration-300">
         <!-- Título do modal -->
-        <h3 class="text-xl font-bold mb-4 text-purple-800 dark:text-purple-300 text-center">Identifique-se</h3>
-        <label for="nome-parceiro" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <h3 class="text-2xl font-extrabold mb-6 text-purple-800 dark:text-purple-300 text-center tracking-wide">
+          Identifique-se
+        </h3>
+        <!-- Campo nome -->
+        <label for="nome-parceiro" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
           Digite seu nome:
         </label>
         <!-- Campo de texto para o nome do parceiro -->
         <input id="nome-parceiro" type="text"
-          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+          class="w-full px-4 py-3 border border-purple-300 dark:border-purple-600 bg-white/70 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
           placeholder="Seu nome...">
         <ul id="autocomplete-list"
-          class="border border-gray-200 dark:border-gray-600 mt-2 rounded-md max-h-40 overflow-y-auto hidden bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-        </ul>
+      class="border border-purple-200 dark:border-purple-700 mt-2 rounded-lg max-h-40 overflow-y-auto hidden bg-white/90 dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-md">
+    </ul>
         <!-- Botão para contactar consultor -->
         <div id="contato-section" class="mt-4 hidden">
           <p class="text-gray-700 dark:text-gray-300 mb-2">Consultor responsável encontrado:</p>
@@ -137,11 +140,11 @@
     </div>
 
     <!-- Produtos -->
-    <section id="produtos" class="relative bg-gradient-to-b from-purple-50 via-purple-100 to-purple-200 dark:from-gray-600 dark:via-gray-900 dark:to-gray-800 py-16 px-4 transition-colors duration-300 overflow-hidden">
+    <section id="produtos" class="relative bg-gradient-to-b from-purple-50 via-purple-100 to-purple-200 dark:from-gray-600 dark:via-gray-600 dark:to-gray-600 py-16 px-4 transition-colors duration-300 overflow-hidden">
       <div class="max-w-6xl mx-auto">
         <div class="max-w-6xl mx-auto relative z-10">
             <h2 class="text-3xl md:text-4xl font-bold mb-12 md:mb-16 text-center">
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-800 dark:from-purple-400 dark:to-purple-800">Nossos Produtos</span>
+              <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-800 dark:from-purple-400 dark:to-purple-400">Nossos Produtos</span>
             </h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             </div>
