@@ -115,16 +115,19 @@ document.addEventListener("DOMContentLoaded", () => {
       let deveSerVisivel = false;
 
       if (correspondeAPesquisa) {
-        if (ehLinkOcultavel) {
-          if (isVerTodosActive) {
-            deveSerVisivel = true; // Visível porque "Ver todos" está ativo
-          } else {
-            deveSerVisivel = false; // Oculto pelo estado "Recolher"
-          }
+        if (termoPesquisa !== "") {
+          // Se há termo de pesquisa, mostrar tudo que corresponde (mesmo que seja hidden-link)
+          deveSerVisivel = true;
         } else {
-          deveSerVisivel = true; // Links não ocultáveis são visíveis se correspondem à pesquisa
+          // Caso contrário, seguir lógica de ocultamento
+          if (ehLinkOcultavel) {
+            deveSerVisivel = isVerTodosActive;
+          } else {
+            deveSerVisivel = true;
+          }
         }
-      } else {
+      }
+ else {
         deveSerVisivel = false; // Oculto pela pesquisa
       }
 
