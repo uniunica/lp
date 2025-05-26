@@ -21,571 +21,590 @@
     <link rel="icon" href="favicon.png" type="image/png" />
   </head>
   <body class="font-sans antialiased text-gray-900 bg-purple-50 dark:bg-gray-900 dark:text-white">
-    <!-- Topo -->
-    <header class="bg-white dark:bg-gray-900 shadow sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <!-- Logo -->
-        <div class="flex items-center space-x-3">
-          <img src="logo.png" alt="Logo Expansão e Negócios" class="w-32 h-10 object-contain" />
-        </div>
-        <!-- Logo Prominas à direita -->
-        <div class="hidden md:flex items-center">
-          <img src="gruporpominas-preto.png" alt="Logo Grupo Prominas" class="h-12 object-contain" />
-        </div>
-        <!-- Botão de Menu Mobile -->
-        <div class="md:hidden">
-          <button aria-label="Alternar tema claro e escuro" id="menu-toggle" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-        <!-- Navegação Desktop -->
-        <nav class="hidden md:flex space-x-6">
-          <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
-          <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
-          <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
-          <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
-          <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
-          <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
-          <!-- Botão para alternar entre os modos claro e escuro -->
-          <button aria-label="Alternar tema claro e escuro" aria-pressed="false"
-            class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
-            <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
-            <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
-          </button>
-        </nav>
+    <!-- Preloader
+    <div class="preloader" id="preloader">
+      <img src="logo.png" alt="Logo UniÚnica" class="preloader-logo">
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
       </div>
-      <!-- Menu Mobile Expandido -->
-      <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-        <nav class="flex flex-col space-y-3 mt-2">
-          <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
-          <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
-          <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
-          <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
-          <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
-          <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
-          <!-- Botão para alternar entre os modos claro e escuro -->
-          <button aria-label="Alternar tema claro e escuro" aria-pressed="false"
-            class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
-            <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
-            <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
-          </button>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Home -->
-    <section id="home" class="bg-purple-100 dark:bg-gray-800 py-20 text-center transition-colors duration-300">
-      <h2 class="text-4xl font-bold text-purple-800 dark:text-purple-300 mb-4 animate__animated animate__fadeInDown">
-        Bem-vindo ao Setor de Expansão e Negócios
-      </h2>
-      <p class="text-lg text-purple-700 dark:text-purple-200 animate__animated animate__fadeInUp">
-        Tudo o que você precisa saber para crescer conosco.
-      </p>
-      <!-- Link para contato -->
-      <div class="mt-10 animate__animated animate__fadeInUp animate__delay-1s">
-        <a href="#" id="abrir-modal"
-          class="inline-block px-8 py-4 bg-gradient-to-r from-purple-700 to-purple-600 text-white font-bold rounded-full shadow-xl hover:scale-105 hover:from-purple-600 hover:to-purple-500 transition-all duration-300">
-          Entre em contato com seu consultor
-        </a>
-      </div>
-    </section>
-
-    <!-- Modal -->
-    <div id="consultor-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center flex justify-center z-50">
-      <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 w-full max-w-md text-left transition-colors duration-300">
-        <!-- Título do modal -->
-        <h3 class="text-2xl font-extrabold mb-6 text-purple-800 dark:text-purple-300 text-center tracking-wide">
-          Identifique-se
-        </h3>
-        <!-- Campo nome -->
-        <label for="nome-parceiro" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-          Digite seu nome:
-        </label>
-        <!-- Campo de texto para o nome do parceiro -->
-        <input id="nome-parceiro" type="text"
-          class="w-full px-4 py-3 border border-purple-300 dark:border-purple-600 bg-white/70 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-          placeholder="Seu nome...">
-        <ul id="autocomplete-list"
-          class="border border-purple-200 dark:border-purple-700 mt-2 rounded-lg max-h-40 overflow-y-auto hidden bg-white/90 dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-md">
-        </ul>
-        <!-- Botão para contactar consultor -->
-        <div id="contato-section" class="mt-4 hidden">
-          <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">Consultor responsável encontrado:</p>
-          <a id="btn-whatsapp" target="_blank"
-            class="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-700 text-white px-5 py-3 rounded-full shadow-md hover:from-green-400 hover:to-green-600 transition-transform transform hover:scale-105">
-            Conversar via WhatsApp
-          </a>
-          <p id="numero-visivel"
-            class="mt-3 px-3 py-2 bg-purple-50 dark:bg-purple-900 border border-purple-200 dark:border-purple-700 rounded-lg text-purple-800 dark:text-purple-200 text-sm font-medium select-text cursor-pointer hover:bg-purple-100 dark:hover:bg-purple-800 transition duration-200">
-          </p>
-        </div>
-        <!-- Botão de redirecionamento caso o nome não seja localizado -->
-        <div class="mt-4">
-          <a href="#contato" onclick="fecharModal()"
-            class="block text-center px-5 py-3 bg-purple-50 dark:bg-purple-800 text-purple-800 dark:text-purple-100 font-semibold rounded-lg shadow hover:bg-purple-200 dark:hover:bg-purple-700 transition duration-200">
-            Não localizou seu nome? Entre em contato conosco!
-          </a>
-        </div>
-        <!-- Botão para fechar o modal -->
-        <button onclick="fecharModal()" class="mt-4 inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-md shadow hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition duration-200" aria-label="Fechar modal">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-          Fechar
-        </button>
+      <div class="loading-text">
+        Carregando recursos<span class="loading-dots"></span>
       </div>
     </div>
-
-    <!-- Produtos -->
-    <section id="produtos" class="relative bg-gradient-to-b from-purple-50 via-purple-100 to-purple-200 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 py-16 px-4 transition-colors duration-300 overflow-hidden">
-      <div class="max-w-6xl mx-auto">
-        <div class="max-w-6xl mx-auto relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 md:mb-16 text-center">
-              <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-800 dark:from-purple-400 dark:to-purple-400">Nossos Produtos</span>
-            </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            </div>
-        </div>
-        <!-- Grid de produtos -->
-        <div class="grid md:grid-cols-3 gap-6">
-          <button
-            onclick="openModal('Graduação', 'https://drive.google.com/drive/folders/1j7G8VkDgSW9bhD2_4ZeD2hAdBZefEZ1c?usp=drive_link',
-            'https://drive.google.com/drive/folders/1j7G8VkDgSW9bhD2_4ZeD2hAdBZefEZ1c?usp=drive_link',
-            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card group flex flex-col items-center text-center
-              bg-white dark:bg-gray-800
-              rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
-              p-6 sm:p-8
-              transition-all duration-300 ease-in-out
-              hover:scale-105 transform hover:-translate-y-2
-              border border-transparent hover:border-purple-300 dark:hover:border-purple-600
-              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-              <!--<div class="mb-4 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 sm:h-16 sm:w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.393 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-                </svg>
-              </div>-->
-            <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
-              Graduação
-            </h3>
-          </button>
-          <button
-            onclick="openModal('Segunda Graduação', 'https://drive.google.com/drive/folders/1vQ-CZ12uqy6HxTxKUt8etatLnzrtwOdn',
-            'https://drive.google.com/drive/folders/1OItV_fNWQzupiVoRspbwwC_9xEvyi8M0?usp=drive_link',
-            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card group flex flex-col items-center text-center
-              bg-white dark:bg-gray-800
-              rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
-              p-6 sm:p-8
-              transition-all duration-300 ease-in-out
-              hover:scale-105 transform hover:-translate-y-2
-              border border-transparent hover:border-purple-300 dark:hover:border-purple-600
-              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-            <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
-              Segunda Graduação
-            </h3>
-          </button>
-          <button
-            onclick="openModal('Pós-Graduação', 'https://drive.google.com/drive/folders/1KbladBVJgP7uXu1n8JRyA91XKmG9fnLr',
-            'https://drive.google.com/drive/folders/1Bwp3Bubc4vFUo0fj_XVWvhYhgmBjiz9J?usp=drive_link',
-            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card group flex flex-col items-center text-center
-              bg-white dark:bg-gray-800
-              rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
-              p-6 sm:p-8
-              transition-all duration-300 ease-in-out
-              hover:scale-105 transform hover:-translate-y-2
-              border border-transparent hover:border-purple-300 dark:hover:border-purple-600
-              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-            <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
-              Pós-Graduação
-            </h3>
-          </button>
-          <button
-            onclick="openModal('Disciplinas Isoladas', 'https://drive.google.com/drive/folders/1BoXZxArm4zClzkfp7yIYHrf0XH5NVt4Z',
-            'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
-            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card group flex flex-col items-center text-center
-              bg-white dark:bg-gray-800
-              rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
-              p-6 sm:p-8
-              transition-all duration-300 ease-in-out
-              hover:scale-105 transform hover:-translate-y-2
-              border border-transparent hover:border-purple-300 dark:hover:border-purple-600
-              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-            <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
-              Disciplinas Isoladas
-            </h3>
-          </button>
-          <button
-            onclick="openModal('EJA', 'https://drive.google.com/drive/folders/136GloEDVBeldo-MzU-8DkfYGXQD1rG02',
-            'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
-            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card group flex flex-col items-center text-center
-              bg-white dark:bg-gray-800
-              rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
-              p-6 sm:p-8
-              transition-all duration-300 ease-in-out
-              hover:scale-105 transform hover:-translate-y-2
-              border border-transparent hover:border-purple-300 dark:hover:border-purple-600
-              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-            <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
-              EJA
-            </h3>
-          </button>
-          <button
-            onclick="openModal('Cursos Técnicos', 'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
-            'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
-            'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
-            class="produto-card group flex flex-col items-center text-center
-              bg-white dark:bg-gray-800
-              rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
-              p-6 sm:p-8
-              transition-all duration-300 ease-in-out
-              hover:scale-105 transform hover:-translate-y-2
-              border border-transparent hover:border-purple-300 dark:hover:border-purple-600
-              focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
-            <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
-              Cursos Técnicos
-            </h3>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Modal dos produtos -->
-    <div id="modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center hidden z-50 transition-all duration-300">
-      <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full mx-4 transform scale-95 opacity-0 transition-all duration-300 modal-content">
-        <!-- Botão Fechar -->
-        <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 text-2xl font-bold transition-colors duration-200 focus:outline-none">
-          &times;
-        </button>
-        <!-- Título -->
-        <h3 id="modal-title" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-400 dark:to-pink-400 mb-6 text-center"></h3>
-        <p class="mb-6 text-gray-700 dark:text-gray-300 text-sm sm:text-base text-center">
-          Escolha abaixo uma das opções para acessar o material:
-        </p>
-        <!-- Conteúdo -->
-        <div class="flex flex-col gap-4 mt-2">
-          <!-- Catálogo -->
-          <a id="modal-link-catalogo" href="#" target="_blank"
-            class="group flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 group-hover:scale-110 transition-transform duration-200">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            Ver Catálogo
-          </a>
-          <!-- Criativos -->
-          <a id="modal-link-criativos" href="#" target="_blank"
-            class="group flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 group-hover:scale-110 transition-transform duration-200">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h18M3 16h18" />
-            </svg>
-            Ver Criativos
-          </a>
-          <!-- Regulamento -->
-          <a id="modal-link-regulamento" href="#" target="_blank"
-            class="group flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 group-hover:scale-110 transition-transform duration-200">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Ver Regulamento
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Links Úteis -->
-    <section id="links-uteis" class="bg-gradient-to-br from-purple-200 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-20 px-6 transition-colors duration-500">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl font-extrabold mb-12 text-center text-purple-900 dark:text-purple-200 tracking-wide">
-          Links Úteis
-        </h2>
-        <input type="text" id="pesquisa-links" placeholder="Pesquisar links..." class="w-full max-w-md mx-auto mb-8 px-4 py-2 rounded-lg shadow border border-purple-400 dark:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 text-purple-800 dark:text-purple-100 placeholder-purple-500 dark:placeholder-purple-300 bg-white dark:bg-purple-900 flex justify-center"/>
-        <p id="mensagem-sem-resultado" class="text-center text-purple-800 dark:text-purple-200 font-semibold hidden">
-        Nenhum resultado de pesquisa encontrado.
-        </p>
-        <!-- Grid de links -->
-        <div id="cards-links" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        </div>
-        <div class="text-center mt-8">
-          <!-- Botão "Ver mais" -->
-          <button id="ver-mais-btn" class="inline-flex items-center bg-purple-700 text-white font-semibold px-5 py-2 rounded-2xl shadow-md hover:bg-purple-600 transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-            Ver todos
-          </button>
-          <!-- Botão Recolher (inicialmente oculto) -->
-          <button id="recolher-btn" class="hidden inline-flex items-center bg-purple-700 text-white font-semibold px-5 py-2 rounded-2xl shadow-md hover:bg-gray-400 transition-all duration-300 mt-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-            Recolher
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Mapa dos Polos -->
-    <section id="mapa" class="relative py-20 px-6 bg-gradient-to-br from-white via-purple-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
-      <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
-        <!-- Lista de Polos -->
-        <div class="w-full md:w-2/5">
-          <h2 class="text-4xl font-extrabold text-purple-800 dark:text-purple-300 mb-4">Onde Estamos</h2>
-          <p class="text-gray-700 dark:text-gray-300 mb-6">Confira a lista de polos:</p>
-          <!-- Campo de pesquisa -->
-          <input type="text" id="city-search" placeholder="Pesquisar polos..."
-            class="w-full p-3 border border-purple-400 rounded-lg mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition bg-white dark:bg-gray-800 dark:border-purple-600 dark:text-white"/>
-          <!-- Lista de localidades -->
-          <ul id="location-list"
-            class="mt-4 rounded-xl overflow-y-auto max-h-80 divide-y divide-purple-100 dark:divide-purple-800 bg-white/80 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 shadow-inner">
-            <!-- Placeholder dinâmico -->
-            <li id="empty-placeholder" class="p-3 text-gray-500 dark:text-gray-400 italic text-center">
-              Nenhum polo encontrado
-            </li>
-          </ul>
-          <!-- Botão para abrir o modal -->
-          <div class="mt-6 text-center">
-            <button id="open-modal-location" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 ease-in-out">
-              Encontre o Polo mais próximo
+     -->
+    <!--
+    <div class="loaded-content" id="main-content">
+    -->
+      <!-- Topo -->
+      <header class="bg-white dark:bg-gray-900 shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3">
+            <img src="logo.png" alt="Logo Expansão e Negócios" class="w-32 h-10 object-contain" />
+          </div>
+          <!-- Logo Prominas à direita -->
+          <div class="hidden md:flex items-center">
+            <img src="gruporpominas-preto.png" alt="Logo Grupo Prominas" class="h-12 object-contain" />
+          </div>
+          <!-- Botão de Menu Mobile -->
+          <div class="md:hidden">
+            <button aria-label="Alternar tema claro e escuro" id="menu-toggle" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             </button>
           </div>
-          <!-- Modal -->
-          <div id="modal-location" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 hidden justify-center items-center px-4" >
-            <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-xl max-w-md w-full relative">
-              <!-- Botão de fechar -->
-              <button id="close-modal" class="absolute top-3 right-4 text-gray-600 dark:text-gray-300 hover:text-red-500 text-2xl font-bold transition">
-                &times;
-              </button>
-              <h3 class="text-3xl font-bold text-purple-800 dark:text-purple-300 text-center mb-6">Polo mais próximo</h3>
-              <!-- Input da cidade -->
-              <div class="mb-4">
-                <label for="cidade" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Digite sua cidade:</label>
-                <input type="text" id="cidade" list="lista-cidades" placeholder="Ex: Belo Horizonte - MG" class="w-full p-3 border border-purple-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:text-white dark:border-purple-600"/>
-                <datalist id="lista-cidades"></datalist>
-              </div>
-              <!-- Resultado do polo mais próximo -->
-              <div id="resultado-polo" class="mb-4 hidden">
-                <p class="text-gray-800 dark:text-gray-200"><strong>Unidade:</strong> <span class="text-purple-700 dark:text-purple-400" id="unidade-nome"></span></p>
-                <p class="text-gray-800 dark:text-gray-200"><strong>Endereço:</strong> <span class="text-purple-700 dark:text-purple-400" id="polo-nome"></span></p>
-              </div>
-              <!-- Distância e rota -->
-              <div id="resultado-distancia" class="hidden">
-                <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Distância:</strong> <span id="distancia-km" class="text-purple-700 dark:text-purple-400"></span> km</p>
-                <a id="rota-link" href="#" target="_blank" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold transition">
-                  Ver rota no Google Maps
-                </a>
-              </div>
-            </div>
+          <!-- Navegação Desktop -->
+          <nav class="hidden md:flex space-x-6">
+            <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
+            <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
+            <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
+            <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
+            <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
+            <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
+            <!-- Botão para alternar entre os modos claro e escuro -->
+            <button aria-label="Alternar tema claro e escuro" aria-pressed="false"
+              class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
+              <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
+              <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
+            </button>
+          </nav>
+        </div>
+        <!-- Menu Mobile Expandido -->
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+          <nav class="flex flex-col space-y-3 mt-2">
+            <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
+            <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
+            <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
+            <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
+            <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
+            <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
+            <!-- Botão para alternar entre os modos claro e escuro -->
+            <button aria-label="Alternar tema claro e escuro" aria-pressed="false"
+              class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
+              <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
+              <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Home -->
+      <section id="home" class="bg-purple-100 dark:bg-gray-800 py-20 text-center transition-colors duration-300">
+        <h2 class="text-4xl font-bold text-purple-800 dark:text-purple-300 mb-4 animate__animated animate__fadeInDown">
+          Bem-vindo ao Setor de Expansão e Negócios
+        </h2>
+        <p class="text-lg text-purple-700 dark:text-purple-200 animate__animated animate__fadeInUp">
+          Tudo o que você precisa saber para crescer conosco.
+        </p>
+        <!-- Link para contato -->
+        <div class="mt-10 animate__animated animate__fadeInUp animate__delay-1s">
+          <a href="#" id="abrir-modal"
+            class="inline-block px-8 py-4 bg-gradient-to-r from-purple-700 to-purple-600 text-white font-bold rounded-full shadow-xl hover:scale-105 hover:from-purple-600 hover:to-purple-500 transition-all duration-300">
+            Entre em contato com seu consultor
+          </a>
+        </div>
+      </section>
+
+      <!-- Modal -->
+      <div id="consultor-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center flex justify-center z-50">
+        <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 w-full max-w-md text-left transition-colors duration-300">
+          <!-- Título do modal -->
+          <h3 class="text-2xl font-extrabold mb-6 text-purple-800 dark:text-purple-300 text-center tracking-wide">
+            Identifique-se
+          </h3>
+          <!-- Campo nome -->
+          <label for="nome-parceiro" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            Digite seu nome:
+          </label>
+          <!-- Campo de texto para o nome do parceiro -->
+          <input id="nome-parceiro" type="text"
+            class="w-full px-4 py-3 border border-purple-300 dark:border-purple-600 bg-white/70 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+            placeholder="Seu nome...">
+          <ul id="autocomplete-list"
+            class="border border-purple-200 dark:border-purple-700 mt-2 rounded-lg max-h-40 overflow-y-auto hidden bg-white/90 dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-md">
+          </ul>
+          <!-- Botão para contactar consultor -->
+          <div id="contato-section" class="mt-4 hidden">
+            <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">Consultor responsável encontrado:</p>
+            <a id="btn-whatsapp" target="_blank"
+              class="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-700 text-white px-5 py-3 rounded-full shadow-md hover:from-green-400 hover:to-green-600 transition-transform transform hover:scale-105">
+              Conversar via WhatsApp
+            </a>
+            <p id="numero-visivel"
+              class="mt-3 px-3 py-2 bg-purple-50 dark:bg-purple-900 border border-purple-200 dark:border-purple-700 rounded-lg text-purple-800 dark:text-purple-200 text-sm font-medium select-text cursor-pointer hover:bg-purple-100 dark:hover:bg-purple-800 transition duration-200">
+            </p>
           </div>
-
-        </div>
-
-        <!-- Mapa -->
-        <div id="divmap" class="flex-1 h-[520px] rounded-3xl overflow-hidden shadow-2xl border-2 border-purple-300 dark:border-purple-700 transition-transform duration-500">
-          <div id="map" class="w-full h-full"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dúvidas -->
-    <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto bg-purple-100 dark:bg-gray-800 transition-colors duration-300"
-      x-data="faqSearch()" x-init="init" x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()">
-      <h2 class="text-4xl font-extrabold mb-10 text-center text-purple-800 dark:text-purple-300 tracking-tight">
-        Dúvidas mais comuns
-      </h2>
-      <!-- Campo de pesquisa -->
-      <input type="text" placeholder="Digite uma palavra-chave referente a sua dúvida..."
-        x-model="search" class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white"/>
-      <!-- Lista de dúvidas -->
-      <div class="space-y-4">
-        <template x-for="(faq, index) in limitedFaqs" :key="index">
-          <div>
-            <button @click="selected !== index ? selected = index : selected = null"
-              class="w-full text-left bg-white dark:bg-gray-800 p-4 rounded shadow font-semibold text-purple-700 dark:text-purple-300 transition-colors duration-300" x-text="faq.pergunta"></button>
-            <div x-show="selected === index" x-transition
-              class="p-4 bg-purple-50 dark:bg-gray-900 border dark:border-gray-700 rounded text-gray-800 dark:text-gray-200" x-html="faq.resposta"></div>
+          <!-- Botão de redirecionamento caso o nome não seja localizado -->
+          <div class="mt-4">
+            <a href="#contato" onclick="fecharModal()"
+              class="block text-center px-5 py-3 bg-purple-50 dark:bg-purple-800 text-purple-800 dark:text-purple-100 font-semibold rounded-lg shadow hover:bg-purple-200 dark:hover:bg-purple-700 transition duration-200">
+              Não localizou seu nome? Entre em contato conosco!
+            </a>
           </div>
-        </template>
-        <!-- Caso nenhuma dúvida seja encontrada -->
-        <div x-show="filteredFaqs.length === 0" class="text-gray-500 dark:text-gray-400 text-center mt-6">
-          Nenhuma dúvida encontrada com essa palavra-chave.
-        </div>
-        <!-- Botão "Ver mais" -->
-        <div class="text-center mt-6" x-show="filteredFaqs.length > visibleCount">
-          <button @click="showMore" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-500 text-white text-lg font-semibold rounded-full shadow hover:from-purple-700 hover:to-purple-600 transition duration-300">
-            Ver mais dúvidas
+          <!-- Botão para fechar o modal -->
+          <button onclick="fecharModal()" class="mt-4 inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-md shadow hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition duration-200" aria-label="Fechar modal">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Fechar
           </button>
         </div>
       </div>
-    </section>
 
-    <!-- Contato -->
-    <section id="contato" class="bg-purple-200 dark:bg-gray-900 py-16 px-4">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl font-extrabold mb-10 text-center text-purple-800 dark:text-purple-300 tracking-tight">Fale Conosco</h2>
-        <div class="flex flex-col md:flex-row gap-12">
-          <!-- Coluna do Formulário -->
-          <div class="md:w-1/2">
-            <form id="contatoForm" action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
-              method="POST" onsubmit="handleFormSubmit(event)"
-              class="space-y-6 bg-white/60 dark:bg-gray-900/60 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-purple-200 dark:border-purple-700 transition-all duration-300">
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html" />
-              <!-- Nome -->
-              <div>
-                <label for="nome" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Nome</label>
-                <div class="relative">
-                  <input type="text" id="nome" name="nome" placeholder="Seu nome"
-                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300"
-                        required />
-                  <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
-                    <i class="fas fa-user"></i>
-                  </span>
-                </div>
+      <!-- Produtos -->
+      <section id="produtos" class="relative bg-gradient-to-b from-purple-50 via-purple-100 to-purple-200 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 py-16 px-4 transition-colors duration-300 overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+          <div class="max-w-6xl mx-auto relative z-10">
+              <h2 class="text-3xl md:text-4xl font-bold mb-12 md:mb-16 text-center">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-800 dark:from-purple-400 dark:to-purple-400">Nossos Produtos</span>
+              </h2>
+              <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               </div>
-              <!-- Email -->
-              <div>
-                <label for="email" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">E-mail</label>
-                <div class="relative">
-                  <input type="email" id="email" name="email" placeholder="Seu e-mail"
-                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300"
-                        required />
-                  <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
-                    <i class="fas fa-envelope"></i>
-                  </span>
-                </div>
-              </div>
-              <!-- Telefone -->
-              <div>
-                <label for="telefone" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Telefone</label>
-                <div class="relative">
-                  <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000"
-                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300" />
-                  <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
-                    <i class="fas fa-phone-alt"></i>
-                  </span>
-                </div>
-              </div>
-              <!-- Mensagem -->
-              <div>
-                <label for="mensagem" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..."
-                          class="w-full p-4 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300 h-32 resize-none"
-                          required></textarea>
-              </div>
-              <!-- Botão -->
-              <button type="submit"
-                class="w-full py-3 rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white font-bold text-lg tracking-wide shadow-lg transform hover:scale-[1.02] transition-all duration-300">
-                Enviar Mensagem
+          </div>
+          <!-- Grid de produtos -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <button
+              onclick="openModal('Graduação', 'https://drive.google.com/drive/folders/1j7G8VkDgSW9bhD2_4ZeD2hAdBZefEZ1c?usp=drive_link',
+              'https://drive.google.com/drive/folders/1j7G8VkDgSW9bhD2_4ZeD2hAdBZefEZ1c?usp=drive_link',
+              'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
+              class="produto-card group flex flex-col items-center text-center
+                bg-white dark:bg-gray-800
+                rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
+                p-6 sm:p-8
+                transition-all duration-300 ease-in-out
+                hover:scale-105 transform hover:-translate-y-2
+                border border-transparent hover:border-purple-300 dark:hover:border-purple-600
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+                <!--<div class="mb-4 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 sm:h-16 sm:w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.393 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                  </svg>
+                </div>-->
+              <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
+                Graduação
+              </h3>
+            </button>
+            <button
+              onclick="openModal('Segunda Graduação', 'https://drive.google.com/drive/folders/1vQ-CZ12uqy6HxTxKUt8etatLnzrtwOdn',
+              'https://drive.google.com/drive/folders/1OItV_fNWQzupiVoRspbwwC_9xEvyi8M0?usp=drive_link',
+              'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
+              class="produto-card group flex flex-col items-center text-center
+                bg-white dark:bg-gray-800
+                rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
+                p-6 sm:p-8
+                transition-all duration-300 ease-in-out
+                hover:scale-105 transform hover:-translate-y-2
+                border border-transparent hover:border-purple-300 dark:hover:border-purple-600
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+              <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
+                Segunda Graduação
+              </h3>
+            </button>
+            <button
+              onclick="openModal('Pós-Graduação', 'https://drive.google.com/drive/folders/1KbladBVJgP7uXu1n8JRyA91XKmG9fnLr',
+              'https://drive.google.com/drive/folders/1Bwp3Bubc4vFUo0fj_XVWvhYhgmBjiz9J?usp=drive_link',
+              'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
+              class="produto-card group flex flex-col items-center text-center
+                bg-white dark:bg-gray-800
+                rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
+                p-6 sm:p-8
+                transition-all duration-300 ease-in-out
+                hover:scale-105 transform hover:-translate-y-2
+                border border-transparent hover:border-purple-300 dark:hover:border-purple-600
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+              <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
+                Pós-Graduação
+              </h3>
+            </button>
+            <button
+              onclick="openModal('Disciplinas Isoladas', 'https://drive.google.com/drive/folders/1BoXZxArm4zClzkfp7yIYHrf0XH5NVt4Z',
+              'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
+              'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
+              class="produto-card group flex flex-col items-center text-center
+                bg-white dark:bg-gray-800
+                rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
+                p-6 sm:p-8
+                transition-all duration-300 ease-in-out
+                hover:scale-105 transform hover:-translate-y-2
+                border border-transparent hover:border-purple-300 dark:hover:border-purple-600
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+              <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
+                Disciplinas Isoladas
+              </h3>
+            </button>
+            <button
+              onclick="openModal('EJA', 'https://drive.google.com/drive/folders/136GloEDVBeldo-MzU-8DkfYGXQD1rG02',
+              'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
+              'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
+              class="produto-card group flex flex-col items-center text-center
+                bg-white dark:bg-gray-800
+                rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
+                p-6 sm:p-8
+                transition-all duration-300 ease-in-out
+                hover:scale-105 transform hover:-translate-y-2
+                border border-transparent hover:border-purple-300 dark:hover:border-purple-600
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+              <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
+                EJA
+              </h3>
+            </button>
+            <button
+              onclick="openModal('Cursos Técnicos', 'https://drive.google.com/drive/folders/13DwwcwNS8XHohVxbfNCZGjAgBkJhCGZh?usp=drive_link',
+              'https://drive.google.com/drive/folders/1jTLe430HrxvxpZWBFxRV4AqsgLZOMS8u',
+              'https://drive.google.com/file/d/1FT2CSUpwZtIdP71-wCZPEHAfDGy2xRrN/view?usp=sharing')"
+              class="produto-card group flex flex-col items-center text-center
+                bg-white dark:bg-gray-800
+                rounded-xl shadow-lg hover:shadow-2xl dark:shadow-gray-950/40 dark:hover:shadow-purple-500/30
+                p-6 sm:p-8
+                transition-all duration-300 ease-in-out
+                hover:scale-105 transform hover:-translate-y-2
+                border border-transparent hover:border-purple-300 dark:hover:border-purple-600
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900">
+              <h3 class="text-lg sm:text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1 sm:mb-2">
+                Cursos Técnicos
+              </h3>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal dos produtos -->
+      <div id="modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center hidden z-50 transition-all duration-300">
+        <div class="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full mx-4 transform scale-95 opacity-0 transition-all duration-300 modal-content">
+          <!-- Botão Fechar -->
+          <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 text-2xl font-bold transition-colors duration-200 focus:outline-none">
+            &times;
+          </button>
+          <!-- Título -->
+          <h3 id="modal-title" class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-400 dark:to-pink-400 mb-6 text-center"></h3>
+          <p class="mb-6 text-gray-700 dark:text-gray-300 text-sm sm:text-base text-center">
+            Escolha abaixo uma das opções para acessar o material:
+          </p>
+          <!-- Conteúdo -->
+          <div class="flex flex-col gap-4 mt-2">
+            <!-- Catálogo -->
+            <a id="modal-link-catalogo" href="#" target="_blank"
+              class="group flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 group-hover:scale-110 transition-transform duration-200">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              Ver Catálogo
+            </a>
+            <!-- Criativos -->
+            <a id="modal-link-criativos" href="#" target="_blank"
+              class="group flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-teal-400 hover:from-blue-600 hover:to-teal-500 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 group-hover:scale-110 transition-transform duration-200">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h18M3 16h18" />
+              </svg>
+              Ver Criativos
+            </a>
+            <!-- Regulamento -->
+            <a id="modal-link-regulamento" href="#" target="_blank"
+              class="group flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 group-hover:scale-110 transition-transform duration-200">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Ver Regulamento
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links Úteis -->
+      <section id="links-uteis" class="bg-gradient-to-br from-purple-200 to-purple-100 dark:from-gray-900 dark:to-gray-800 py-20 px-6 transition-colors duration-500">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-extrabold mb-12 text-center text-purple-900 dark:text-purple-200 tracking-wide">
+            Links Úteis
+          </h2>
+          <input type="text" id="pesquisa-links" placeholder="Pesquisar links..." class="w-full max-w-md mx-auto mb-8 px-4 py-2 rounded-lg shadow border border-purple-400 dark:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 text-purple-800 dark:text-purple-100 placeholder-purple-500 dark:placeholder-purple-300 bg-white dark:bg-purple-900 flex justify-center"/>
+          <p id="mensagem-sem-resultado" class="text-center text-purple-800 dark:text-purple-200 font-semibold hidden">
+          Nenhum resultado de pesquisa encontrado.
+          </p>
+          <!-- Grid de links -->
+          <div id="cards-links" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          </div>
+          <div class="text-center mt-8">
+            <!-- Botão "Ver mais" -->
+            <button id="ver-mais-btn" class="inline-flex items-center bg-purple-700 text-white font-semibold px-5 py-2 rounded-2xl shadow-md hover:bg-purple-600 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              Ver todos
+            </button>
+            <!-- Botão Recolher (inicialmente oculto) -->
+            <button id="recolher-btn" class="hidden inline-flex items-center bg-purple-700 text-white font-semibold px-5 py-2 rounded-2xl shadow-md hover:bg-gray-400 transition-all duration-300 mt-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              Recolher
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mapa dos Polos -->
+      <section id="mapa" class="relative py-20 px-6 bg-gradient-to-br from-white via-purple-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+          <!-- Lista de Polos -->
+          <div class="w-full md:w-2/5">
+            <h2 class="text-4xl font-extrabold text-purple-800 dark:text-purple-300 mb-4">Onde Estamos</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6">Confira a lista de polos:</p>
+            <!-- Campo de pesquisa -->
+            <input type="text" id="city-search" placeholder="Pesquisar polos..."
+              class="w-full p-3 border border-purple-400 rounded-lg mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition bg-white dark:bg-gray-800 dark:border-purple-600 dark:text-white"/>
+            <!-- Lista de localidades -->
+            <ul id="location-list"
+              class="mt-4 rounded-xl overflow-y-auto max-h-80 divide-y divide-purple-100 dark:divide-purple-800 bg-white/80 dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 shadow-inner">
+              <!-- Placeholder dinâmico -->
+              <li id="empty-placeholder" class="p-3 text-gray-500 dark:text-gray-400 italic text-center">
+                Nenhum polo encontrado
+              </li>
+            </ul>
+            <!-- Botão para abrir o modal -->
+            <div class="mt-6 text-center">
+              <button id="open-modal-location" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+                Encontre o Polo mais próximo
               </button>
-            </form>
-          </div>
-          <!-- Coluna de Contatos Importantes -->
-          <div class="md:w-1/2 bg-gradient-to-br from-white via-gray-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-2xl space-y-8 transition-all duration-300">
-            <!-- Bloco: Atendimento ao Aluno -->
-            <div class="border-l-4 border-purple-300 dark:border-purple-500 pl-4 space-y-4">
-              <h4 class="text-xl font-bold text-purple-800 dark:text-purple-300 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6m2 5H7a2 2 0 01-2-2V7a2 2 0 012-2h3l2-2h2l2 2h3a2 2 0 012 2v12a2 2 0 01-2 2z" />
-                </svg>
-                Atendimento ao Aluno
-              </h4>
-              <div>
-                <p class="text-gray-700 dark:text-gray-200">
-                  <strong>WhatsApp:</strong><br>
-                  <a href="https://wa.me/+5531972238868" target="_blank" rel="noopener"
-                    class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
-                    (31) 97223-8868
+            </div>
+            <!-- Modal -->
+            <div id="modal-location" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 hidden justify-center items-center px-4" >
+              <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-xl max-w-md w-full relative">
+                <!-- Botão de fechar -->
+                <button id="close-modal" class="absolute top-3 right-4 text-gray-600 dark:text-gray-300 hover:text-red-500 text-2xl font-bold transition">
+                  &times;
+                </button>
+                <h3 class="text-3xl font-bold text-purple-800 dark:text-purple-300 text-center mb-6">Polo mais próximo</h3>
+                <!-- Input da cidade -->
+                <div class="mb-4">
+                  <label for="cidade" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Digite sua cidade:</label>
+                  <input type="text" id="cidade" list="lista-cidades" placeholder="Ex: Belo Horizonte - MG" class="w-full p-3 border border-purple-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:text-white dark:border-purple-600"/>
+                  <datalist id="lista-cidades"></datalist>
+                </div>
+                <!-- Resultado do polo mais próximo -->
+                <div id="resultado-polo" class="mb-4 hidden">
+                  <p class="text-gray-800 dark:text-gray-200"><strong>Unidade:</strong> <span class="text-purple-700 dark:text-purple-400" id="unidade-nome"></span></p>
+                  <p class="text-gray-800 dark:text-gray-200"><strong>Endereço:</strong> <span class="text-purple-700 dark:text-purple-400" id="polo-nome"></span></p>
+                </div>
+                <!-- Distância e rota -->
+                <div id="resultado-distancia" class="hidden">
+                  <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Distância:</strong> <span id="distancia-km" class="text-purple-700 dark:text-purple-400"></span> km</p>
+                  <a id="rota-link" href="#" target="_blank" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold transition">
+                    Ver rota no Google Maps
                   </a>
-                </p>
-              </div>
-              <div>
-                <p class="text-gray-700 dark:text-gray-200">
-                  <strong>E-mail:</strong><br>
-                  <a href="mailto:atendimento@uniunica.edu.br"
-                    class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
-                    atendimento@uniunica.edu.br
-                  </a>
-                </p>
-              </div>
-              <div>
-                <p class="text-gray-700 dark:text-gray-200">
-                  <strong>Telefone:</strong><br>
-                  <span class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded">
-                    0800 724 2300
-                  </span>
-                </p>
+                </div>
               </div>
             </div>
-            <!-- Bloco: Outros Canais -->
-            <div class="border-t border-gray-200 dark:border-gray-600 pt-4 space-y-4">
-              <h4 class="text-xl font-bold text-purple-800 dark:text-purple-300 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
-                </svg>
-                Nossos Canais
-              </h4>
-              <div>
-                <p class="text-gray-700 dark:text-gray-200">
-                  <strong>Site Oficial:</strong><br>
-                  <a href="https://uniunica.edu.br" target="_blank" rel="noopener"
-                    class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
-                    uniunica.edu.br
-                  </a>
-                </p>
+
+          </div>
+
+          <!-- Mapa -->
+          <div id="divmap" class="flex-1 h-[520px] rounded-3xl overflow-hidden shadow-2xl border-2 border-purple-300 dark:border-purple-700 transition-transform duration-500">
+            <div id="map" class="w-full h-full"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dúvidas -->
+      <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto bg-purple-100 dark:bg-gray-800 transition-colors duration-300"
+        x-data="faqSearch()" x-init="init" x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()">
+        <h2 class="text-4xl font-extrabold mb-10 text-center text-purple-800 dark:text-purple-300 tracking-tight">
+          Dúvidas mais comuns
+        </h2>
+        <!-- Campo de pesquisa -->
+        <input type="text" placeholder="Digite uma palavra-chave referente a sua dúvida..."
+          x-model="search" class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white"/>
+        <!-- Lista de dúvidas -->
+        <div class="space-y-4">
+          <template x-for="(faq, index) in limitedFaqs" :key="index">
+            <div>
+              <button @click="selected !== index ? selected = index : selected = null"
+                class="w-full text-left bg-white dark:bg-gray-800 p-4 rounded shadow font-semibold text-purple-700 dark:text-purple-300 transition-colors duration-300" x-text="faq.pergunta"></button>
+              <div x-show="selected === index" x-transition
+                class="p-4 bg-purple-50 dark:bg-gray-900 border dark:border-gray-700 rounded text-gray-800 dark:text-gray-200" x-html="faq.resposta"></div>
+            </div>
+          </template>
+          <!-- Caso nenhuma dúvida seja encontrada -->
+          <div x-show="filteredFaqs.length === 0" class="text-gray-500 dark:text-gray-400 text-center mt-6">
+            Nenhuma dúvida encontrada com essa palavra-chave.
+          </div>
+          <!-- Botão "Ver mais" -->
+          <div class="text-center mt-6" x-show="filteredFaqs.length > visibleCount">
+            <button @click="showMore" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-500 text-white text-lg font-semibold rounded-full shadow hover:from-purple-700 hover:to-purple-600 transition duration-300">
+              Ver mais dúvidas
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato -->
+      <section id="contato" class="bg-purple-200 dark:bg-gray-900 py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-extrabold mb-10 text-center text-purple-800 dark:text-purple-300 tracking-tight">Fale Conosco</h2>
+          <div class="flex flex-col md:flex-row gap-12">
+            <!-- Coluna do Formulário -->
+            <div class="md:w-1/2">
+              <form id="contatoForm" action="https://formsubmit.co/felipe.silva@uniunica.edu.br"
+                method="POST" onsubmit="handleFormSubmit(event)"
+                class="space-y-6 bg-white/60 dark:bg-gray-900/60 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-purple-200 dark:border-purple-700 transition-all duration-300">
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="https://suaurl.com/sucesso.html" />
+                <!-- Nome -->
+                <div>
+                  <label for="nome" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Nome</label>
+                  <div class="relative">
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome"
+                          class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300"
+                          required />
+                    <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
+                      <i class="fas fa-user"></i>
+                    </span>
+                  </div>
+                </div>
+                <!-- Email -->
+                <div>
+                  <label for="email" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">E-mail</label>
+                  <div class="relative">
+                    <input type="email" id="email" name="email" placeholder="Seu e-mail"
+                          class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300"
+                          required />
+                    <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                  </div>
+                </div>
+                <!-- Telefone -->
+                <div>
+                  <label for="telefone" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Telefone</label>
+                  <div class="relative">
+                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000"
+                          class="w-full pl-12 pr-4 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300" />
+                    <span class="absolute left-4 top-3 text-purple-500 dark:text-purple-400">
+                      <i class="fas fa-phone-alt"></i>
+                    </span>
+                  </div>
+                </div>
+                <!-- Mensagem -->
+                <div>
+                  <label for="mensagem" class="block text-purple-800 dark:text-purple-300 font-bold mb-1">Mensagem</label>
+                  <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..."
+                            class="w-full p-4 rounded-xl bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 border border-purple-300 dark:border-purple-600 shadow focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800 transition-all duration-300 h-32 resize-none"
+                            required></textarea>
+                </div>
+                <!-- Botão -->
+                <button type="submit"
+                  class="w-full py-3 rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 text-white font-bold text-lg tracking-wide shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+                  Enviar Mensagem
+                </button>
+              </form>
+            </div>
+            <!-- Coluna de Contatos Importantes -->
+            <div class="md:w-1/2 bg-gradient-to-br from-white via-gray-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-8 rounded-2xl shadow-2xl space-y-8 transition-all duration-300">
+              <!-- Bloco: Atendimento ao Aluno -->
+              <div class="border-l-4 border-purple-300 dark:border-purple-500 pl-4 space-y-4">
+                <h4 class="text-xl font-bold text-purple-800 dark:text-purple-300 flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16h6m2 5H7a2 2 0 01-2-2V7a2 2 0 012-2h3l2-2h2l2 2h3a2 2 0 012 2v12a2 2 0 01-2 2z" />
+                  </svg>
+                  Atendimento ao Aluno
+                </h4>
+                <div>
+                  <p class="text-gray-700 dark:text-gray-200">
+                    <strong>WhatsApp:</strong><br>
+                    <a href="https://wa.me/+5531972238868" target="_blank" rel="noopener"
+                      class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
+                      (31) 97223-8868
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-700 dark:text-gray-200">
+                    <strong>E-mail:</strong><br>
+                    <a href="mailto:atendimento@uniunica.edu.br"
+                      class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
+                      atendimento@uniunica.edu.br
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-700 dark:text-gray-200">
+                    <strong>Telefone:</strong><br>
+                    <span class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded">
+                      0800 724 2300
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div>
-                <p class="text-gray-700 dark:text-gray-200">
-                  <strong>Redes Sociais:</strong><br>
-                  <a href="https://www.instagram.com/uniun1ca/" target="_blank" rel="noopener"
-                    class="inline-block mt-1 mr-2 px-3 py-1 bg-pink-100 dark:bg-pink-700 text-pink-800 dark:text-white rounded hover:bg-pink-200 dark:hover:bg-pink-600 transition">
-                    Instagram
-                  </a>
-                  <a href="https://www.facebook.com/uniun1ca/" target="_blank" rel="noopener"
-                    class="inline-block mt-1 px-3 py-1 bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white rounded hover:bg-blue-200 dark:hover:bg-blue-600 transition">
-                    Facebook
-                  </a>
-                </p>
+              <!-- Bloco: Outros Canais -->
+              <div class="border-t border-gray-200 dark:border-gray-600 pt-4 space-y-4">
+                <h4 class="text-xl font-bold text-purple-800 dark:text-purple-300 flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+                  </svg>
+                  Nossos Canais
+                </h4>
+                <div>
+                  <p class="text-gray-700 dark:text-gray-200">
+                    <strong>Site Oficial:</strong><br>
+                    <a href="https://uniunica.edu.br" target="_blank" rel="noopener"
+                      class="inline-block mt-1 px-3 py-1 bg-purple-100 dark:bg-purple-700 text-purple-800 dark:text-white rounded hover:bg-purple-200 dark:hover:bg-purple-600 transition">
+                      uniunica.edu.br
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-700 dark:text-gray-200">
+                    <strong>Redes Sociais:</strong><br>
+                    <a href="https://www.instagram.com/uniun1ca/" target="_blank" rel="noopener"
+                      class="inline-block mt-1 mr-2 px-3 py-1 bg-pink-100 dark:bg-pink-700 text-pink-800 dark:text-white rounded hover:bg-pink-200 dark:hover:bg-pink-600 transition">
+                      Instagram
+                    </a>
+                    <a href="https://www.facebook.com/uniun1ca/" target="_blank" rel="noopener"
+                      class="inline-block mt-1 px-3 py-1 bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white rounded hover:bg-blue-200 dark:hover:bg-blue-600 transition">
+                      Facebook
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Rodapé -->
-    <footer class="bg-white dark:bg-gray-900 border-t dark:border-gray-700 py-6">
-      <div class="max-w-7xl mx-auto px-4 text-center">
-        <p class="text-sm text-gray-500 dark:text-gray-400 tracking-wide">
-          © 2025 <span class="font-semibold text-purple-700 dark:text-purple-400">Centro Universitário Única</span> · 
-          <span class="font-semibold text-purple-700 dark:text-purple-400">Expansão e Negócios</span>
-        </p>
-      </div>
-    </footer>
-
-    <!-- Popup -->
-    <div x-data="{ show: false }" x-show="show" x-transition x-init="
-        window.addEventListener('form-enviado', () => {
-          show = true;
-          setTimeout(() => show = false, 4000);
-        })
-      " class="fixed inset-0 flex items-center justify-center z-50" id="popupSuccess">
-      <div class="bg-white rounded-lg p-6 shadow-xl border border-green-300 animate__animated animate__fadeInDown">
-        <div class="text-green-600 text-2xl font-semibold mb-2">
-          ✅ Mensagem Enviada!
+      <!-- Rodapé -->
+      <footer class="bg-white dark:bg-gray-900 border-t dark:border-gray-700 py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+          <p class="text-sm text-gray-500 dark:text-gray-400 tracking-wide">
+            © 2025 <span class="font-semibold text-purple-700 dark:text-purple-400">Centro Universitário Única</span> · 
+            <span class="font-semibold text-purple-700 dark:text-purple-400">Expansão e Negócios</span>
+          </p>
         </div>
-        <p class="text-gray-700">
-          Agradecemos o seu contato. Em breve retornaremos.
-        </p>
+      </footer>
+
+      <!-- Popup -->
+      <div x-data="{ show: false }" x-show="show" x-transition x-init="
+          window.addEventListener('form-enviado', () => {
+            show = true;
+            setTimeout(() => show = false, 4000);
+          })
+        " class="fixed inset-0 flex items-center justify-center z-50" id="popupSuccess">
+        <div class="bg-white rounded-lg p-6 shadow-xl border border-green-300 animate__animated animate__fadeInDown">
+          <div class="text-green-600 text-2xl font-semibold mb-2">
+            ✅ Mensagem Enviada!
+          </div>
+          <p class="text-gray-700">
+            Agradecemos o seu contato. Em breve retornaremos.
+          </p>
+        </div>
       </div>
+    <!--
     </div>
-
-    <!-- Scripts geral -->
+    -->
+    <!-- Script para pre load
+    <script src="scripts/preload.js" defer></script>
+    -->
+    <!-- Script geral -->
     <script src="scripts/main.js" defer></script>
     <!-- Script para seção de produtos -->
     <script src="scripts/produtos.js" defer></script>
