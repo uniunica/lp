@@ -46,10 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const rows = json.values;
 
       rows.forEach((row) => {
-        const municipio = row[0]?.trim();
-        const polo = row[3]?.trim(); // Coluna F
-        const unidade = row[6]?.trim(); // Coluna J
-        const distancia = row[8]?.trim(); // Coluna K
+        const municipio = row[0]?.trim();  // Coluna A
+        const polo = row[3]?.trim(); // Coluna D
+        const unidade = row[5]?.trim(); // Coluna F
+        const distancia = row[8]?.trim(); // Coluna H
 
         if (municipio && polo && distancia) {
           municipiosData[normalizarTexto(municipio)] = {
