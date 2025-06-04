@@ -47,9 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       rows.forEach((row) => {
         const municipio = row[0]?.trim();  // Coluna A
-        const polo = row[3]?.trim(); // Coluna F
-        const unidade = row[4]?.trim(); // Coluna G
-        const distancia = row[5]?.trim(); // Coluna H
+        const polo = row[3]?.trim(); // Coluna D
+        const unidade = row[5]?.trim(); // Coluna F
+        const distancia = row[8]?.trim(); // Coluna I
 
         if (municipio && polo && distancia) {
           municipiosData[normalizarTexto(municipio)] = {
