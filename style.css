@@ -43,6 +43,9 @@ input[type="checkbox"]:checked {
   -webkit-backdrop-filter: blur(4px); /* Suporte para Safari */
   backdrop-filter: blur(4px);
 }
+.hidden-frame {
+  display: none;
+}
 /* Estilização da tela de pre carregamento
 .preloader {
   position: fixed;

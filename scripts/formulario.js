@@ -14,12 +14,12 @@ function handleFormSubmit(event) {
     headers: { Accept: "application/json" },
   })
     .then((response) => {
-      if (response.ok) {
-        form.reset();
+    if (response.ok) {
+      form.reset();
         window.dispatchEvent(new Event("form-enviado"));
-      } else {
+    } else {
         alert("Formulário enviado. Em breve retornaremos");
-      }
-    })
+    }
+  })
     .catch(() => alert("Erro ao enviar. Tente novamente."));
 }
