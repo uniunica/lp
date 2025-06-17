@@ -409,30 +409,73 @@
       <!-- Dúvidas -->
       <section id="duvidas" class="py-16 px-4 max-w-4xl mx-auto bg-purple-100 dark:bg-gray-800 transition-colors duration-300"
         x-data="faqSearch()" x-init="init" x-effect="search ? visibleCount = filteredFaqs.length : resetVisible()">
+
         <h2 class="text-4xl font-extrabold mb-10 text-center text-purple-800 dark:text-purple-300 tracking-tight">
           Dúvidas mais comuns
         </h2>
+
+        <!-- ✅ NOVO: Loading state -->
+        <div x-show="isLoading" class="text-center py-8">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">Carregando dúvidas...</p>
+        </div>
+
+        <!-- ✅ NOVO: Error state -->
+        <div x-show="hasError && !isLoading" class="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 rounded-lg p-4 mb-6">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+            </svg>
+            <span x-text="errorMessage" class="text-red-700 dark:text-red-300"></span>
+          </div>
+          <button @click="refreshFaqs()" class="mt-2 text-sm text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 underline">
+            Tentar novamente
+          </button>
+        </div>
+
         <!-- Campo de pesquisa -->
-        <input type="text" placeholder="Digite uma palavra-chave referente a sua dúvida..."
-          x-model="search" class="w-full p-3 mb-6 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white"/>
+        <div x-show="!isLoading" class="relative mb-6">
+          <input type="text" placeholder="Digite uma palavra-chave referente a sua dúvida..."
+            x-model="search"
+            class="w-full p-3 pl-10 border rounded shadow focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white"/>
+          <svg class="absolute left-3 top-3 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+
         <!-- Lista de dúvidas -->
-        <div class="space-y-4">
-          <template x-for="(faq, index) in limitedFaqs" :key="index">
+        <div x-show="!isLoading" class="space-y-4">
+          <template x-for="(faq, index) in limitedFaqs" :key="faq.id || index">
             <div>
               <button @click="selected !== index ? selected = index : selected = null"
-                class="w-full text-left bg-white dark:bg-gray-800 p-4 rounded shadow font-semibold text-purple-700 dark:text-purple-300 transition-colors duration-300" x-text="faq.pergunta"></button>
+                class="w-full text-left bg-white dark:bg-gray-800 p-4 rounded shadow font-semibold text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors duration-300"
+                x-text="faq.pergunta"></button>
               <div x-show="selected === index" x-transition
-                class="p-4 bg-purple-50 dark:bg-gray-900 border dark:border-gray-700 rounded text-gray-800 dark:text-gray-200" x-html="faq.resposta"></div>
+                class="p-4 bg-purple-50 dark:bg-gray-900 border dark:border-gray-700 rounded text-gray-800 dark:text-gray-200"
+                x-html="faq.resposta"></div>
             </div>
           </template>
+
           <!-- Caso nenhuma dúvida seja encontrada -->
-          <div x-show="filteredFaqs.length === 0" class="text-gray-500 dark:text-gray-400 text-center mt-6">
-            Nenhuma dúvida encontrada com essa palavra-chave.
+          <div x-show="filteredFaqs.length === 0 && !isLoading" class="text-gray-500 dark:text-gray-400 text-center mt-6">
+            <svg class="w-12 h-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <p>Nenhuma dúvida encontrada com essa palavra-chave.</p>
+            <button @click="search = ''" class="mt-2 text-purple-600 dark:text-purple-400 hover:underline">
+              Limpar pesquisa
+            </button>
           </div>
-          <!-- Botão "Ver mais" -->
-          <div class="text-center mt-6" x-show="filteredFaqs.length > visibleCount">
-            <button @click="showMore" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-500 text-white text-lg font-semibold rounded-full shadow hover:from-purple-700 hover:to-purple-600 transition duration-300">
+
+          <!-- Botões de controle -->
+          <div class="text-center mt-6" x-show="filteredFaqs.length > 0">
+            <button x-show="hasMoreFaqs" @click="showMore"
+              class="px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-500 text-white text-lg font-semibold rounded-full shadow hover:from-purple-700 hover:to-purple-600 transition duration-300 mr-2">
               Ver mais dúvidas
+            </button>
+            <button x-show="hasMoreFaqs" @click="showAll"
+              class="px-6 py-3 bg-gray-600 text-white font-semibold rounded-full shadow hover:bg-gray-700 transition duration-300">
+              Ver todas
             </button>
           </div>
         </div>
