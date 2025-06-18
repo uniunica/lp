@@ -477,10 +477,7 @@ class MapsManager {
             polo.name
           )}</h4>
           <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-            ${polo.cidade ? `${this.escapeHtml(polo.cidade)}` : ""}
-            ${polo.cidade && polo.estado ? ", " : ""}
-            ${polo.estado ? `${this.escapeHtml(polo.estado)}` : ""} <br>
-            ${polo.endereco ? ` - End.: ${this.escapeHtml(polo.endereco)}` : ""}
+            ${polo.endereco ? ` End.: ${this.escapeHtml(polo.endereco)}` : ""}
             ${polo.cep ? ` - CEP: ${this.escapeHtml(polo.cep)}` : ""}
           </p>
           ${
