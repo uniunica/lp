@@ -689,3 +689,324 @@ window.debugMapData = {
     });
   },
 };
+// ✅ Sistema para tornar menu do mapa sempre visível (versão compacta)
+const MapNavigationCustomizer = {
+  // Função para customizar o menu de navegação
+  customizeNavigation() {
+    setTimeout(() => {
+      const mapAccessElement = document.getElementById("map_access");
+
+      if (mapAccessElement) {
+        // ✅ Remover menu de navegação
+        this.removeNavigationSelect(mapAccessElement);
+
+        // ✅ Tornar sempre visível
+        this.makeAlwaysVisible(mapAccessElement);
+
+        // ✅ Personalizar textos
+        this.customizeTexts(mapAccessElement);
+
+        // ✅ Melhorar aparência
+        this.improveAppearance(mapAccessElement);
+
+        console.log("Menu de navegação do mapa customizado (versão compacta)");
+      } else {
+        // Tentar novamente se não encontrou
+        console.log(
+          "Elemento map_access não encontrado, tentando novamente..."
+        );
+        setTimeout(() => this.customizeNavigation(), 1000);
+      }
+    }, 1500); // Aguardar o mapa carregar
+  },
+
+  // ✅ NOVO: Remover o primeiro select (navegação)
+  removeNavigationSelect(element) {
+    const selects = element.querySelectorAll("select");
+    if (selects.length > 0) {
+      // Remove o primeiro select (Navigate)
+      selects[0].remove();
+    }
+  },
+
+  // Tornar elemento sempre visível
+  makeAlwaysVisible(element) {
+    // ✅ Forçar visibilidade
+    element.style.display = "flex !important";
+    element.style.visibility = "visible !important";
+    element.style.opacity = "1 !important";
+    element.style.position = "absolute";
+    element.style.top = "10px";
+    element.style.right = "10px";
+    element.style.zIndex = "1000";
+    element.style.maxWidth = "100%";
+    element.style.flexDirection = "column";
+    element.style.gap = "6px";
+
+    // ✅ Remover eventos que podem ocultar
+    element.onblur = null;
+    element.onfocusout = null;
+
+    // ✅ Adicionar classe CSS personalizada
+    element.classList.add("map-navigation-always-visible");
+  },
+
+  // Personalizar textos dos selects (agora só Estados e Polos)
+  customizeTexts(element) {
+    const selects = element.querySelectorAll("select");
+
+    selects.forEach((select, index) => {
+      const firstOption = select.querySelector('option[value="-1"]');
+
+      if (firstOption) {
+        switch (index) {
+          case 0: // States (agora é o primeiro após remoção do Navigate)
+            firstOption.textContent = "Estados";
+            select.setAttribute("aria-label", "Selecionar Estado");
+            break;
+          case 1: // Locations (agora é o segundo)
+            firstOption.textContent = "Polos";
+            select.setAttribute("aria-label", "Selecionar Polo");
+            break;
+        }
+      }
+    });
+  },
+
+  // Melhorar aparência visual (versão compacta)
+  improveAppearance(element) {
+    // ✅ Criar CSS personalizado
+    if (!document.getElementById("map-navigation-styles")) {
+      const style = document.createElement("style");
+      style.id = "map-navigation-styles";
+      style.textContent = `
+        /* Menu sempre visível - versão compacta */
+        #map_access.map-navigation-always-visible {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 6px !important;
+          background: rgba(255, 255, 255, 0.95) !important;
+          backdrop-filter: blur(8px) !important;
+          border-radius: 10px !important;
+          padding: 8px !important;
+          box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12) !important;
+          border: 2px solid #560180 !important;
+          min-width: 160px !important;
+          max-width: 180px !important;
+        }
+
+        /* Estilizar selects - versão compacta */
+        #map_access.map-navigation-always-visible select {
+          background: linear-gradient(135deg, #560180, #7c2ea8) !important;
+          color: white !important;
+          border: none !important;
+          border-radius: 6px !important;
+          padding: 8px 10px !important;
+          font-size: 12px !important;
+          font-weight: 600 !important;
+          cursor: pointer !important;
+          transition: all 0.3s ease !important;
+          margin: 0 !important;
+          float: none !important;
+          width: 100% !important;
+          box-shadow: 0 2px 6px rgba(86, 1, 128, 0.25) !important;
+        }
+
+        /* Hover nos selects */
+        #map_access.map-navigation-always-visible select:hover {
+          background: linear-gradient(135deg, #7c2ea8, #9d4edd) !important;
+          transform: translateY(-1px) !important;
+          box-shadow: 0 3px 10px rgba(86, 1, 128, 0.35) !important;
+        }
+
+        /* Focus nos selects */
+        #map_access.map-navigation-always-visible select:focus {
+          outline: 2px solid rgba(86, 1, 128, 0.4) !important;
+          outline-offset: 1px !important;
+        }
+
+        /* Estilizar options */
+        #map_access.map-navigation-always-visible select option {
+          background: white !important;
+          color: #333 !important;
+          padding: 6px !important;
+          font-size: 12px !important;
+        }
+
+        /* Responsivo para mobile */
+        @media (max-width: 768px) {
+          #map_access.map-navigation-always-visible {
+            top: 5px !important;
+            right: 5px !important;
+            padding: 6px !important;
+            min-width: 140px !important;
+            max-width: 160px !important;
+          }
+
+          #map_access.map-navigation-always-visible select {
+            font-size: 11px !important;
+            padding: 6px 8px !important;
+          }
+        }
+
+        /* Título do menu - versão compacta */
+        .map-navigation-title {
+          background: #560180 !important;
+          color: white !important;
+          text-align: center !important;
+          padding: 6px !important;
+          border-radius: 5px !important;
+          font-size: 12px !important;
+          font-weight: bold !important;
+          margin-bottom: 2px !important;
+        }
+
+        /* Ícones para os selects */
+        .map-select-icon {
+          display: inline-block !important;
+          margin-right: 4px !important;
+          font-size: 10px !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // ✅ Adicionar título compacto ao menu
+    if (!element.querySelector(".map-navigation-title")) {
+      const title = document.createElement("div");
+      title.className = "map-navigation-title";
+      title.textContent = "Navegação";
+      element.insertBefore(title, element.firstChild);
+    }
+
+    // ✅ Adicionar ícones aos selects
+    this.addIconsToSelects(element);
+  },
+
+  // ✅ NOVO: Adicionar ícones aos selects
+  addIconsToSelects(element) {
+    const selects = element.querySelectorAll("select");
+
+    selects.forEach((select, index) => {
+      const firstOption = select.querySelector('option[value="-1"]');
+
+      if (
+        firstOption &&
+        !firstOption.textContent.includes("🗺️") &&
+        !firstOption.textContent.includes("📍")
+      ) {
+        switch (index) {
+          case 0: // Estados
+            firstOption.innerHTML =
+              '<span class="map-select-icon"></span>Estados';
+            break;
+          case 1: // Polos
+            firstOption.innerHTML =
+              '<span class="map-select-icon"></span>Polos';
+            break;
+        }
+      }
+    });
+  },
+
+  // Observer para detectar mudanças no DOM
+  setupObserver() {
+    const mapContainer = document.getElementById("map");
+    if (!mapContainer) return;
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === 1 && node.id === "map_access") {
+            console.log("Elemento map_access detectado, customizando...");
+            this.customizeNavigation();
+          }
+        });
+      });
+    });
+
+    observer.observe(mapContainer, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Também tentar customizar imediatamente
+    this.customizeNavigation();
+  },
+
+  // Função para forçar recriação do menu se necessário
+  forceRecreate() {
+    const mapContainer = document.getElementById("map");
+    const existingAccess = document.getElementById("map_access");
+
+    if (existingAccess) {
+      existingAccess.remove();
+    }
+
+    // Simular Tab para forçar criação
+    if (mapContainer) {
+      const event = new KeyboardEvent("keydown", {
+        key: "Tab",
+        code: "Tab",
+        keyCode: 9,
+        which: 9,
+        bubbles: true,
+      });
+      mapContainer.dispatchEvent(event);
+    }
+
+    // Customizar após um delay
+    setTimeout(() => this.customizeNavigation(), 500);
+  },
+};
+
+// ✅ Integrar com sua função de carregamento existente
+const originalCarregarPolos = carregarPolos;
+
+carregarPolos = async function () {
+  await originalCarregarPolos();
+
+  // ✅ Customizar navegação após carregar o mapa
+  setTimeout(() => {
+    MapNavigationCustomizer.setupObserver();
+    MapNavigationCustomizer.forceRecreate();
+  }, 2000);
+};
+
+// ✅ Também tentar na inicialização
+document.addEventListener("DOMContentLoaded", () => {
+  // Aguardar um pouco mais para garantir que o mapa carregou
+  setTimeout(() => {
+    MapNavigationCustomizer.setupObserver();
+  }, 3000);
+});
+
+// ✅ Função para recriar menu manualmente (debug)
+window.debugMapNavigation = {
+  recreate: () => MapNavigationCustomizer.forceRecreate(),
+  customize: () => MapNavigationCustomizer.customizeNavigation(),
+  observer: () => MapNavigationCustomizer.setupObserver(),
+};
+
+// ✅ Interceptar eventos que podem ocultar o menu
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Tab") {
+    setTimeout(() => {
+      const mapAccess = document.getElementById("map_access");
+      if (
+        mapAccess &&
+        !mapAccess.classList.contains("map-navigation-always-visible")
+      ) {
+        MapNavigationCustomizer.customizeNavigation();
+      }
+    }, 100);
+  }
+});
+
+// ✅ Garantir que o menu permaneça visível
+setInterval(() => {
+  const mapAccess = document.getElementById("map_access");
+  if (mapAccess && mapAccess.style.display === "none") {
+    MapNavigationCustomizer.makeAlwaysVisible(mapAccess);
+  }
+}, 2000);
