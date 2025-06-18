@@ -56,42 +56,6 @@ Clique em **"Entre em contato com seu consultor"** na seção principal. Um moda
 
 ---
 
-## ⚙️ Como Rodar Localmente
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/uniunica/lp.git
-Acesse a pasta:
-cd lp
-Abra o index.html no navegador:
-start index.html
-# ou
-open index.html
-
-🧩 Estrutura de Arquivos
-
-📁 lp/
-├── index.html          # Página principal
-├── style.css           # Estilos personalizados
-├── logo.png            # Logotipo do setor
-├── favicon.png         # Ícone do site
-├── scripts             # Scripts gerais
-    ├── carteira.js     # Script do modal de carteiras
-    └── duvidas.js      # Script da seção de dúvidas
-    ├── formulario.js   # Script da seção de formulário
-    └── links.js        # Script da seção de links úteis
-    ├── maps.js         # Script da seção de mapas
-    └── produtos.js     # Script da seção de produtos
-└── mapa/
-    ├── mapdata.js      # Dados do mapa
-    └── countrymap.js   # Script de renderização do mapa
-    
-🖌️ Personalização
-Para adaptar a página:
-    Textos: Edite diretamente as seções dentro do index.html.
-    Consultores: O autocomplete pode ser personalizado via script JS embutido (não incluso neste trecho).
-    Produtos: A lista pode ser modificada alterando os botões no bloco #produtos, incluindo nome, links de pastas e materiais.
-
 ✨ Desenvolvido por
 Equipe do Setor de Expansão e Negócios – UniÚnica
 Idealizado, executado e mantido por Felipe Toledo e colaboradores.
