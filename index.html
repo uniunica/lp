@@ -36,224 +36,224 @@
     <div class="loaded-content" id="main-content">
     -->
       <!-- Topo -->
-<header class="bg-white dark:bg-gray-900 shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-    <!-- Logo UniÚnica à esquerda-->
-    <a href="#home" class="flex items-center space-x-3">
-      <img src="imgs/icons/logo.png" alt="Logo Expansão e Negócios" loading="lazy" class="w-32 h-10 object-contain" />
-    </a>
-    <!-- Logo Prominas centralizado -->
-    <a href="#home" class="hidden md:flex items-center">
-      <img src="imgs/icons/gruporpominas-preto.png" alt="Logo Grupo Prominas" loading="lazy" class="h-12 object-contain" />
-    </a>
-    <!-- Botão de Menu Mobile -->
-    <div class="md:hidden">
-      <button aria-label="Abrir menu de navegação" id="menu-toggle" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-    <!-- Navegação Desktop -->
-    <nav class="hidden md:flex items-center space-x-6">
-      <!-- ✅ CORRIGIDO: Sininho de Notificações com ícone melhor -->
-      <div class="relative">
-        <button id="campanhas-toggle" 
-                aria-label="Ver campanhas ativas" 
-                aria-expanded="false"
-                aria-haspopup="true"
-                class="relative p-2 text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-lg group">
-          <!-- ✅ NOVO: Ícone de sininho melhorado -->
-          <svg class="w-6 h-6 transform group-hover:rotate-12 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h10a1 1 0 001-1v-1a1 1 0 00-1-1H4a1 1 0 00-1 1v1a1 1 0 001 1zM4 15h16a1 1 0 001-1V6a1 1 0 00-1-1H4a1 1 0 00-1 1v8a1 1 0 001 1z"/>
-          </svg>
-          
-          <!-- Badge de notificação -->
-          <span id="campanhas-badge" 
-                class="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full hidden animate-pulse min-w-[18px] h-[18px]">
-            0
-          </span>
-        </button>
+      <header class="bg-white dark:bg-gray-900 shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <!-- Logo UniÚnica à esquerda-->
+          <a href="#home" class="flex items-center space-x-3">
+            <img src="imgs/icons/logo.png" alt="Logo Expansão e Negócios" loading="lazy" class="w-32 h-10 object-contain" />
+          </a>
+          <!-- Logo Prominas centralizado -->
+          <a href="#home" class="hidden md:flex items-center">
+            <img src="imgs/icons/gruporpominas-preto.png" alt="Logo Grupo Prominas" loading="lazy" class="h-12 object-contain" />
+          </a>
+          <!-- Botão de Menu Mobile -->
+          <div class="md:hidden">
+            <button aria-label="Abrir menu de navegação" id="menu-toggle" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+          <!-- Navegação Desktop -->
+          <nav class="hidden md:flex items-center space-x-6">
+            <!-- ✅ CORRIGIDO: Sininho de Notificações com ícone melhor -->
+            <div class="relative">
+              <button id="campanhas-toggle" 
+                      aria-label="Ver campanhas ativas" 
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="relative p-2 text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 rounded-lg group">
+                <!-- ✅ NOVO: Ícone de sininho melhorado -->
+                <svg class="w-6 h-6 transform group-hover:rotate-12 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h10a1 1 0 001-1v-1a1 1 0 00-1-1H4a1 1 0 00-1 1v1a1 1 0 001 1zM4 15h16a1 1 0 001-1V6a1 1 0 00-1-1H4a1 1 0 00-1 1v8a1 1 0 001 1z"/>
+                </svg>
+                
+                <!-- Badge de notificação -->
+                <span id="campanhas-badge" 
+                      class="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full hidden animate-pulse min-w-[18px] h-[18px]">
+                  0
+                </span>
+              </button>
 
-        <!-- ✅ Dropdown de Campanhas (mantido igual) -->
-        <div id="campanhas-dropdown" 
-             class="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 hidden z-50 transform opacity-0 scale-95 transition-all duration-200">
-          
-          <!-- Header do Dropdown -->
-          <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <!-- ✅ Dropdown de Campanhas (mantido igual) -->
+              <div id="campanhas-dropdown" 
+                  class="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 hidden z-50 transform opacity-0 scale-95 transition-all duration-200">
+                
+                <!-- Header do Dropdown -->
+                <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                      <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                      </svg>
+                      Campanhas Ativas
+                    </h3>
+                    <span id="campanhas-count" class="text-sm text-gray-500 dark:text-gray-400">0 campanhas</span>
+                  </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="campanhas-loading" class="px-4 py-8 text-center">
+                  <div class="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-purple-600 mb-2"></div>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">Carregando campanhas...</p>
+                </div>
+
+                <!-- Lista de Campanhas -->
+                <div id="campanhas-lista" class="max-h-96 overflow-y-auto">
+                  <!-- Campanhas serão inseridas aqui dinamicamente -->
+                </div>
+
+                <!-- Estado Vazio -->
+                <div id="campanhas-vazio" class="hidden px-4 py-8 text-center">
+                  <svg class="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                  </svg>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Nenhuma campanha ativa</p>
+                  <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Novas promoções aparecerão aqui</p>
+                </div>
+
+                <!-- Erro State -->
+                <div id="campanhas-erro" class="hidden px-4 py-8 text-center">
+                  <svg class="w-12 h-12 text-red-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <p class="text-sm text-red-600 dark:text-red-400 font-medium">Erro ao carregar campanhas</p>
+                  <button id="campanhas-retry" class="text-xs text-purple-600 dark:text-purple-400 hover:underline mt-1">
+                    Tentar novamente
+                  </button>
+                </div>
+
+                <!-- Footer do Dropdown -->
+                <div class="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 rounded-b-xl">
+                  <button id="campanhas-refresh" 
+                          class="w-full text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-200 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Atualizar campanhas
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Links de navegação existentes -->
+            <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
+            <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
+            <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
+            <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
+            <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
+            <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
+            <!-- Botão para alternar entre os modos claro e escuro -->
+            <button aria-label="Alternar tema claro e escuro" aria-pressed="false"
+              class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
+              <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
+              <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
+            </button>
+          </nav>
+        </div>
+        <!-- Menu Mobile Expandido -->
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
+          <nav class="flex flex-col space-y-3 mt-2">
+            <!-- ✅ CORRIGIDO: Campanhas no menu mobile -->
+            <button id="campanhas-mobile"
+                    class="flex items-center gap-3 text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 text-left">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h10a1 1 0 001-1v-1a1 1 0 00-1-1H4a1 1 0 00-1 1v1a1 1 0 001 1zM4 15h16a1 1 0 001-1V6a1 1 0 00-1-1H4a1 1 0 00-1 1v8a1 1 0 001 1z"/>
+              </svg>
+              Campanhas Ativas
+              <span id="campanhas-badge-mobile" class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full hidden min-w-[20px] text-center">0</span>
+            </button>
+
+            <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
+            <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
+            <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
+            <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
+            <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
+            <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
+            <!-- Botão para alternar entre os modos claro e escuro -->
+            <button aria-label="Alternar tema claro e escuro" aria-pressed="false"
+              class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
+              <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
+              <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Modal Mobile para Campanhas -->
+      <div id="campanhas-modal-mobile" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center flex justify-center z-50 transition-all duration-300 md:hidden">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-sm mx-4 max-h-[80vh] overflow-hidden transition-colors duration-300">
+
+          <!-- Header do Modal -->
+          <div class="px-4 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-purple-600 to-purple-700">
             <div class="flex items-center justify-between">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
-                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+              <h3 class="text-lg font-semibold text-white flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h10a1 1 0 001-1v-1a1 1 0 00-1-1H4a1 1 0 00-1 1v1a1 1 0 001 1zM4 15h16a1 1 0 001-1V6a1 1 0 00-1-1H4a1 1 0 00-1 1v8a1 1 0 001 1z"/>
                 </svg>
                 Campanhas Ativas
               </h3>
-              <span id="campanhas-count" class="text-sm text-gray-500 dark:text-gray-400">0 campanhas</span>
+              <button id="campanhas-modal-close"
+                      aria-label="Fechar modal de campanhas"
+                      class="text-white/80 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
             </div>
+            <p id="campanhas-modal-count" class="text-purple-100 text-sm mt-1">0 campanhas disponíveis</p>
           </div>
 
-          <!-- Loading State -->
-          <div id="campanhas-loading" class="px-4 py-8 text-center">
-            <div class="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-purple-600 mb-2"></div>
+          <!-- Loading State Mobile -->
+          <div id="campanhas-modal-loading" class="px-4 py-8 text-center">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mb-3"></div>
             <p class="text-sm text-gray-600 dark:text-gray-400">Carregando campanhas...</p>
           </div>
 
-          <!-- Lista de Campanhas -->
-          <div id="campanhas-lista" class="max-h-96 overflow-y-auto">
+          <!-- Lista de Campanhas Mobile -->
+          <div id="campanhas-modal-lista" class="max-h-96 overflow-y-auto">
             <!-- Campanhas serão inseridas aqui dinamicamente -->
           </div>
 
-          <!-- Estado Vazio -->
-          <div id="campanhas-vazio" class="hidden px-4 py-8 text-center">
-            <svg class="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!-- Estado Vazio Mobile -->
+          <div id="campanhas-modal-vazio" class="hidden px-4 py-8 text-center">
+            <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
             </svg>
-            <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Nenhuma campanha ativa</p>
-            <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Novas promoções aparecerão aqui</p>
+            <p class="text-gray-500 dark:text-gray-400 font-medium">Nenhuma campanha ativa</p>
+            <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">Novas promoções aparecerão aqui</p>
           </div>
 
-          <!-- Erro State -->
-          <div id="campanhas-erro" class="hidden px-4 py-8 text-center">
-            <svg class="w-12 h-12 text-red-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!-- Erro State Mobile -->
+          <div id="campanhas-modal-erro" class="hidden px-4 py-8 text-center">
+            <svg class="w-16 h-16 text-red-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <p class="text-sm text-red-600 dark:text-red-400 font-medium">Erro ao carregar campanhas</p>
-            <button id="campanhas-retry" class="text-xs text-purple-600 dark:text-purple-400 hover:underline mt-1">
+            <p class="text-red-600 dark:text-red-400 font-medium mb-2">Erro ao carregar campanhas</p>
+            <button id="campanhas-modal-retry" class="text-purple-600 dark:text-purple-400 hover:underline text-sm">
               Tentar novamente
             </button>
           </div>
 
-          <!-- Footer do Dropdown -->
-          <div class="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 rounded-b-xl">
-            <button id="campanhas-refresh" 
-                    class="w-full text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-200 flex items-center justify-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-              </svg>
-              Atualizar campanhas
-            </button>
+          <!-- Footer do Modal -->
+          <div class="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
+            <div class="flex gap-2">
+              <button id="campanhas-modal-refresh"
+                      class="flex-1 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-200 flex items-center justify-center gap-2 py-2 px-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                Atualizar
+              </button>
+              <button id="campanhas-modal-close-btn"
+                      class="flex-1 text-sm bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-3 rounded-lg transition-colors duration-200">
+                Fechar
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- Links de navegação existentes -->
-      <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
-      <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
-      <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
-      <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
-      <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
-      <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
-      <!-- Botão para alternar entre os modos claro e escuro -->
-      <button aria-label="Alternar tema claro e escuro" aria-pressed="false"
-        class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
-        <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
-        <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
-      </button>
-    </nav>
-  </div>
-  <!-- Menu Mobile Expandido -->
-  <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
-    <nav class="flex flex-col space-y-3 mt-2">
-      <!-- ✅ CORRIGIDO: Campanhas no menu mobile -->
-      <button id="campanhas-mobile"
-              class="flex items-center gap-3 text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 text-left">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h10a1 1 0 001-1v-1a1 1 0 00-1-1H4a1 1 0 00-1 1v1a1 1 0 001 1zM4 15h16a1 1 0 001-1V6a1 1 0 00-1-1H4a1 1 0 00-1 1v8a1 1 0 001 1z"/>
-        </svg>
-        Campanhas Ativas
-        <span id="campanhas-badge-mobile" class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full hidden min-w-[20px] text-center">0</span>
-      </button>
-      
-      <a href="#home" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Home</a>
-      <a href="#produtos" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Produtos</a>
-      <a href="#links-uteis" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Links Úteis</a>
-      <a href="#mapa" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Onde Estamos?</a>
-      <a href="#duvidas" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Dúvidas</a>
-      <a href="#contato" class="text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition">Contato</a>
-      <!-- Botão para alternar entre os modos claro e escuro -->
-      <button aria-label="Alternar tema claro e escuro" aria-pressed="false"
-        class="theme-toggle-button text-gray-800 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition focus:outline-none focus:ring-2 focus:ring-purple-500 p-1 rounded-md">
-        <svg class="sun-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-6.364-.386 1.591-1.591M3 12h2.25m.386-6.364 1.591 1.591M12 12a2.25 2.25 0 0 0-2.25 2.25c0 1.31.934 2.071 2.024 2.071.91 0 2.024-.815 2.024-2.071A2.25 2.25 0 0 0 12 12Z" /></svg>
-        <svg class="moon-icon w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
-      </button>
-    </nav>
-  </div>
-</header>
-
-<!-- ✅ NOVO: Modal Mobile para Campanhas -->
-<div id="campanhas-modal-mobile" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center flex justify-center z-50 transition-all duration-300 md:hidden">
-  <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-sm mx-4 max-h-[80vh] overflow-hidden transition-colors duration-300">
-    
-    <!-- Header do Modal -->
-    <div class="px-4 py-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-purple-600 to-purple-700">
-      <div class="flex items-center justify-between">
-        <h3 class="text-lg font-semibold text-white flex items-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h10a1 1 0 001-1v-1a1 1 0 00-1-1H4a1 1 0 00-1 1v1a1 1 0 001 1zM4 15h16a1 1 0 001-1V6a1 1 0 00-1-1H4a1 1 0 00-1 1v8a1 1 0 001 1z"/>
-          </svg>
-          Campanhas Ativas
-        </h3>
-        <button id="campanhas-modal-close" 
-                aria-label="Fechar modal de campanhas"
-                class="text-white/80 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-      <p id="campanhas-modal-count" class="text-purple-100 text-sm mt-1">0 campanhas disponíveis</p>
-    </div>
-
-    <!-- Loading State Mobile -->
-    <div id="campanhas-modal-loading" class="px-4 py-8 text-center">
-      <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mb-3"></div>
-      <p class="text-sm text-gray-600 dark:text-gray-400">Carregando campanhas...</p>
-    </div>
-
-    <!-- Lista de Campanhas Mobile -->
-    <div id="campanhas-modal-lista" class="max-h-96 overflow-y-auto">
-      <!-- Campanhas serão inseridas aqui dinamicamente -->
-    </div>
-
-    <!-- Estado Vazio Mobile -->
-    <div id="campanhas-modal-vazio" class="hidden px-4 py-8 text-center">
-      <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
-      </svg>
-      <p class="text-gray-500 dark:text-gray-400 font-medium">Nenhuma campanha ativa</p>
-      <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">Novas promoções aparecerão aqui</p>
-    </div>
-
-    <!-- Erro State Mobile -->
-    <div id="campanhas-modal-erro" class="hidden px-4 py-8 text-center">
-      <svg class="w-16 h-16 text-red-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-      <p class="text-red-600 dark:text-red-400 font-medium mb-2">Erro ao carregar campanhas</p>
-      <button id="campanhas-modal-retry" class="text-purple-600 dark:text-purple-400 hover:underline text-sm">
-        Tentar novamente
-      </button>
-    </div>
-
-    <!-- Footer do Modal -->
-    <div class="px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
-      <div class="flex gap-2">
-        <button id="campanhas-modal-refresh" 
-                class="flex-1 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors duration-200 flex items-center justify-center gap-2 py-2 px-3 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-          </svg>
-          Atualizar
-        </button>
-        <button id="campanhas-modal-close-btn" 
-                class="flex-1 text-sm bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-3 rounded-lg transition-colors duration-200">
-          Fechar
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
       <!-- Home -->
       <section id="home" class="bg-purple-100 dark:bg-gray-800 py-20 text-center transition-colors duration-300">

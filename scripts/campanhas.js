@@ -1,7 +1,7 @@
 // ✅ Configuração para campanhas do Google Drive
 const CAMPANHAS_CONFIG = {
-  FOLDER_ID: "1z13CoSg8w5PmNqlFaiHoTRzOu7YVBQUT", // ID da pasta do Google Drive
-  API_KEY: "AIzaSyCRSFeco4JJ8uyptRcdIw---kOmoZNwfpM", // Sua API Key do Google
+  FOLDER_ID: "1z13CoSg8w5PmNqlFaiHoTRzOu7YVBQUT",
+  API_KEY: "AIzaSyCRSFeco4JJ8uyptRcdIw---kOmoZNwfpM",
   CACHE_DURATION: 10 * 60 * 1000, // 10 minutos
   REQUEST_TIMEOUT: 10000,
   MAX_RETRIES: 3,
@@ -525,7 +525,7 @@ class CampanhasManager {
         <div class="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center">
           <span class="text-xl">${campanha.icone}</span>
         </div>
-        
+
         <!-- Conteúdo -->
         <div class="flex-1 min-w-0">
           <div class="flex items-start justify-between mb-2">
@@ -538,7 +538,7 @@ class CampanhasManager {
                 : ""
             }
           </div>
-          
+
           <div class="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -559,7 +559,7 @@ class CampanhasManager {
                 : ""
             }
           </div>
-          
+
           <!-- Preview se for imagem -->
           ${
             campanha.thumbnail && campanha.tipo.startsWith("image/")
@@ -568,7 +568,7 @@ class CampanhasManager {
             </div>`
               : ""
           }
-          
+
           <!-- Botão de ação -->
           <div class="mt-3">
             <div class="inline-flex items-center gap-2 text-xs text-purple-600 dark:text-purple-400 font-medium">
