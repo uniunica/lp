@@ -609,7 +609,7 @@ class RegulamentoManager {
 
     // ✅ NOVO: Mostrar detalhes com animação
     detalhesContainer.classList.remove('hidden');
-    
+
     // ✅ NOVO: Atualizar visual do item
     itemElement.classList.add('bg-purple-50', 'dark:bg-purple-900/30', 'border-purple-400', 'dark:border-purple-500');
     chevron.style.transform = 'rotate(180deg)';
@@ -629,9 +629,9 @@ class RegulamentoManager {
 
     // ✅ NOVO: Scroll suave para o item
     setTimeout(() => {
-      wrapper.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'nearest' 
+      wrapper.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
       });
     }, 100);
 
@@ -862,7 +862,7 @@ class RegulamentoManager {
         curso.searchText.includes(normalizedQuery)
       );
     }
-    
+
     // ✅ NOVO: Verificar se curso selecionado ainda está na lista filtrada
     const cursoSelecionadoAindaVisivel = this.selectedCurso && 
       this.filteredCursos.find(c => c.id === this.selectedCurso.id);
@@ -884,8 +884,6 @@ class RegulamentoManager {
       this.esconderBotaoExportar();
     }
   }
-
-  // ✅ REMOVIDO: mostrarDetalhesCurso (substituído por toggleDetalhesCurso)
 
   // ✅ Fetch com retry (mantido)
   async fetchWithRetry(url, maxRetries = REGULAMENTO_CONFIG.MAX_RETRIES) {
