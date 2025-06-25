@@ -98,16 +98,34 @@
         <p class="text-lg text-purple-700 dark:text-purple-200 animate__animated animate__fadeInUp">
           Tudo o que você precisa saber para crescer conosco.
         </p>
-        <!-- Link para contato -->
-        <div class="mt-10 animate__animated animate__fadeInUp animate__delay-1s">
-          <a href="#" id="abrir-modal"
-            class="inline-block px-8 py-4 bg-gradient-to-r from-purple-700 to-purple-600 text-white font-bold rounded-full shadow-xl hover:scale-105 hover:from-purple-600 hover:to-purple-500 transition-all duration-300">
-            Entre em contato com seu consultor
-          </a>
+
+        <!-- Botões de Ação -->
+        <div class="mt-10 space-y-4 animate__animated animate__fadeInUp animate__delay-1s">
+          <!-- Botão Principal - Consultor -->
+          <div>
+            <a href="#" id="abrir-modal"
+              class="inline-block px-8 py-4 bg-gradient-to-r from-purple-700 to-purple-600 text-white font-bold rounded-full shadow-xl hover:scale-105 hover:from-purple-600 hover:to-purple-500 transition-all duration-300">
+              Entre em contato com seu consultor
+            </a>
+          </div>
+
+          <!-- Botão Secundário - Consulta de Preços -->
+          <div>
+            <button id="abrir-modal-precos"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300 group">
+              <svg class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+              Consultar Preços e Regulamentos
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </section>
 
-      <!-- Modal -->
+      <!-- Modal Consultor-->
       <div id="consultor-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center flex justify-center z-50">
         <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 w-full max-w-md text-left transition-colors duration-300">
           <!-- Título do modal -->
@@ -150,6 +168,124 @@
             </svg>
             Fechar
           </button>
+        </div>
+      </div>
+
+      <!-- Modal de Consulta de Preços -->
+      <div id="modal-precos" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center flex justify-center z-50 transition-all duration-300">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto mx-4 transition-colors duration-300">
+
+          <!-- Header do Modal -->
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+            <div>
+              <h3 class="text-2xl font-bold text-purple-800 dark:text-purple-300 flex items-center gap-3">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+                Consulta de Preços e Regulamentos
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mt-1">Consulte informações detalhadas sobre nossos cursos</p>
+            </div>
+            <button onclick="fecharModalPrecos()"
+                    class="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 text-2xl font-bold transition-colors duration-200 focus:outline-none p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Filtros -->
+          <div class="grid md:grid-cols-2 gap-4 mb-6">
+            <!-- Seletor de Modalidade -->
+            <div>
+              <label for="modalidade-select" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Modalidade *
+              </label>
+              <div class="relative">
+                <select id="modalidade-select"
+                        class="w-full p-3 border border-purple-300 dark:border-purple-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all appearance-none">
+                  <option value="">Selecione uma modalidade</option>
+                  <option value="GRADUAÇÃO">Graduação</option>
+                  <option value="PÓS GRADUAÇÃO">Pós-Graduação</option>
+                  <option value="SEGUNDA GRADUAÇÃO">Segunda Graduação</option>
+                  <option value="DISCIPLINAS ISOLADAS">Disciplinas Isoladas</option>
+                  <option value="EJA">EJA</option>
+                  <option value="CURSO TÉCNICO">Curso Técnico</option>
+                </select>
+                <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Campo de Busca -->
+            <div>
+              <label for="curso-search" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Buscar Curso
+              </label>
+              <div class="relative">
+                <input type="text"
+                      id="curso-search"
+                      placeholder="Digite o nome do curso..."
+                      class="w-full p-3 pl-10 border border-purple-300 dark:border-purple-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                      disabled>
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading State -->
+          <div id="loading-precos" class="hidden text-center py-8">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mb-4"></div>
+            <p class="text-gray-600 dark:text-gray-400">Carregando cursos...</p>
+          </div>
+
+          <!-- Resultados -->
+          <div id="resultados-container" class="hidden">
+            <!-- Lista de Cursos -->
+            <div id="lista-cursos" class="space-y-4 mb-6">
+              <!-- Cursos serão inseridos aqui dinamicamente -->
+            </div>
+
+            <!-- Detalhes do Curso Selecionado -->
+            <div id="detalhes-curso" class="hidden bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-xl p-6 border border-purple-200 dark:border-purple-700">
+              <h4 class="text-xl font-bold text-purple-800 dark:text-purple-300 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Informações do Curso
+              </h4>
+              <div id="info-curso" class="space-y-3">
+                <!-- Informações serão inseridas aqui -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Estado Vazio -->
+          <div id="estado-vazio" class="text-center py-12">
+            <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <p class="text-gray-500 dark:text-gray-400 text-lg font-medium">Selecione uma modalidade para começar</p>
+            <p class="text-gray-400 dark:text-gray-500 text-sm mt-2">Escolha uma modalidade acima para ver os cursos disponíveis</p>
+          </div>
+
+          <!-- Rodapé do Modal -->
+          <div class="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row gap-3 justify-end">
+            <button onclick="fecharModalPrecos()"
+                    class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">
+              Fechar
+            </button>
+            <button id="exportar-dados"
+                    class="hidden px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              Exportar Dados
+            </button>
+          </div>
         </div>
       </div>
 
@@ -701,5 +837,7 @@
     <script src="scripts/duvidas.js"></script>
     <!-- Script para modal de carteiras -->
     <script src="scripts/teste_automatizacao_carteira.js" defer></script>
+    <!-- Script para modal de regulamento -->
+    <script src="scripts/regulamento.js" defer></script>
   </body>
 </html>

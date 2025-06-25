@@ -46,6 +46,29 @@ input[type="checkbox"]:checked {
 .hidden-frame {
   display: none;
 }
+
+/* Animações para detalhes inline */
+.curso-detalhes {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.curso-detalhes:not(.hidden) {
+  max-height: 1000px;
+}
+
+.curso-chevron {
+  transition: transform 0.2s ease-in-out;
+}
+
+.curso-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.curso-wrapper {
+  transition: all 0.2s ease-in-out;
+}
 /* Estilização da tela de pre carregamento
 .preloader {
   position: fixed;
