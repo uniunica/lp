@@ -691,12 +691,15 @@ window.debugMapData = {
 };
 // ✅ Sistema para tornar menu do mapa sempre visível (versão compacta)
 const MapNavigationCustomizer = {
-  // Função para customizar o menu de navegação
+  // Função para customizar o menu de navegação (ATUALIZADA)
   customizeNavigation() {
     setTimeout(() => {
       const mapAccessElement = document.getElementById("map_access");
 
       if (mapAccessElement) {
+        // ✅ Forçar hierarquia correta ANTES de customizar
+        this.forceCorrectZIndex();
+
         // ✅ Remover menu de navegação
         this.removeNavigationSelect(mapAccessElement);
 
@@ -709,7 +712,12 @@ const MapNavigationCustomizer = {
         // ✅ Melhorar aparência
         this.improveAppearance(mapAccessElement);
 
-        console.log("Menu de navegação do mapa customizado (versão compacta)");
+        // ✅ Forçar hierarquia novamente APÓS customizar
+        setTimeout(() => this.forceCorrectZIndex(), 100);
+
+        console.log(
+          "Menu de navegação do mapa customizado com z-index corrigido"
+        );
       } else {
         // Tentar novamente se não encontrou
         console.log(
@@ -717,7 +725,7 @@ const MapNavigationCustomizer = {
         );
         setTimeout(() => this.customizeNavigation(), 1000);
       }
-    }, 1500); // Aguardar o mapa carregar
+    }, 1500);
   },
 
   // ✅ NOVO: Remover o primeiro select (navegação)
@@ -729,19 +737,21 @@ const MapNavigationCustomizer = {
     }
   },
 
-  // Tornar elemento sempre visível
+  // Tornar elemento sempre visível com controle de z-index
   makeAlwaysVisible(element) {
     // ✅ Forçar visibilidade
-    element.style.display = "flex !important";
-    element.style.visibility = "visible !important";
-    element.style.opacity = "1 !important";
+    element.style.display = "flex";
+    element.style.visibility = "visible";
+    element.style.opacity = "1";
     element.style.position = "absolute";
     element.style.top = "10px";
     element.style.right = "10px";
-    element.style.zIndex = "1000";
     element.style.maxWidth = "100%";
     element.style.flexDirection = "column";
     element.style.gap = "6px";
+
+    // ✅ IMPORTANTE: NÃO definir z-index aqui, deixar para o CSS
+    // element.style.zIndex = ""; // Remover qualquer z-index inline
 
     // ✅ Remover eventos que podem ocultar
     element.onblur = null;
@@ -749,6 +759,196 @@ const MapNavigationCustomizer = {
 
     // ✅ Adicionar classe CSS personalizada
     element.classList.add("map-navigation-always-visible");
+
+    // ✅ Setup do sistema de controle de z-index
+    this.setupZIndexControl(element);
+  },
+
+  // ✅ NOVO: Sistema de controle de z-index
+  setupZIndexControl(element) {
+    // Função para atualizar o estado
+    const updateState = () => {
+      const header = document.querySelector("header");
+      const mapSection = document.getElementById("mapa");
+      const statusIndicator = element.querySelector(".map-navigation-status");
+
+      if (!header || !mapSection) return;
+
+      const headerRect = header.getBoundingClientRect();
+      const elementRect = element.getBoundingClientRect();
+      const scrollY = window.scrollY;
+      const mapSectionTop = mapSection.offsetTop;
+      const mapSectionBottom = mapSectionTop + mapSection.offsetHeight;
+
+      // Remover todas as classes de estado
+      element.classList.remove("header-visible", "map-section-active");
+      if (statusIndicator) {
+        statusIndicator.classList.remove("below-header", "hidden-by-header");
+      }
+
+      // Verificar se estamos na seção do mapa
+      const inMapSection =
+        scrollY >= mapSectionTop - 100 && scrollY <= mapSectionBottom + 100;
+
+      // Verificar se o header está visível na viewport
+      const headerVisible = headerRect.bottom > 0;
+
+      if (headerVisible && inMapSection) {
+        // Header visível E na seção do mapa = menu deve ficar atrás
+        element.classList.add("header-visible");
+        if (statusIndicator) {
+          statusIndicator.classList.add("below-header");
+          statusIndicator.title = "Status: Atrás do cabeçalho";
+        }
+      } else if (inMapSection) {
+        // Na seção do mapa mas header não visível = menu pode ficar na frente
+        element.classList.add("map-section-active");
+        if (statusIndicator) {
+          statusIndicator.title = "Status: Ativo na seção";
+        }
+      } else {
+        // Fora da seção do mapa = z-index baixo
+        if (statusIndicator) {
+          statusIndicator.title = "Status: Fora da seção";
+        }
+      }
+
+      // Log para debug
+      console.log("Map Navigation State:", {
+        headerVisible,
+        inMapSection,
+        scrollY,
+        mapSectionTop,
+        classes: element.className,
+      });
+    };
+
+    // Remover listeners anteriores
+    if (this.zIndexListener) {
+      window.removeEventListener("scroll", this.zIndexListener);
+      window.removeEventListener("resize", this.zIndexListener);
+    }
+
+    // Criar novo listener
+    this.zIndexListener = updateState;
+
+    // Adicionar listeners
+    window.addEventListener("scroll", this.zIndexListener, { passive: true });
+    window.addEventListener("resize", this.zIndexListener, { passive: true });
+
+    // Executar imediatamente
+    updateState();
+  },
+
+  // ✅ NOVA FUNÇÃO: Forçar hierarquia correta de z-index
+  forceCorrectZIndex() {
+    const header = document.querySelector("header");
+    const mapAccess = document.getElementById("map_access");
+
+    if (header) {
+      // Garantir que o header tenha z-index alto
+      header.style.zIndex = "50";
+      header.style.position = "sticky";
+
+      // Garantir que dropdowns do header tenham z-index ainda maior
+      const dropdowns = header.querySelectorAll(
+        '[id*="dropdown"], [class*="dropdown"]'
+      );
+      dropdowns.forEach((dropdown) => {
+        dropdown.style.zIndex = "60";
+      });
+    }
+
+    if (mapAccess) {
+      // Remover qualquer z-index inline que possa estar interferindo
+      mapAccess.style.zIndex = "";
+
+      // Forçar recálculo
+      mapAccess.offsetHeight; // Trigger reflow
+    }
+
+    console.log("Z-index hierarchy forced:", {
+      header: header?.style.zIndex,
+      mapAccess: mapAccess?.style.zIndex,
+      mapAccessComputed: window.getComputedStyle(mapAccess)?.zIndex,
+    });
+  },
+
+  // ✅ FUNÇÃO ATUALIZADA: Atualizar z-index baseado no scroll
+  updateZIndex(element) {
+    const header = document.querySelector("header");
+    const headerHeight = header ? header.offsetHeight : 80;
+    const scrollY = window.scrollY;
+    const mapSection = document.getElementById("mapa");
+
+    if (!mapSection) {
+      element.style.zIndex = "100";
+      return;
+    }
+
+    const mapSectionTop = mapSection.offsetTop;
+    const mapSectionBottom = mapSectionTop + mapSection.offsetHeight;
+    const viewportTop = scrollY;
+    const viewportBottom = scrollY + window.innerHeight;
+
+    // Se o header está visível e sobrepondo a seção do mapa
+    if (scrollY < mapSectionTop + headerHeight) {
+      // Menu do mapa deve ficar abaixo do header
+      element.style.zIndex = "40"; // Menor que o header (z-50)
+    }
+    // Se estamos na seção do mapa mas o header não está sobrepondo
+    else if (viewportTop < mapSectionBottom && viewportBottom > mapSectionTop) {
+      // Menu do mapa pode ter z-index normal
+      element.style.zIndex = "100";
+    }
+    // Se saímos da seção do mapa
+    else {
+      // Reduzir z-index para não interferir com outros elementos
+      element.style.zIndex = "40";
+    }
+
+    // ✅ NOVO: Atualizar estado visual
+    this.updateVisualState(element);
+  },
+
+  // ✅ NOVA FUNÇÃO: Limpeza dos listeners
+  cleanup() {
+    if (this.scrollListener) {
+      window.removeEventListener("scroll", this.scrollListener);
+      this.scrollListener = null;
+    }
+
+    if (this.resizeListener) {
+      window.removeEventListener("resize", this.resizeListener);
+      this.resizeListener = null;
+    }
+  },
+
+  // ✅ NOVA FUNÇÃO: Setup do listener de scroll
+  setupScrollListener(element) {
+    // Remover listener anterior se existir
+    if (this.scrollListener) {
+      window.removeEventListener("scroll", this.scrollListener);
+    }
+
+    // Criar novo listener
+    this.scrollListener = () => {
+      this.updateZIndex(element);
+    };
+
+    // Adicionar listener
+    window.addEventListener("scroll", this.scrollListener, { passive: true });
+
+    // Também escutar resize para recalcular posições
+    if (this.resizeListener) {
+      window.removeEventListener("resize", this.resizeListener);
+    }
+
+    this.resizeListener = () => {
+      setTimeout(() => this.updateZIndex(element), 100);
+    };
+
+    window.addEventListener("resize", this.resizeListener, { passive: true });
   },
 
   // Personalizar textos dos selects (agora só Estados e Polos)
@@ -773,103 +973,165 @@ const MapNavigationCustomizer = {
     });
   },
 
-  // Melhorar aparência visual (versão compacta)
+  // Melhorar aparência visual (versão com z-index definitivo)
   improveAppearance(element) {
-    // ✅ Criar CSS personalizado
-    if (!document.getElementById("map-navigation-styles")) {
-      const style = document.createElement("style");
-      style.id = "map-navigation-styles";
-      style.textContent = `
-        /* Menu sempre visível - versão compacta */
-        #map_access.map-navigation-always-visible {
-          display: flex !important;
-          flex-direction: column !important;
-          gap: 6px !important;
-          background: rgba(255, 255, 255, 0.95) !important;
-          backdrop-filter: blur(8px) !important;
-          border-radius: 10px !important;
-          padding: 8px !important;
-          box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12) !important;
-          border: 2px solid #560180 !important;
-          min-width: 160px !important;
-          max-width: 180px !important;
-        }
-
-        /* Estilizar selects - versão compacta */
-        #map_access.map-navigation-always-visible select {
-          background: linear-gradient(135deg, #560180, #7c2ea8) !important;
-          color: white !important;
-          border: none !important;
-          border-radius: 6px !important;
-          padding: 8px 10px !important;
-          font-size: 12px !important;
-          font-weight: 600 !important;
-          cursor: pointer !important;
-          transition: all 0.3s ease !important;
-          margin: 0 !important;
-          float: none !important;
-          width: 100% !important;
-          box-shadow: 0 2px 6px rgba(86, 1, 128, 0.25) !important;
-        }
-
-        /* Hover nos selects */
-        #map_access.map-navigation-always-visible select:hover {
-          background: linear-gradient(135deg, #7c2ea8, #9d4edd) !important;
-          transform: translateY(-1px) !important;
-          box-shadow: 0 3px 10px rgba(86, 1, 128, 0.35) !important;
-        }
-
-        /* Focus nos selects */
-        #map_access.map-navigation-always-visible select:focus {
-          outline: 2px solid rgba(86, 1, 128, 0.4) !important;
-          outline-offset: 1px !important;
-        }
-
-        /* Estilizar options */
-        #map_access.map-navigation-always-visible select option {
-          background: white !important;
-          color: #333 !important;
-          padding: 6px !important;
-          font-size: 12px !important;
-        }
-
-        /* Responsivo para mobile */
-        @media (max-width: 768px) {
-          #map_access.map-navigation-always-visible {
-            top: 5px !important;
-            right: 5px !important;
-            padding: 6px !important;
-            min-width: 140px !important;
-            max-width: 160px !important;
-          }
-
-          #map_access.map-navigation-always-visible select {
-            font-size: 11px !important;
-            padding: 6px 8px !important;
-          }
-        }
-
-        /* Título do menu - versão compacta */
-        .map-navigation-title {
-          background: #560180 !important;
-          color: white !important;
-          text-align: center !important;
-          padding: 6px !important;
-          border-radius: 5px !important;
-          font-size: 12px !important;
-          font-weight: bold !important;
-          margin-bottom: 2px !important;
-        }
-
-        /* Ícones para os selects */
-        .map-select-icon {
-          display: inline-block !important;
-          margin-right: 4px !important;
-          font-size: 10px !important;
-        }
-      `;
-      document.head.appendChild(style);
+    // ✅ Remover estilo anterior se existir
+    const existingStyle = document.getElementById("map-navigation-styles");
+    if (existingStyle) {
+      existingStyle.remove();
     }
+
+    // ✅ Criar CSS personalizado com z-index correto
+    const style = document.createElement("style");
+    style.id = "map-navigation-styles";
+    style.textContent = `
+    /* ✅ CORRIGIDO: Menu sempre visível com z-index MENOR que o header */
+    #map_access.map-navigation-always-visible {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 6px !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(8px) !important;
+      border-radius: 10px !important;
+      padding: 8px !important;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12) !important;
+      border: 2px solid #560180 !important;
+      min-width: 160px !important;
+      max-width: 180px !important;
+      /* ✅ Z-INDEX FIXO MENOR QUE O HEADER */
+      z-index: 40 !important;
+      transition: all 0.3s ease !important;
+    }
+
+    /* ✅ NOVO: Quando estiver na seção do mapa E sem scroll no header */
+    #map_access.map-navigation-always-visible.map-section-active {
+      z-index: 45 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* ✅ NOVO: Forçar z-index baixo quando header visível */
+    #map_access.map-navigation-always-visible.header-visible {
+      z-index: 35 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+      border-color: rgba(86, 1, 128, 0.6) !important;
+    }
+
+    /* ✅ GARANTIR que o header sempre tenha z-index maior */
+    header {
+      z-index: 50 !important;
+      position: sticky !important;
+      top: 0 !important;
+    }
+
+    /* ✅ GARANTIR que dropdowns do header tenham z-index ainda maior */
+    header .dropdown,
+    header [id*="dropdown"],
+    header [class*="dropdown"] {
+      z-index: 60 !important;
+    }
+
+    /* Estilizar selects - versão compacta */
+    #map_access.map-navigation-always-visible select {
+      background: linear-gradient(135deg, #560180, #7c2ea8) !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 6px !important;
+      padding: 8px 10px !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+      margin: 0 !important;
+      float: none !important;
+      width: 100% !important;
+      box-shadow: 0 2px 6px rgba(86, 1, 128, 0.25) !important;
+    }
+
+    /* Hover nos selects */
+    #map_access.map-navigation-always-visible select:hover {
+      background: linear-gradient(135deg, #7c2ea8, #9d4edd) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 3px 10px rgba(86, 1, 128, 0.35) !important;
+    }
+
+    /* Focus nos selects */
+    #map_access.map-navigation-always-visible select:focus {
+      outline: 2px solid rgba(86, 1, 128, 0.4) !important;
+      outline-offset: 1px !important;
+    }
+
+    /* Estilizar options */
+    #map_access.map-navigation-always-visible select option {
+      background: white !important;
+      color: #333 !important;
+      padding: 6px !important;
+      font-size: 12px !important;
+    }
+
+    /* Responsivo para mobile */
+    @media (max-width: 768px) {
+      #map_access.map-navigation-always-visible {
+        top: 5px !important;
+        right: 5px !important;
+        padding: 6px !important;
+        min-width: 140px !important;
+        max-width: 160px !important;
+        /* ✅ Z-index ainda menor em mobile */
+        z-index: 30 !important;
+      }
+
+      #map_access.map-navigation-always-visible select {
+        font-size: 11px !important;
+        padding: 6px 8px !important;
+      }
+
+      /* ✅ Garantir que header mobile tenha prioridade */
+      header {
+        z-index: 55 !important;
+      }
+    }
+
+    /* Título do menu - versão compacta */
+    .map-navigation-title {
+      background: #560180 !important;
+      color: white !important;
+      text-align: center !important;
+      padding: 6px !important;
+      border-radius: 5px !important;
+      font-size: 12px !important;
+      font-weight: bold !important;
+      margin-bottom: 2px !important;
+    }
+
+    /* Ícones para os selects */
+    .map-select-icon {
+      display: inline-block !important;
+      margin-right: 4px !important;
+      font-size: 10px !important;
+    }
+
+    /* ✅ NOVO: Indicador de status */
+    .map-navigation-status {
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2px solid white;
+      transition: background-color 0.3s ease;
+    }
+
+    .map-navigation-status.below-header {
+      background: #f59e0b;
+    }
+
+    .map-navigation-status.hidden-by-header {
+      background: #ef4444;
+    }
+  `;
+    document.head.appendChild(style);
 
     // ✅ Adicionar título compacto ao menu
     if (!element.querySelector(".map-navigation-title")) {
@@ -879,8 +1141,59 @@ const MapNavigationCustomizer = {
       element.insertBefore(title, element.firstChild);
     }
 
+    // ✅ Adicionar indicador de status
+    if (!element.querySelector(".map-navigation-status")) {
+      const status = document.createElement("div");
+      status.className = "map-navigation-status";
+      status.title = "Status: Visível";
+      element.appendChild(status);
+    }
+
     // ✅ Adicionar ícones aos selects
     this.addIconsToSelects(element);
+  },
+
+  // ✅ NOVA FUNÇÃO: Atualizar classes CSS baseadas no estado
+  updateVisualState(element) {
+    const scrollY = window.scrollY;
+    const header = document.querySelector("header");
+    const headerHeight = header ? header.offsetHeight : 80;
+    const mapSection = document.getElementById("mapa");
+    const indicator = element.querySelector(".map-navigation-state-indicator");
+
+    if (!mapSection) return;
+
+    const mapSectionTop = mapSection.offsetTop;
+    const isMobile = window.innerWidth <= 768;
+
+    // Remover classes anteriores
+    element.classList.remove(
+      "below-header",
+      "above-content",
+      "mobile-below-header"
+    );
+    if (indicator) {
+      indicator.classList.remove("below-header");
+    }
+
+    if (scrollY < mapSectionTop + headerHeight) {
+      // Estamos na área onde o header pode sobrepor
+      element.classList.add("below-header");
+      if (indicator) {
+        indicator.classList.add("below-header");
+        indicator.title = "Menu abaixo do cabeçalho";
+      }
+
+      if (isMobile) {
+        element.classList.add("mobile-below-header");
+      }
+    } else {
+      // Estamos em área livre
+      element.classList.add("above-content");
+      if (indicator) {
+        indicator.title = "Menu em primeiro plano";
+      }
+    }
   },
 
   // ✅ NOVO: Adicionar ícones aos selects
