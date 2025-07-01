@@ -1,8 +1,8 @@
 // Configuração melhorada
 const CARTEIRA_CONFIG = {
-  API_KEY: "AIzaSyDqOzQWHPmUxy_6XSJM0TpFrcFyeAShVq8",
-  SHEET_ID: "10y9u_paf91ZxcJIrQDo8ZCVL6iGAQHiOIv7XB5Cua1w",
-  RANGE: "A2:B",
+  API_KEY: "AIzaSyDIMPCAepQWKWctcPIpm58JEZdoqXY5-Hc",
+  SHEET_ID: "1FleflKWuQe_QVJGO2Yfz3E8YbYcpg4UmLUjMEdXlzzw",
+  RANGE: "A2:D",
   CACHE_KEY: "parceiros_cache",
   CACHE_DURATION: 30 * 60 * 1000, // 30 minutos
   MAX_RETRIES: 3,
@@ -39,7 +39,7 @@ const CARTEIRAS_CONFIG = {
     cor: "bg-amber-200 dark:bg-amber-700 text-amber-900 dark:text-amber-100",
     nome: "Carteira Âmbar",
   },
-  NOVATOS: {
+  "Parceiros Novatos": {
     numero: "+553182379090",
     cor: "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-blue-100",
     nome: "Carteira Novatos",
@@ -381,27 +381,29 @@ class CarteiraManager {
     }
   }
 
-  // ✅ MELHORADO: Processamento de dados com validação
+  // ✅ MELHORADO: Processamento de dados com validação - ATUALIZADO para colunas A e D
   processParceirosData(values) {
     const validParceiros = {};
     const errors = [];
 
     values.forEach((row, index) => {
       try {
-        if (!row || row.length < 2) {
-          errors.push(`Linha ${index + 2}: dados insuficientes`);
+        if (!row || row.length < 4) {
+          errors.push(`Linha ${index + 2}: dados insuficientes (esperado 4 colunas)`);
           return;
         }
 
-        const [nome, carteira] = row;
+        // Agora pegamos nome da coluna A (índice 0) e carteira da coluna D (índice 3)
+        const nome = row[0]; // Coluna A
+        const carteira = row[3]; // Coluna D
 
         if (!nome?.trim()) {
-          errors.push(`Linha ${index + 2}: nome vazio`);
+          errors.push(`Linha ${index + 2}: nome vazio na coluna A`);
           return;
         }
 
         if (!carteira?.trim()) {
-          errors.push(`Linha ${index + 2}: carteira vazia`);
+          errors.push(`Linha ${index + 2}: carteira vazia na coluna D`);
           return;
         }
 
