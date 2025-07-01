@@ -400,6 +400,16 @@
                 </svg>
               </div>
             </div>
+
+            <div class="md:col-span-2">
+              <button id="btn-lista-pos-cursos"
+                      class="hidden w-full p-3 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+                Ver Lista de Cursos de Pós-Graduação
+              </button>
+            </div>
           </div>
 
           <!-- Loading State -->
@@ -450,6 +460,101 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
               Exportar Dados
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal de Lista de Cursos de Pós-Graduação -->
+      <div id="modal-lista-pos-cursos" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center flex justify-center z-50 transition-all duration-300">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 w-full max-w-6xl max-h-[90vh] overflow-y-auto mx-4 transition-colors duration-300">
+
+          <!-- Header do Modal -->
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+            <div>
+              <h3 class="text-2xl font-bold text-purple-800 dark:text-purple-300 flex items-center gap-3">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+                Lista de Cursos de Pós-Graduação
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mt-1">Consulte todos os cursos de pós-graduação disponíveis</p>
+            </div>
+            <button id="fechar-modal-lista"
+                    aria-label="Fechar modal de lista de cursos"
+                    class="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 text-2xl font-bold transition-colors duration-200 focus:outline-none p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Filtros -->
+          <div class="grid md:grid-cols-2 gap-4 mb-6">
+            <!-- Seletor de IES -->
+            <div>
+              <label for="ies-select" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Instituição de Ensino (IES)
+              </label>
+              <div class="relative">
+                <select id="ies-select"
+                        class="w-full p-3 border border-purple-300 dark:border-purple-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all appearance-none">
+                  <option value="">Todas as IES</option>
+                  <option value="Centro Universitário Única">Centro Universitário Única</option>
+                  <option value="Faculdade Conexão">Faculdade Conexão</option>
+                  <option value="Faculdade Prominas">Faculdade Prominas</option>
+                </select>
+                <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Campo de Busca por Nome -->
+            <div>
+              <label for="curso-search-lista" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                Buscar por Nome do Curso
+              </label>
+              <div class="relative">
+                <input type="text"
+                      id="curso-search-lista"
+                      placeholder="Digite o nome do curso..."
+                      class="w-full p-3 pl-10 border border-purple-300 dark:border-purple-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all">
+                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading State -->
+          <div id="loading-lista" class="hidden text-center py-8">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mb-4"></div>
+            <p class="text-gray-600 dark:text-gray-400">Carregando cursos de pós-graduação...</p>
+          </div>
+
+          <!-- Resultados -->
+          <div id="resultados-lista" class="hidden">
+            <div id="lista-pos-cursos" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Cursos serão inseridos aqui -->
+            </div>
+          </div>
+
+          <!-- Estado Vazio -->
+          <div id="estado-vazio-lista" class="text-center py-12">
+            <svg class="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+            <p class="text-gray-500 dark:text-gray-400 text-lg font-medium">Selecione filtros para ver os cursos</p>
+            <p class="text-gray-400 dark:text-gray-500 text-sm mt-2">Use os filtros acima para encontrar cursos específicos</p>
+          </div>
+
+          <!-- Rodapé do Modal -->
+          <div class="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700 flex justify-end">
+            <button id="fechar-modal-lista-btn"
+                    onclick="window.regulamentoManager?.fecharModalListaCursos()"
+                    class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200">
+              Fechar
             </button>
           </div>
         </div>

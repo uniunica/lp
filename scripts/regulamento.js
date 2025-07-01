@@ -7,6 +7,29 @@ const REGULAMENTO_CONFIG = {
   MAX_RETRIES: 3,
   RETRY_DELAY: 1000,
 
+  // ✅ NOVO: Configuração para lista de cursos de pós-graduação
+  POS_GRADUACAO_CURSOS: {
+    nome: "PÓS GRADUAÇÃO - CURSOS",
+    range: "PÓS GRADUAÇÃO - CURSOS!A:H",
+    colunas: {
+      A: { key: "id", label: "ID", ignorar: true },
+      B: { key: "ies", label: "IES", icon: "🏫" },
+      C: { key: "tipo_curso", label: "Tipo de Curso", ignorar: true },
+      D: { key: "nome_curso", label: "Nome do Curso", icon: "🎓" },
+      E: { key: "carga_horaria", label: "Carga Horária", icon: "⏱️" },
+      F: { key: "tempo_minimo", label: "Tempo Mínimo", icon: "📅" },
+      G: { key: "tempo_maximo", label: "Tempo Máximo", icon: "📅" },
+      H: { key: "acronimo", label: "Acrônimo", ignorar: true },
+    },
+    campo_principal: "nome_curso",
+    ies_disponiveis: [
+      "Centro Universitário Única",
+      "Faculdade Conexão",
+      "Faculdade Prominas",
+      "Todas",
+    ],
+  },
+
   // ✅ NOVO: Mapeamento específico das colunas por modalidade
   MODALIDADES_SCHEMA: {
     GRADUAÇÃO: {
@@ -190,6 +213,7 @@ class RegulamentoManager {
     this.setupSearchListener();
     this.setupExportListener();
     this.setupKeyboardListeners();
+    this.setupListaCursosListener(); // ✅ NOVO
 
     console.log("✅ RegulamentoManager: Event listeners configurados");
   }
@@ -272,7 +296,18 @@ class RegulamentoManager {
   setupKeyboardListeners() {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        this.fecharModal();
+        // Verificar qual modal está aberto
+        const modalListaCursos = document.getElementById(
+          "modal-lista-pos-cursos"
+        );
+        if (
+          modalListaCursos &&
+          !modalListaCursos.classList.contains("hidden")
+        ) {
+          this.fecharModalListaCursos();
+        } else {
+          this.fecharModal();
+        }
       }
     });
   }
@@ -354,6 +389,7 @@ class RegulamentoManager {
       this.showEstadoVazio();
       this.hideResultados();
       this.hideDetalhes();
+      this.toggleBotaoListaCursos(false); // ✅ NOVO
 
       // ✅ NOVO: Limpar estados específicos
       this.currentModalidade = null;
@@ -374,8 +410,12 @@ class RegulamentoManager {
 
     if (!modalidade) {
       this.resetModal();
+      this.toggleBotaoListaCursos(false); // ✅ NOVO
       return;
     }
+
+    // ✅ NOVO: Mostrar botão apenas para Pós-Graduação
+    this.toggleBotaoListaCursos(modalidade === "PÓS GRADUAÇÃO");
 
     // ✅ NOVO: Definir schema da modalidade
     this.currentModalidade = modalidade;
@@ -584,11 +624,13 @@ class RegulamentoManager {
 
   // ✅ NOVO: Toggle detalhes do curso (expandir/recolher)
   toggleDetalhesCurso(curso, itemElement) {
-    const wrapper = itemElement.closest('.curso-wrapper');
-    const detalhesContainer = wrapper.querySelector('.curso-detalhes');
-    const chevron = wrapper.querySelector('.curso-chevron');
-    const status = wrapper.querySelector('.curso-status');
-    const infoContainer = detalhesContainer.querySelector('.curso-info-container');
+    const wrapper = itemElement.closest(".curso-wrapper");
+    const detalhesContainer = wrapper.querySelector(".curso-detalhes");
+    const chevron = wrapper.querySelector(".curso-chevron");
+    const status = wrapper.querySelector(".curso-status");
+    const infoContainer = detalhesContainer.querySelector(
+      ".curso-info-container"
+    );
 
     // ✅ NOVO: Fechar outros detalhes abertos
     this.fecharTodosDetalhes();
@@ -608,17 +650,22 @@ class RegulamentoManager {
     infoContainer.innerHTML = detalhesHTML;
 
     // ✅ NOVO: Mostrar detalhes com animação
-    detalhesContainer.classList.remove('hidden');
+    detalhesContainer.classList.remove("hidden");
 
     // ✅ NOVO: Atualizar visual do item
-    itemElement.classList.add('bg-purple-50', 'dark:bg-purple-900/30', 'border-purple-400', 'dark:border-purple-500');
-    chevron.style.transform = 'rotate(180deg)';
-    status.textContent = 'Detalhes expandidos';
+    itemElement.classList.add(
+      "bg-purple-50",
+      "dark:bg-purple-900/30",
+      "border-purple-400",
+      "dark:border-purple-500"
+    );
+    chevron.style.transform = "rotate(180deg)";
+    status.textContent = "Detalhes expandidos";
 
     // ✅ NOVO: Configurar botão de fechar
-    const btnFechar = detalhesContainer.querySelector('.fechar-detalhes');
+    const btnFechar = detalhesContainer.querySelector(".fechar-detalhes");
     if (btnFechar) {
-      btnFechar.addEventListener('click', (e) => {
+      btnFechar.addEventListener("click", (e) => {
         e.stopPropagation();
         this.fecharDetalhes(curso.id);
       });
@@ -630,8 +677,8 @@ class RegulamentoManager {
     // ✅ NOVO: Scroll suave para o item
     setTimeout(() => {
       wrapper.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
+        behavior: "smooth",
+        block: "nearest",
       });
     }, 100);
 
@@ -640,42 +687,54 @@ class RegulamentoManager {
 
   // ✅ NOVO: Fechar todos os detalhes abertos
   fecharTodosDetalhes() {
-    const todosDetalhes = document.querySelectorAll('.curso-detalhes');
-    const todosItens = document.querySelectorAll('.curso-item');
-    const todosChevrons = document.querySelectorAll('.curso-chevron');
-    const todosStatus = document.querySelectorAll('.curso-status');
+    const todosDetalhes = document.querySelectorAll(".curso-detalhes");
+    const todosItens = document.querySelectorAll(".curso-item");
+    const todosChevrons = document.querySelectorAll(".curso-chevron");
+    const todosStatus = document.querySelectorAll(".curso-status");
 
-    todosDetalhes.forEach(detalhe => {
-      detalhe.classList.add('hidden');
+    todosDetalhes.forEach((detalhe) => {
+      detalhe.classList.add("hidden");
     });
 
-    todosItens.forEach(item => {
-      item.classList.remove('bg-purple-50', 'dark:bg-purple-900/30', 'border-purple-400', 'dark:border-purple-500');
+    todosItens.forEach((item) => {
+      item.classList.remove(
+        "bg-purple-50",
+        "dark:bg-purple-900/30",
+        "border-purple-400",
+        "dark:border-purple-500"
+      );
     });
 
-    todosChevrons.forEach(chevron => {
-      chevron.style.transform = 'rotate(0deg)';
+    todosChevrons.forEach((chevron) => {
+      chevron.style.transform = "rotate(0deg)";
     });
 
-    todosStatus.forEach(status => {
-      status.textContent = 'Clique para ver detalhes';
+    todosStatus.forEach((status) => {
+      status.textContent = "Clique para ver detalhes";
     });
   }
 
   // ✅ NOVO: Fechar detalhes específicos
   fecharDetalhes(cursoId) {
-    const wrapper = document.querySelector(`[data-curso-id="${cursoId}"].curso-wrapper`);
+    const wrapper = document.querySelector(
+      `[data-curso-id="${cursoId}"].curso-wrapper`
+    );
     if (!wrapper) return;
 
-    const detalhesContainer = wrapper.querySelector('.curso-detalhes');
-    const itemElement = wrapper.querySelector('.curso-item');
-    const chevron = wrapper.querySelector('.curso-chevron');
-    const status = wrapper.querySelector('.curso-status');
+    const detalhesContainer = wrapper.querySelector(".curso-detalhes");
+    const itemElement = wrapper.querySelector(".curso-item");
+    const chevron = wrapper.querySelector(".curso-chevron");
+    const status = wrapper.querySelector(".curso-status");
 
-    detalhesContainer.classList.add('hidden');
-    itemElement.classList.remove('bg-purple-50', 'dark:bg-purple-900/30', 'border-purple-400', 'dark:border-purple-500');
-    chevron.style.transform = 'rotate(0deg)';
-    status.textContent = 'Clique para ver detalhes';
+    detalhesContainer.classList.add("hidden");
+    itemElement.classList.remove(
+      "bg-purple-50",
+      "dark:bg-purple-900/30",
+      "border-purple-400",
+      "dark:border-purple-500"
+    );
+    chevron.style.transform = "rotate(0deg)";
+    status.textContent = "Clique para ver detalhes";
 
     this.selectedCurso = null;
     this.esconderBotaoExportar();
@@ -704,11 +763,14 @@ class RegulamentoManager {
       )
       .join("");
 
-    return cards || `
+    return (
+      cards ||
+      `
       <div class="text-center py-4 text-gray-500 dark:text-gray-400">
         <p>Informações detalhadas não disponíveis para este curso.</p>
       </div>
-    `;
+    `
+    );
   }
 
   // ✅ NOVO: Mostrar/esconder botão de exportar
@@ -864,16 +926,19 @@ class RegulamentoManager {
     }
 
     // ✅ NOVO: Verificar se curso selecionado ainda está na lista filtrada
-    const cursoSelecionadoAindaVisivel = this.selectedCurso && 
-      this.filteredCursos.find(c => c.id === this.selectedCurso.id);
+    const cursoSelecionadoAindaVisivel =
+      this.selectedCurso &&
+      this.filteredCursos.find((c) => c.id === this.selectedCurso.id);
 
     this.renderizarCursos(this.filteredCursos);
 
     // ✅ NOVO: Reabrir detalhes se o curso ainda estiver visível
     if (cursoSelecionadoAindaVisivel) {
       setTimeout(() => {
-        const wrapper = document.querySelector(`[data-curso-id="${this.selectedCurso.id}"].curso-wrapper`);
-        const itemElement = wrapper?.querySelector('.curso-item');
+        const wrapper = document.querySelector(
+          `[data-curso-id="${this.selectedCurso.id}"].curso-wrapper`
+        );
+        const itemElement = wrapper?.querySelector(".curso-item");
         if (wrapper && itemElement) {
           this.toggleDetalhesCurso(this.selectedCurso, itemElement);
         }
@@ -1053,6 +1118,382 @@ class RegulamentoManager {
   showNotification(message, type = "info") {
     console.log(`${type.toUpperCase()}: ${message}`);
   }
+
+  // ✅ NOVO: Configurar listener para botão de lista de cursos
+  setupListaCursosListener() {
+    const btnListaCursos = document.getElementById("btn-lista-pos-cursos");
+    if (btnListaCursos) {
+      console.log("✅ Botão de lista de cursos encontrado");
+      btnListaCursos.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.abrirModalListaCursos();
+      });
+    }
+  }
+
+  // ✅ NOVO: Mostrar/esconder botão da lista de cursos
+  toggleBotaoListaCursos(show) {
+    const btnListaCursos = document.getElementById("btn-lista-pos-cursos");
+    if (btnListaCursos) {
+      if (show) {
+        btnListaCursos.classList.remove("hidden");
+        btnListaCursos.classList.add("flex");
+      } else {
+        btnListaCursos.classList.add("hidden");
+        btnListaCursos.classList.remove("flex");
+      }
+    }
+  }
+
+  // ✅ NOVO: Abrir modal da lista de cursos
+  async abrirModalListaCursos() {
+    console.log("🔘 Abrindo modal de lista de cursos de pós-graduação");
+
+    // Fechar modal atual
+    this.fecharModal();
+
+    // Abrir novo modal
+    const modalListaCursos = document.getElementById("modal-lista-pos-cursos");
+    if (!modalListaCursos) {
+      console.error("❌ Modal de lista de cursos não encontrado");
+      return;
+    }
+
+    try {
+      modalListaCursos.classList.remove("hidden");
+      modalListaCursos.classList.add("flex");
+      document.body.style.overflow = "hidden";
+
+      // Carregar cursos de pós-graduação
+      await this.carregarCursosPosGraduacao();
+
+      console.log("✅ Modal de lista de cursos aberto");
+    } catch (error) {
+      console.error("❌ Erro ao abrir modal de lista de cursos:", error);
+      this.showError("Erro ao carregar lista de cursos");
+    }
+  }
+
+  // ✅ NOVO: Fechar modal da lista de cursos
+  fecharModalListaCursos() {
+    const modalListaCursos = document.getElementById("modal-lista-pos-cursos");
+    if (modalListaCursos) {
+      modalListaCursos.classList.add("hidden");
+      modalListaCursos.classList.remove("flex");
+      document.body.style.overflow = "";
+
+      // Limpar dados
+      this.resetModalListaCursos();
+      console.log("✅ Modal de lista de cursos fechado");
+    }
+  }
+
+  // ✅ NOVO: Reset do modal de lista de cursos
+  resetModalListaCursos() {
+    const iesSelect = document.getElementById("ies-select");
+    const cursoSearchLista = document.getElementById("curso-search-lista");
+
+    if (iesSelect) iesSelect.value = "";
+    if (cursoSearchLista) cursoSearchLista.value = "";
+
+    this.showEstadoVazioLista();
+    this.hideResultadosLista();
+  }
+
+  // ✅ NOVO: Carregar cursos de pós-graduação
+  async carregarCursosPosGraduacao() {
+    const cacheKey = "pos_graduacao_cursos";
+
+    // Verificar cache
+    if (this.cursosCache.has(cacheKey)) {
+      const cached = this.cursosCache.get(cacheKey);
+      if (Date.now() - cached.timestamp < REGULAMENTO_CONFIG.CACHE_DURATION) {
+        console.log("Usando cache para cursos de pós-graduação");
+        this.cursosPosGraduacao = cached.data;
+        this.setupListaCursosEventListeners();
+        return;
+      }
+    }
+
+    try {
+      this.showLoadingLista();
+
+      const config = REGULAMENTO_CONFIG.POS_GRADUACAO_CURSOS;
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${REGULAMENTO_CONFIG.SHEET_ID}/values/${config.range}?key=${REGULAMENTO_CONFIG.API_KEY}`;
+
+      const data = await this.fetchWithRetry(url);
+
+      if (!data.values || data.values.length < 2) {
+        this.cursosPosGraduacao = [];
+        this.showEmptyStateLista("Nenhum curso de pós-graduação encontrado");
+        return;
+      }
+
+      this.cursosPosGraduacao = this.processarCursosPosGraduacao(data.values);
+
+      // Salvar no cache
+      this.cursosCache.set(cacheKey, {
+        data: this.cursosPosGraduacao,
+        timestamp: Date.now(),
+      });
+
+      this.setupListaCursosEventListeners();
+      console.log(
+        `✅ ${this.cursosPosGraduacao.length} cursos de pós-graduação carregados`
+      );
+    } catch (error) {
+      console.error("Erro ao carregar cursos de pós-graduação:", error);
+      this.showErrorLista("Erro ao carregar cursos de pós-graduação");
+    } finally {
+      this.hideLoadingLista();
+    }
+  }
+
+  // ✅ NOVO: Processar dados dos cursos de pós-graduação
+  processarCursosPosGraduacao(rows) {
+    const config = REGULAMENTO_CONFIG.POS_GRADUACAO_CURSOS;
+    const cursos = [];
+
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i];
+      if (!row || row.length === 0 || !row[3]) continue; // Verificar se tem nome do curso (coluna D)
+
+      const curso = {
+        id: `pos_curso_${i}_${Date.now()}`,
+        linha: i + 1,
+      };
+
+      // Mapear colunas
+      Object.entries(config.colunas).forEach(([coluna, configCol]) => {
+        if (configCol.ignorar) return;
+
+        const colunaIndex = this.getColumnIndex(coluna);
+        const valor = row[colunaIndex] || "";
+        curso[configCol.key] = valor.trim();
+      });
+
+      // Verificar se tem nome do curso
+      if (curso.nome_curso && curso.nome_curso.trim()) {
+        curso.searchText = this.normalizeText(curso.nome_curso);
+        curso.iesSearchText = this.normalizeText(curso.ies || "");
+        cursos.push(curso);
+      }
+    }
+
+    return cursos;
+  }
+
+  // ✅ NOVO: Configurar event listeners do modal de lista
+  setupListaCursosEventListeners() {
+    // Seletor de IES
+    const iesSelect = document.getElementById("ies-select");
+    if (iesSelect) {
+      iesSelect.addEventListener("change", (e) => {
+        this.filtrarPorIES(e.target.value);
+      });
+    }
+
+    // Campo de busca
+    const cursoSearchLista = document.getElementById("curso-search-lista");
+    if (cursoSearchLista) {
+      cursoSearchLista.addEventListener("input", (e) => {
+        this.filtrarCursosPorNome(e.target.value);
+      });
+    }
+
+    // Botão fechar
+    const btnFecharLista = document.getElementById("fechar-modal-lista");
+    if (btnFecharLista) {
+      btnFecharLista.addEventListener("click", () => {
+        this.fecharModalListaCursos();
+      });
+    }
+  }
+
+  // ✅ NOVO: Filtrar por IES
+  filtrarPorIES(iesSelecionada) {
+    if (!iesSelecionada || iesSelecionada === "Todas") {
+      this.cursosPosFiltrados = [...this.cursosPosGraduacao];
+    } else {
+      this.cursosPosFiltrados = this.cursosPosGraduacao.filter(
+        (curso) => curso.ies === iesSelecionada
+      );
+    }
+
+    this.renderizarListaCursos();
+  }
+
+  // ✅ NOVO: Filtrar cursos por nome
+  filtrarCursosPorNome(query) {
+    const iesSelect = document.getElementById("ies-select");
+    const iesSelecionada = iesSelect ? iesSelect.value : "";
+
+    let cursosBase = this.cursosPosGraduacao;
+
+    // Aplicar filtro de IES primeiro
+    if (iesSelecionada && iesSelecionada !== "Todas") {
+      cursosBase = cursosBase.filter((curso) => curso.ies === iesSelecionada);
+    }
+
+    // Aplicar filtro de nome
+    if (!query.trim()) {
+      this.cursosPosFiltrados = cursosBase;
+    } else {
+      const normalizedQuery = this.normalizeText(query);
+      this.cursosPosFiltrados = cursosBase.filter((curso) =>
+        curso.searchText.includes(normalizedQuery)
+      );
+    }
+
+    this.renderizarListaCursos();
+  }
+
+  // ✅ NOVO: Renderizar lista de cursos
+  renderizarListaCursos() {
+    const container = document.getElementById("lista-pos-cursos");
+    if (!container) return;
+
+    if (!this.cursosPosFiltrados || this.cursosPosFiltrados.length === 0) {
+      container.innerHTML = `
+      <div class="text-center py-8">
+        <svg class="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        <p class="text-gray-500 dark:text-gray-400">Nenhum curso encontrado</p>
+      </div>
+    `;
+      return;
+    }
+
+    container.innerHTML = this.cursosPosFiltrados
+      .map((curso) => this.renderizarItemCursoPos(curso))
+      .join("");
+
+    this.showResultadosLista();
+  }
+
+  // ✅ NOVO: Renderizar item do curso de pós-graduação
+  renderizarItemCursoPos(curso) {
+    return `
+    <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-200">
+      <div class="flex flex-col space-y-3">
+        <!-- Nome do Curso -->
+        <h5 class="font-semibold text-gray-900 dark:text-gray-100 text-lg">
+          ${this.escapeHtml(curso.nome_curso)}
+        </h5>
+        
+        <!-- IES -->
+        <div class="flex items-center gap-2">
+          <span class="text-lg">🏫</span>
+          <span class="text-sm font-medium text-purple-600 dark:text-purple-400">
+            ${this.escapeHtml(curso.ies)}
+          </span>
+        </div>
+        
+        <!-- Informações do Curso -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+          ${
+            curso.carga_horaria
+              ? `
+            <div class="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/20 p-2 rounded">
+              <span>⏱️</span>
+              <div>
+                <div class="font-medium text-blue-800 dark:text-blue-300">Carga Horária</div>
+                <div class="text-blue-600 dark:text-blue-400">${this.escapeHtml(
+                  curso.carga_horaria
+                )}</div>
+              </div>
+            </div>
+          `
+              : ""
+          }
+          
+          ${
+            curso.tempo_minimo
+              ? `
+            <div class="flex items-center gap-2 bg-green-50 dark:bg-green-900/20 p-2 rounded">
+              <span>📅</span>
+              <div>
+                <div class="font-medium text-green-800 dark:text-green-300">Tempo Mínimo</div>
+                <div class="text-green-600 dark:text-green-400">${this.escapeHtml(
+                  curso.tempo_minimo
+                )}</div>
+              </div>
+            </div>
+          `
+              : ""
+          }
+          
+          ${
+            curso.tempo_maximo
+              ? `
+            <div class="flex items-center gap-2 bg-orange-50 dark:bg-orange-900/20 p-2 rounded">
+              <span>📅</span>
+              <div>
+                <div class="font-medium text-orange-800 dark:text-orange-300">Tempo Máximo</div>
+                <div class="text-orange-600 dark:text-orange-400">${this.escapeHtml(
+                  curso.tempo_maximo
+                )}</div>
+              </div>
+            </div>
+          `
+              : ""
+          }
+        </div>
+      </div>
+    </div>
+  `;
+  }
+
+  // ✅ NOVO: Métodos de UI para o modal de lista
+  showLoadingLista() {
+    const loading = document.getElementById("loading-lista");
+    if (loading) loading.classList.remove("hidden");
+  }
+
+  hideLoadingLista() {
+    const loading = document.getElementById("loading-lista");
+    if (loading) loading.classList.add("hidden");
+  }
+
+  showResultadosLista() {
+    const resultados = document.getElementById("resultados-lista");
+    if (resultados) resultados.classList.remove("hidden");
+  }
+
+  hideResultadosLista() {
+    const resultados = document.getElementById("resultados-lista");
+    if (resultados) resultados.classList.add("hidden");
+  }
+
+  showEstadoVazioLista() {
+    const estado = document.getElementById("estado-vazio-lista");
+    if (estado) estado.classList.remove("hidden");
+  }
+
+  hideEstadoVazioLista() {
+    const estado = document.getElementById("estado-vazio-lista");
+    if (estado) estado.classList.add("hidden");
+  }
+
+  showEmptyStateLista(message) {
+    const container = document.getElementById("lista-pos-cursos");
+    if (container) {
+      container.innerHTML = `
+      <div class="text-center py-8">
+        <svg class="w-12 h-12 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        <p class="text-gray-500 dark:text-gray-400">${message}</p>
+      </div>
+    `;
+    }
+    this.showResultadosLista();
+  }
+
+  showErrorLista(message) {
+    this.showEmptyStateLista(message);
+  }
 }
 
 // ✅ Funções globais para compatibilidade (mantidas)
@@ -1156,8 +1597,10 @@ window.debugRegulamento = {
   },
   // ✅ NOVO: Helpers para testar detalhes inline
   toggleCourse: (cursoId) => {
-    const wrapper = document.querySelector(`[data-curso-id="${cursoId}"].curso-wrapper`);
-    const item = wrapper?.querySelector('.curso-item');
+    const wrapper = document.querySelector(
+      `[data-curso-id="${cursoId}"].curso-wrapper`
+    );
+    const item = wrapper?.querySelector(".curso-item");
     if (item) {
       item.click();
     }
@@ -1166,5 +1609,5 @@ window.debugRegulamento = {
     if (window.regulamentoManager) {
       window.regulamentoManager.fecharTodosDetalhes();
     }
-  }
+  },
 };
