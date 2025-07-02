@@ -11,7 +11,7 @@ const LINKS_CONFIG = {
   SEARCH_DEBOUNCE: 300, // ms
 };
 
-// ✅ Classe principal para gerenciar links
+// Classe principal para gerenciar links
 class LinksManager {
   constructor() {
     this.links = [];
@@ -41,7 +41,7 @@ class LinksManager {
     await this.loadLinks();
   }
 
-  // ✅ NOVO: Validação de elementos DOM
+  // Validação de elementos DOM
   validateElements() {
     const missing = Object.entries(this.elements)
       .filter(([key, element]) => !element)
@@ -54,7 +54,7 @@ class LinksManager {
     return true;
   }
 
-  // ✅ MELHORADO: Sistema de cache robusto
+  // Sistema de cache robusto
   getCache() {
     try {
       const cached = localStorage.getItem(LINKS_CONFIG.CACHE_KEY);
@@ -88,7 +88,7 @@ class LinksManager {
     }
   }
 
-  // ✅ MELHORADO: Carregamento com retry e estados
+  // Carregamento com retry e estados
   async loadLinks() {
     try {
       this.setLoadingState(true);
@@ -133,7 +133,7 @@ class LinksManager {
     }
   }
 
-  // ✅ NOVO: Retry com backoff exponencial
+  // Retry com backoff exponencial
   async retryWithBackoff(fn, maxRetries = LINKS_CONFIG.MAX_RETRIES) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
@@ -150,7 +150,7 @@ class LinksManager {
     }
   }
 
-  // ✅ MELHORADO: Processamento de dados com validação
+  // Processamento de dados com validação
   processLinksData(values) {
     return values
       .map((row, index) => {
@@ -162,7 +162,7 @@ class LinksManager {
             return null;
           }
 
-          // ✅ NOVO: Validação de URL
+          // Validação de URL
           if (!this.isValidUrl(linkUrl.trim())) {
             console.warn(
               `Linha ${index + 2} ignorada: URL inválida - ${linkUrl}`
@@ -186,7 +186,7 @@ class LinksManager {
       .filter(Boolean);
   }
 
-  // ✅ NOVO: Validação de URL
+  // Validação de URL
   isValidUrl(string) {
     try {
       const url = new URL(string);
@@ -196,7 +196,7 @@ class LinksManager {
     }
   }
 
-  // ✅ NOVO: Normalização de texto para busca
+  // Normalização de texto para busca
   normalizeText(text) {
     return text
       .toLowerCase()
@@ -206,7 +206,7 @@ class LinksManager {
       .trim();
   }
 
-  // ✅ MELHORADO: Estados de loading
+  // Estados de loading
   setLoadingState(loading) {
     this.isLoading = loading;
 
@@ -221,7 +221,7 @@ class LinksManager {
     }
   }
 
-  // ✅ MELHORADO: Tratamento de erros específico
+  // Tratamento de erros específico
   handleError(error) {
     this.hasError = true;
     console.error("Erro ao carregar links:", error);
@@ -258,14 +258,14 @@ class LinksManager {
     this.hideButtons();
   }
 
-  // ✅ NOVO: Método para retry manual
+  // Método para retry manual
   async retry() {
     localStorage.removeItem(LINKS_CONFIG.CACHE_KEY);
     this.hasError = false;
     await this.loadLinks();
   }
 
-  // ✅ MELHORADO: Renderização otimizada
+  // Renderização otimizada
   renderLinks() {
     if (this.links.length === 0) {
       this.elements.container.innerHTML = `
@@ -282,7 +282,7 @@ class LinksManager {
     this.updateButtonsVisibility();
   }
 
-  // ✅ MELHORADO: Busca otimizada com debounce
+  // Busca otimizada com debounce
   setupSearch() {
     this.elements.input.addEventListener("input", (e) => {
       clearTimeout(this.searchTimeout);
@@ -307,7 +307,7 @@ class LinksManager {
     );
   }
 
-  // ✅ MELHORADO: Display com melhor performance
+  // Display com melhor performance
   updateDisplay() {
     const linksToShow = this.filteredLinks.filter((link, index) => {
       if (this.searchTerm.trim()) return true; // Mostrar todos os resultados da busca
@@ -325,7 +325,7 @@ class LinksManager {
       .join("");
   }
 
-  // ✅ MELHORADO: Criação de cards mais robusta
+  // Criação de cards mais robusta
   createLinkCard(link) {
     const safeTitle = this.escapeHtml(link.titulo);
     const safeDescription = this.escapeHtml(link.descricao);
@@ -359,14 +359,14 @@ class LinksManager {
     `;
   }
 
-  // ✅ NOVO: Escape HTML para segurança
+  // Escape HTML para segurança
   escapeHtml(text) {
     const div = document.createElement("div");
     div.textContent = text;
     return div.innerHTML;
   }
 
-  // ✅ MELHORADO: Controle de botões
+  // Controle de botões
   updateButtonsVisibility() {
     const hasHiddenLinks = this.links.some((link) => link.isHidden);
     const isSearching = this.searchTerm.trim() !== "";
@@ -406,7 +406,7 @@ class LinksManager {
     this.elements.noResults.classList.add("hidden");
   }
 
-  // ✅ MELHORADO: Event listeners
+  // Event listeners
   setupEventListeners() {
     this.setupSearch();
 
@@ -429,7 +429,7 @@ class LinksManager {
     });
   }
 
-  // ✅ NOVO: Métodos públicos para debug
+  // Métodos públicos para debug
   getStats() {
     return {
       total: this.links.length,
@@ -446,7 +446,7 @@ class LinksManager {
   }
 }
 
-// ✅ MELHORADO: Sistema de notificações
+// Sistema de notificações
 const LinksNotifications = {
   show(message, type = "info", duration = 3000) {
     const notification = document.createElement("div");
@@ -472,7 +472,7 @@ const LinksNotifications = {
   },
 };
 
-// ✅ Inicialização global
+// Inicialização global
 let linksManager;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -485,7 +485,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ✅ Tratamento de conectividade
+// Tratamento de conectividade
 window.addEventListener("online", () => {
   if (linksManager && linksManager.hasError) {
     LinksNotifications.show(
@@ -500,7 +500,7 @@ window.addEventListener("offline", () => {
   LinksNotifications.show("Sem conexão. Usando dados em cache.", "warning");
 });
 
-// ✅ Debug helpers (remover em produção)
+// Debug helpers (remover em produção)
 window.debugLinks = {
   manager: () => linksManager,
   stats: () => linksManager?.getStats(),

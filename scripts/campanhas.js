@@ -33,7 +33,7 @@ const CAMPANHAS_CONFIG = {
   },
 };
 
-// ✅ Classe principal para gerenciar campanhas
+// Classe principal para gerenciar campanhas
 class CampanhasManager {
   constructor() {
     this.campanhasCache = new Map();
@@ -67,7 +67,7 @@ class CampanhasManager {
     console.log("✅ CampanhasManager: Inicializado com sucesso");
   }
 
-  // ✅ Configurar event listeners
+  // Configurar event listeners
   setupEventListeners() {
     console.log("🔔 CampanhasManager: Configurando event listeners...");
 
@@ -129,7 +129,7 @@ class CampanhasManager {
     console.log("✅ CampanhasManager: Event listeners configurados");
   }
 
-  // ✅ Configurar auto-refresh
+  // Configurar auto-refresh
   setupAutoRefresh() {
     // Atualizar campanhas a cada 30 minutos
     this.refreshInterval = setInterval(() => {
@@ -145,7 +145,7 @@ class CampanhasManager {
     });
   }
 
-  // ✅ Toggle dropdown
+  // Toggle dropdown
   toggleDropdown() {
     if (this.isDropdownOpen) {
       this.fecharDropdown();
@@ -154,7 +154,7 @@ class CampanhasManager {
     }
   }
 
-  // ✅ Abrir dropdown
+  // Abrir dropdown
   abrirDropdown() {
     const dropdown = document.getElementById("campanhas-dropdown");
     const toggle = document.getElementById("campanhas-toggle");
@@ -176,7 +176,7 @@ class CampanhasManager {
     }
   }
 
-  // ✅ Fechar dropdown
+  // Fechar dropdown
   fecharDropdown() {
     const dropdown = document.getElementById("campanhas-dropdown");
     const toggle = document.getElementById("campanhas-toggle");
@@ -196,7 +196,7 @@ class CampanhasManager {
     }
   }
 
-  // ✅ Carregar campanhas do Google Drive
+  // Carregar campanhas do Google Drive
   async carregarCampanhas(forceRefresh = false, silent = false) {
     const cacheKey = "campanhas_drive";
 
@@ -272,7 +272,7 @@ class CampanhasManager {
     this.atualizarBadges();
   }
 
-  // ✅ MODIFICADO: Atualizar método de renderização para incluir mobile
+  // Atualizar método de renderização para incluir mobile
   renderizarCampanhas() {
     // Renderização desktop (mantida igual)
     const container = document.getElementById("campanhas-lista");
@@ -316,7 +316,7 @@ class CampanhasManager {
       });
     });
 
-    // ✅ NOVO: Renderizar também no modal mobile se estiver aberto
+    // Renderizar também no modal mobile se estiver aberto
     const modalMobile = document.getElementById("campanhas-modal-mobile");
     if (modalMobile && !modalMobile.classList.contains("hidden")) {
       this.renderizarCampanhasMobile();
@@ -324,7 +324,7 @@ class CampanhasManager {
     }
   }
 
-  // ✅ Renderizar item individual da campanha
+  // Renderizar item individual da campanha
   renderizarItemCampanha(campanha) {
     const dataFormatada = this.formatarData(campanha.dataModificacao);
     const isRecente =
@@ -376,7 +376,7 @@ class CampanhasManager {
     `;
   }
 
-  // ✅ Abrir campanha
+  // Abrir campanha
   abrirCampanha(campanha) {
     console.log(`🔗 Abrindo campanha: ${campanha.nome}`);
 
@@ -390,13 +390,13 @@ class CampanhasManager {
     this.trackCampanhaClick(campanha);
   }
 
-  // ✅ Track clique na campanha (para analytics)
+  // Track clique na campanha (para analytics)
   trackCampanhaClick(campanha) {
     // Implementar tracking se necessário
     console.log(`📊 Campanha clicada: ${campanha.nome}`);
   }
 
-  // ✅ MODIFICADO: Abrir modal mobile completo
+  // Abrir modal mobile completo
   abrirModalMobile() {
     console.log("📱 Abrindo modal mobile de campanhas");
 
@@ -424,7 +424,7 @@ class CampanhasManager {
     this.setupModalMobileListeners();
   }
 
-  // ✅ NOVO: Fechar modal mobile
+  // Fechar modal mobile
   fecharModalMobile() {
     console.log("📱 Fechando modal mobile de campanhas");
 
@@ -436,7 +436,7 @@ class CampanhasManager {
     }
   }
 
-  // ✅ NOVO: Configurar listeners do modal mobile
+  // Configurar listeners do modal mobile
   setupModalMobileListeners() {
     // Botão de fechar (X)
     const closeBtn = document.getElementById("campanhas-modal-close");
@@ -479,7 +479,7 @@ class CampanhasManager {
     }
   }
 
-  // ✅ NOVO: Renderizar campanhas no modal mobile
+  // Renderizar campanhas no modal mobile
   renderizarCampanhasMobile() {
     const container = document.getElementById("campanhas-modal-lista");
 
@@ -511,7 +511,7 @@ class CampanhasManager {
     });
   }
 
-  // ✅ NOVO: Renderizar item individual da campanha mobile
+  // Renderizar item individual da campanha mobile
   renderizarItemCampanhaMobile(campanha) {
     const dataFormatada = this.formatarData(campanha.dataModificacao);
     const isRecente =
@@ -584,7 +584,7 @@ class CampanhasManager {
   `;
   }
 
-  // ✅ NOVO: Abrir campanha no mobile
+  // Abrir campanha no mobile
   abrirCampanhaMobile(campanha) {
     console.log(`📱 Abrindo campanha mobile: ${campanha.nome}`);
 
@@ -598,7 +598,7 @@ class CampanhasManager {
     this.trackCampanhaClick(campanha);
   }
 
-  // ✅ NOVO: Atualizar contador mobile
+  // Atualizar contador mobile
   atualizarContadorMobile() {
     const countElement = document.getElementById("campanhas-modal-count");
     if (countElement) {
@@ -609,7 +609,7 @@ class CampanhasManager {
     }
   }
 
-  // ✅ NOVO: Estados de UI para mobile
+  // Estados de UI para mobile
   showLoadingMobile() {
     document
       .getElementById("campanhas-modal-loading")
@@ -642,7 +642,7 @@ class CampanhasManager {
     document.getElementById("campanhas-modal-erro")?.classList.add("hidden");
   }
 
-  // ✅ Atualizar badges de notificação
+  // Atualizar badges de notificação
   atualizarBadges() {
     const badge = document.getElementById("campanhas-badge");
     const badgeMobile = document.getElementById("campanhas-badge-mobile");
@@ -660,24 +660,24 @@ class CampanhasManager {
     });
   }
 
-  // ✅ MODIFICADO: Atualizar método de loading para incluir mobile
+  // Atualizar método de loading para incluir mobile
   showLoading() {
     document.getElementById("campanhas-loading")?.classList.remove("hidden");
-    this.showLoadingMobile(); // ✅ NOVO: Também para mobile
+    this.showLoadingMobile(); // Também para mobile
     this.hideEstadoVazio();
     this.hideError();
   }
 
   hideLoading() {
     document.getElementById("campanhas-loading")?.classList.add("hidden");
-    this.hideLoadingMobile(); // ✅ NOVO: Também para mobile
+    this.hideLoadingMobile(); // Também para mobile
   }
 
   showError() {
     document.getElementById("campanhas-erro")?.classList.remove("hidden");
-    this.showErrorMobile(); // ✅ NOVO: Também para mobile
+    this.showErrorMobile(); // Também para mobile
     this.hideEstadoVazio();
-    this.hideEstadoVazioMobile(); // ✅ NOVO: Também para mobile
+    this.hideEstadoVazioMobile(); // Também para mobile
   }
 
   hideLoading() {
@@ -702,7 +702,7 @@ class CampanhasManager {
     document.getElementById("campanhas-erro")?.classList.add("hidden");
   }
 
-  // ✅ Fetch com retry
+  // Fetch com retry
   async fetchWithRetry(url, maxRetries = CAMPANHAS_CONFIG.MAX_RETRIES) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
@@ -736,7 +736,7 @@ class CampanhasManager {
     }
   }
 
-  // ✅ Utilitários
+  // Utilitários
   formatarData(data) {
     const agora = new Date();
     const diff = agora - data;
@@ -767,12 +767,12 @@ class CampanhasManager {
     return div.innerHTML;
   }
 
-  // ✅ Método público para refresh manual
+  // Método público para refresh manual
   refresh() {
     return this.carregarCampanhas(true);
   }
 
-  // ✅ Cleanup
+  // Cleanup
   destroy() {
     if (this.refreshInterval) {
       clearInterval(this.refreshInterval);
@@ -783,7 +783,7 @@ class CampanhasManager {
   }
 }
 
-// ✅ Funções globais
+// Funções globais
 window.abrirCampanhas = function () {
   if (window.campanhasManager) {
     window.campanhasManager.abrirDropdown();
@@ -796,7 +796,7 @@ window.refreshCampanhas = function () {
   }
 };
 
-// ✅ Inicialização
+// Inicialização
 const initCampanhas = async () => {
   try {
     console.log("🚀 Iniciando CampanhasManager...");
@@ -824,7 +824,7 @@ if (document.readyState === "loading") {
   initCampanhas();
 }
 
-// ✅ Backup de inicialização
+// Backup de inicialização
 setTimeout(() => {
   if (!window.campanhasManager) {
     console.warn(
@@ -834,7 +834,7 @@ setTimeout(() => {
   }
 }, 2000);
 
-// ✅ Debug helpers
+// Debug helpers
 window.debugCampanhas = {
   manager: () => window.campanhasManager,
   isReady: () => window.campanhasManager?.isInitialized,

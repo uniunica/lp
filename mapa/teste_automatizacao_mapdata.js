@@ -1,4 +1,4 @@
-// ✅ Configuração para cache e melhorias
+// Configuração para cache e melhorias
 const MAPDATA_CACHE_CONFIG = {
   CACHE_KEY: "mapdata_polos_cache",
   CACHE_DURATION: 60 * 60 * 1000, // 1 hora
@@ -7,7 +7,7 @@ const MAPDATA_CACHE_CONFIG = {
   RETRY_DELAY: 1000,
 };
 
-// ✅ Sistema de cache inteligente
+// Sistema de cache inteligente
 const MapDataCache = {
   get() {
     try {
@@ -54,7 +54,7 @@ const MapDataCache = {
   },
 };
 
-// ✅ Sistema de indicadores visuais
+// Sistema de indicadores visuais
 const MapDataIndicators = {
   showLoading() {
     const mapContainer = document.getElementById("map");
@@ -155,7 +155,7 @@ const MapDataIndicators = {
   },
 };
 
-// ✅ Sistema de retry com backoff
+// Sistema de retry com backoff
 const MapDataRetry = {
   async withBackoff(fn, maxRetries = MAPDATA_CACHE_CONFIG.MAX_RETRIES) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -179,7 +179,7 @@ const MapDataRetry = {
   },
 };
 
-// ✅ Função principal melhorada mantendo estrutura original
+// Função principal melhorada mantendo estrutura original
 async function carregarPolos() {
   const apiKey = "AIzaSyDqOzQWHPmUxy_6XSJM0TpFrcFyeAShVq8";
   const sheetId = "1IxAnU18qxiEf-TjvqBEEj9L1W3CsY3-DHDxREV4APmk";
@@ -187,11 +187,11 @@ async function carregarPolos() {
   const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
   try {
-    // ✅ Mostrar loading
+    // Mostrar loading
     MapDataIndicators.showLoading();
     MapDataIndicators.updateProgress(10);
 
-    // ✅ Verificar cache primeiro
+    // Verificar cache primeiro
     const cachedData = MapDataCache.get();
     if (cachedData) {
       console.log("Usando dados do cache");
@@ -221,7 +221,7 @@ async function carregarPolos() {
 
     MapDataIndicators.updateProgress(20);
 
-    // ✅ Buscar dados com retry e timeout
+    // Buscar dados com retry e timeout
     const data = await MapDataRetry.withBackoff(async () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(
@@ -249,12 +249,12 @@ async function carregarPolos() {
 
     MapDataIndicators.updateProgress(60);
 
-    // ✅ Validar dados recebidos
+    // Validar dados recebidos
     if (!data.values || data.values.length === 0) {
       throw new Error("Nenhum polo encontrado na planilha");
     }
 
-    // ✅ Processar dados (mantendo lógica original)
+    // Processar dados (mantendo lógica original)
     simplemaps_countrymap_mapdata.locations = {};
 
     data.values.forEach((row, index) => {
@@ -276,7 +276,7 @@ async function carregarPolos() {
           lng, // N
         ] = row;
 
-        // ✅ Validação básica
+        // Validação básica
         if (!nomePolo || !lat || !lng) {
           console.warn(
             `Polo na linha ${index + 2} ignorado: dados obrigatórios faltando`
@@ -284,7 +284,7 @@ async function carregarPolos() {
           return;
         }
 
-        // ✅ Validar coordenadas
+        // Validar coordenadas
         const latitude = parseFloat(lat);
         const longitude = parseFloat(lng);
 
@@ -295,7 +295,7 @@ async function carregarPolos() {
           return;
         }
 
-        // ✅ Sanitizar dados para HTML (básico)
+        // Sanitizar dados para HTML (básico)
         const sanitize = (text) => {
           if (!text) return "";
           return text.toString().replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -325,12 +325,12 @@ async function carregarPolos() {
 
     MapDataIndicators.updateProgress(80);
 
-    // ✅ Salvar no cache
+    // Salvar no cache
     MapDataCache.set(simplemaps_countrymap_mapdata.locations);
 
     MapDataIndicators.updateProgress(90);
 
-    // ✅ Carregar mapa (mantendo lógica original)
+    // Carregar mapa (mantendo lógica original)
     if (
       typeof simplemaps_countrymap !== "undefined" &&
       typeof simplemaps_countrymap.load === "function"
@@ -353,7 +353,7 @@ async function carregarPolos() {
     console.error("Erro ao carregar polos:", error);
     MapDataIndicators.hideLoading();
 
-    // ✅ Tratamento de erros específico
+    // Tratamento de erros específico
     let errorMessage = "Erro desconhecido ao carregar polos";
 
     if (error.name === "AbortError") {
@@ -371,7 +371,7 @@ async function carregarPolos() {
       errorMessage = "Nenhum polo encontrado na planilha.";
     }
 
-    // ✅ Mostrar erro com opção de retry
+    // Mostrar erro com opção de retry
     MapDataIndicators.showError(errorMessage, async () => {
       MapDataIndicators.clearError();
       await carregarPolos();
@@ -381,7 +381,7 @@ async function carregarPolos() {
   }
 }
 
-// ✅ Configuração original do mapa (mantida intacta)
+// Configuração original do mapa (mantida intacta)
 var simplemaps_countrymap_mapdata = {
   main_settings: {
     //General settings
@@ -655,10 +655,10 @@ var simplemaps_countrymap_mapdata = {
   regions: {},
 };
 
-// ✅ Inicialização (mantida original)
+// Inicialização (mantida original)
 document.addEventListener("DOMContentLoaded", carregarPolos);
 
-// ✅ Tratamento de conectividade
+// Tratamento de conectividade
 window.addEventListener("online", () => {
   console.log("Conexão restaurada");
   MapDataIndicators.showNotification("Conexão restaurada", "success", 2000);
@@ -673,7 +673,7 @@ window.addEventListener("offline", () => {
   );
 });
 
-// ✅ Funções utilitárias para debug (remover em produção)
+// Funções utilitárias para debug (remover em produção)
 window.debugMapData = {
   clearCache: () => MapDataCache.clear(),
   reloadPolos: () => carregarPolos(),
@@ -689,7 +689,7 @@ window.debugMapData = {
     });
   },
 };
-// ✅ Sistema para tornar menu do mapa sempre visível (versão compacta)
+// Sistema para tornar menu do mapa sempre visível (versão compacta)
 const MapNavigationCustomizer = {
   // Função para customizar o menu de navegação (ATUALIZADA)
   customizeNavigation() {
@@ -697,22 +697,22 @@ const MapNavigationCustomizer = {
       const mapAccessElement = document.getElementById("map_access");
 
       if (mapAccessElement) {
-        // ✅ Forçar hierarquia correta ANTES de customizar
+        // Forçar hierarquia correta ANTES de customizar
         this.forceCorrectZIndex();
 
-        // ✅ Remover menu de navegação
+        // Remover menu de navegação
         this.removeNavigationSelect(mapAccessElement);
 
-        // ✅ Tornar sempre visível
+        // Tornar sempre visível
         this.makeAlwaysVisible(mapAccessElement);
 
-        // ✅ Personalizar textos
+        // Personalizar textos
         this.customizeTexts(mapAccessElement);
 
-        // ✅ Melhorar aparência
+        // Melhorar aparência
         this.improveAppearance(mapAccessElement);
 
-        // ✅ Forçar hierarquia novamente APÓS customizar
+        // Forçar hierarquia novamente APÓS customizar
         setTimeout(() => this.forceCorrectZIndex(), 100);
 
         console.log(
@@ -728,7 +728,7 @@ const MapNavigationCustomizer = {
     }, 1500);
   },
 
-  // ✅ NOVO: Remover o primeiro select (navegação)
+  // Remover o primeiro select (navegação)
   removeNavigationSelect(element) {
     const selects = element.querySelectorAll("select");
     if (selects.length > 0) {
@@ -739,7 +739,7 @@ const MapNavigationCustomizer = {
 
   // Tornar elemento sempre visível com controle de z-index
   makeAlwaysVisible(element) {
-    // ✅ Forçar visibilidade
+    // Forçar visibilidade
     element.style.display = "flex";
     element.style.visibility = "visible";
     element.style.opacity = "1";
@@ -750,21 +750,21 @@ const MapNavigationCustomizer = {
     element.style.flexDirection = "column";
     element.style.gap = "6px";
 
-    // ✅ IMPORTANTE: NÃO definir z-index aqui, deixar para o CSS
+    // IMPORTANTE: NÃO definir z-index aqui, deixar para o CSS
     // element.style.zIndex = ""; // Remover qualquer z-index inline
 
-    // ✅ Remover eventos que podem ocultar
+    // Remover eventos que podem ocultar
     element.onblur = null;
     element.onfocusout = null;
 
-    // ✅ Adicionar classe CSS personalizada
+    // Adicionar classe CSS personalizada
     element.classList.add("map-navigation-always-visible");
 
-    // ✅ Setup do sistema de controle de z-index
+    // Setup do sistema de controle de z-index
     this.setupZIndexControl(element);
   },
 
-  // ✅ NOVO: Sistema de controle de z-index
+  // Sistema de controle de z-index
   setupZIndexControl(element) {
     // Função para atualizar o estado
     const updateState = () => {
@@ -840,7 +840,7 @@ const MapNavigationCustomizer = {
     updateState();
   },
 
-  // ✅ NOVA FUNÇÃO: Forçar hierarquia correta de z-index
+  // Forçar hierarquia correta de z-index
   forceCorrectZIndex() {
     const header = document.querySelector("header");
     const mapAccess = document.getElementById("map_access");
@@ -874,7 +874,7 @@ const MapNavigationCustomizer = {
     });
   },
 
-  // ✅ FUNÇÃO ATUALIZADA: Atualizar z-index baseado no scroll
+  // Atualizar z-index baseado no scroll
   updateZIndex(element) {
     const header = document.querySelector("header");
     const headerHeight = header ? header.offsetHeight : 80;
@@ -907,11 +907,11 @@ const MapNavigationCustomizer = {
       element.style.zIndex = "40";
     }
 
-    // ✅ NOVO: Atualizar estado visual
+    // Atualizar estado visual
     this.updateVisualState(element);
   },
 
-  // ✅ NOVA FUNÇÃO: Limpeza dos listeners
+  // Limpeza dos listeners
   cleanup() {
     if (this.scrollListener) {
       window.removeEventListener("scroll", this.scrollListener);
@@ -924,7 +924,7 @@ const MapNavigationCustomizer = {
     }
   },
 
-  // ✅ NOVA FUNÇÃO: Setup do listener de scroll
+  // Setup do listener de scroll
   setupScrollListener(element) {
     // Remover listener anterior se existir
     if (this.scrollListener) {
@@ -975,7 +975,7 @@ const MapNavigationCustomizer = {
 
   // Melhorar aparência visual (versão com z-index definitivo)
   improveAppearance(element) {
-    // ✅ Remover estilo anterior se existir
+    // Remover estilo anterior se existir
     const existingStyle = document.getElementById("map-navigation-styles");
     if (existingStyle) {
       existingStyle.remove();
@@ -1149,11 +1149,11 @@ const MapNavigationCustomizer = {
       element.appendChild(status);
     }
 
-    // ✅ Adicionar ícones aos selects
+    // Adicionar ícones aos selects
     this.addIconsToSelects(element);
   },
 
-  // ✅ NOVA FUNÇÃO: Atualizar classes CSS baseadas no estado
+  // Atualizar classes CSS baseadas no estado
   updateVisualState(element) {
     const scrollY = window.scrollY;
     const header = document.querySelector("header");
@@ -1196,7 +1196,7 @@ const MapNavigationCustomizer = {
     }
   },
 
-  // ✅ NOVO: Adicionar ícones aos selects
+  // Adicionar ícones aos selects
   addIconsToSelects(element) {
     const selects = element.querySelectorAll("select");
 
@@ -1273,20 +1273,20 @@ const MapNavigationCustomizer = {
   },
 };
 
-// ✅ Integrar com sua função de carregamento existente
+// Integrar com sua função de carregamento existente
 const originalCarregarPolos = carregarPolos;
 
 carregarPolos = async function () {
   await originalCarregarPolos();
 
-  // ✅ Customizar navegação após carregar o mapa
+  // Customizar navegação após carregar o mapa
   setTimeout(() => {
     MapNavigationCustomizer.setupObserver();
     MapNavigationCustomizer.forceRecreate();
   }, 2000);
 };
 
-// ✅ Também tentar na inicialização
+// Também tentar na inicialização
 document.addEventListener("DOMContentLoaded", () => {
   // Aguardar um pouco mais para garantir que o mapa carregou
   setTimeout(() => {
@@ -1294,14 +1294,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 3000);
 });
 
-// ✅ Função para recriar menu manualmente (debug)
+// Função para recriar menu manualmente (debug)
 window.debugMapNavigation = {
   recreate: () => MapNavigationCustomizer.forceRecreate(),
   customize: () => MapNavigationCustomizer.customizeNavigation(),
   observer: () => MapNavigationCustomizer.setupObserver(),
 };
 
-// ✅ Interceptar eventos que podem ocultar o menu
+// Interceptar eventos que podem ocultar o menu
 document.addEventListener("keydown", (e) => {
   if (e.key === "Tab") {
     setTimeout(() => {
@@ -1316,7 +1316,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// ✅ Garantir que o menu permaneça visível
+// Garantir que o menu permaneça visível
 setInterval(() => {
   const mapAccess = document.getElementById("map_access");
   if (mapAccess && mapAccess.style.display === "none") {

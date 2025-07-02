@@ -1,4 +1,4 @@
-// ✅ Configuração para formulário
+// Configuração para formulário
 const FORM_CONFIG = {
   FORM_ID: "contatoForm",
   TIMEOUT: 15000, // 15 segundos
@@ -8,7 +8,7 @@ const FORM_CONFIG = {
   RETRY_DELAY: 1000,
 };
 
-// ✅ Classe principal para gerenciar formulário
+// Classe principal para gerenciar formulário
 class FormManager {
   constructor() {
     this.form = null;
@@ -35,7 +35,7 @@ class FormManager {
     }
   }
 
-  // ✅ NOVO: Aguardar DOM estar pronto
+  // Aguardar DOM estar pronto
   waitForDOM() {
     return new Promise((resolve) => {
       if (document.readyState === "loading") {
@@ -46,7 +46,7 @@ class FormManager {
     });
   }
 
-  // ✅ NOVO: Adicionar botão de reset manual se não existir
+  // Adicionar botão de reset manual se não existir
   setupForm() {
     this.form = document.getElementById(FORM_CONFIG.FORM_ID);
 
@@ -70,7 +70,7 @@ class FormManager {
     this.form.setAttribute("autocomplete", "on");
   }
 
-  // ✅ NOVO: Configurar acessibilidade
+  // Configurar acessibilidade
   setupAccessibility() {
     // Adicionar ARIA labels se não existirem
     const inputs = this.form.querySelectorAll("input, textarea, select");
@@ -96,7 +96,7 @@ class FormManager {
     this.createLiveRegion();
   }
 
-  // ✅ NOVO: Criar região live para screen readers
+  // Criar região live para screen readers
   createLiveRegion() {
     if (!document.getElementById("form-live-region")) {
       const liveRegion = document.createElement("div");
@@ -108,7 +108,7 @@ class FormManager {
     }
   }
 
-  // ✅ NOVO: Anunciar para screen readers
+  // Anunciar para screen readers
   announceToScreenReader(message) {
     const liveRegion = document.getElementById("form-live-region");
     if (liveRegion) {
@@ -117,7 +117,7 @@ class FormManager {
     }
   }
 
-  // ✅ MELHORADO: Event listeners
+  // Event listeners
   setupEventListeners() {
     this.form.addEventListener("submit", (e) => this.handleSubmit(e));
 
@@ -136,12 +136,12 @@ class FormManager {
     });
   }
 
-  // ✅ CORRIGIDO: Validação de campo individual
+  // Validação de campo individual
   validateField(field) {
     const errors = [];
     const value = field.value.trim();
 
-    // ✅ Validações básicas
+    // Validações básicas
     if (field.hasAttribute("required") && !value) {
       errors.push(`${this.getFieldLabel(field)} é obrigatório`);
     }
@@ -152,7 +152,7 @@ class FormManager {
       return true;
     }
 
-    // ✅ Validação de email
+    // Validação de email
     if (field.type === "email" && value) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(value)) {
@@ -160,7 +160,7 @@ class FormManager {
       }
     }
 
-    // ✅ Validação de telefone
+    // Validação de telefone
     if (field.type === "tel" && value) {
       const phoneRegex = /^[\d\s\-\(\)\+]{10,}$/;
       if (!phoneRegex.test(value)) {
@@ -168,21 +168,21 @@ class FormManager {
       }
     }
 
-    // ✅ CORRIGIDO: Validação de comprimento mínimo
+    // Validação de comprimento mínimo
     const minLength =
       parseInt(field.getAttribute("minlength")) || field.minLength;
     if (minLength && minLength > 0 && value.length < minLength) {
       errors.push(`Mínimo ${minLength} caracteres`);
     }
 
-    // ✅ CORRIGIDO: Validação de comprimento máximo
+    // Validação de comprimento máximo
     const maxLength =
       parseInt(field.getAttribute("maxlength")) || field.maxLength;
     if (maxLength && maxLength > 0 && value.length > maxLength) {
       errors.push(`Máximo ${maxLength} caracteres`);
     }
 
-    // ✅ Validação de nome (apenas letras, espaços e acentos)
+    // Validação de nome (apenas letras, espaços e acentos)
     if (
       field.name === "nome" ||
       field.id === "nome" ||
@@ -205,7 +205,7 @@ class FormManager {
     }
   }
 
-  // ✅ NOVO: Obter label do campo
+  // Obter label do campo
   getFieldLabel(field) {
     const label = this.form.querySelector(`label[for="${field.id}"]`);
     if (label) {
@@ -214,7 +214,7 @@ class FormManager {
     return field.placeholder || field.name || "Campo";
   }
 
-  // ✅ NOVO: Mostrar erro no campo
+  // Mostrar erro no campo
   showFieldError(field, message) {
     this.clearFieldError(field);
 
@@ -230,7 +230,7 @@ class FormManager {
     field.parentNode.appendChild(errorElement);
   }
 
-  // ✅ NOVO: Limpar erro do campo
+  // Limpar erro do campo
   clearFieldError(field) {
     field.classList.remove("error");
     field.setAttribute("aria-invalid", "false");
@@ -242,7 +242,7 @@ class FormManager {
     }
   }
 
-  // ✅ NOVO: Validação completa do formulário
+  // Validação completa do formulário
   setupValidation() {
     // Adicionar CSS para estados de erro
     if (!document.getElementById("form-validation-styles")) {
@@ -253,23 +253,23 @@ class FormManager {
           border-color: #ef4444 !important;
           box-shadow: 0 0 0 1px #ef4444 !important;
         }
-        
+
         .field-error {
           color: #ef4444;
           font-size: 0.875rem;
           margin-top: 0.25rem;
         }
-        
+
         .form-loading {
           opacity: 0.7;
           pointer-events: none;
         }
-        
+
         .submit-loading {
           position: relative;
           color: transparent !important;
         }
-        
+
         .submit-loading::after {
           content: '';
           position: absolute;
@@ -284,11 +284,11 @@ class FormManager {
           border-top-color: transparent;
           animation: spin 1s linear infinite;
         }
-        
+
         @keyframes spin {
           to { transform: rotate(360deg); }
         }
-        
+
         .sr-only {
           position: absolute;
           width: 1px;
@@ -305,7 +305,7 @@ class FormManager {
     }
   }
 
-  // ✅ MELHORADO: Validar formulário completo
+  // Validar formulário completo
   validateForm() {
     const inputs = this.form.querySelectorAll(
       "input[required], textarea[required], select[required]"
@@ -333,7 +333,7 @@ class FormManager {
     return isValid;
   }
 
-  // ✅ MELHORADO: Manipulação de envio com reset garantido
+  // Manipulação de envio com reset garantido
   async handleSubmit(event) {
     event.preventDefault();
 
@@ -353,7 +353,7 @@ class FormManager {
 
       const formData = new FormData(this.form);
 
-      // ✅ NOVO: Tentar envio com tratamento mais robusto
+      // Tentar envio com tratamento mais robusto
       let success = false;
       let errorMessage = "";
 
@@ -362,7 +362,7 @@ class FormManager {
       } catch (error) {
         errorMessage = error.message;
 
-        // ✅ Se o erro sugere que pode ter sido enviado, tratar como sucesso
+        // Se o erro sugere que pode ter sido enviado, tratar como sucesso
         if (
           errorMessage.includes("confirmação") ||
           errorMessage.includes("pode ter sido enviado")
@@ -384,7 +384,7 @@ class FormManager {
     }
   }
 
-  // ✅ NOVO: Envio com retry mais tolerante
+  // Envio com retry mais tolerante
   async submitWithRetry(formData) {
     let lastError = null;
 
@@ -399,7 +399,7 @@ class FormManager {
         lastError = error;
         console.warn(`Tentativa ${attempt} falhou:`, error.message);
 
-        // ✅ Se é o último retry e o erro sugere possível envio, considerar sucesso
+        // Se é o último retry e o erro sugere possível envio, considerar sucesso
         if (attempt === FORM_CONFIG.MAX_RETRIES) {
           if (
             error.message.includes("Failed to fetch") ||
@@ -426,7 +426,7 @@ class FormManager {
     throw lastError || new Error("Falha após todas as tentativas");
   }
 
-  // ✅ MELHORADO: Envio do formulário com tratamento mais flexível
+  // Envio do formulário com tratamento mais flexível
   async submitForm(formData) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), FORM_CONFIG.TIMEOUT);
@@ -443,7 +443,7 @@ class FormManager {
 
       clearTimeout(timeoutId);
 
-      // ✅ CORRIGIDO: Aceitar mais códigos de status como sucesso
+      // Aceitar mais códigos de status como sucesso
       if (
         response.ok ||
         response.status === 200 ||
@@ -453,7 +453,7 @@ class FormManager {
         return true;
       }
 
-      // ✅ NOVO: Tentar verificar se o conteúdo indica sucesso
+      // Tentar verificar se o conteúdo indica sucesso
       try {
         const responseText = await response.text();
 
@@ -490,7 +490,7 @@ class FormManager {
         throw new Error("Tempo limite excedido. Verifique sua conexão.");
       }
 
-      // ✅ NOVO: Se o erro é de rede mas pode ter sido enviado
+      // Se o erro é de rede mas pode ter sido enviado
       if (
         error.message.includes("Failed to fetch") ||
         error.message.includes("NetworkError")
@@ -508,7 +508,7 @@ class FormManager {
     }
   }
 
-  // ✅ NOVO: Estados de loading
+  // Estados de loading
   setLoadingState(loading) {
     this.isSubmitting = loading;
 
@@ -529,12 +529,12 @@ class FormManager {
     }
   }
 
-  // ✅ MELHORADO: Manipulação de sucesso com reset garantido
+  // Manipulação de sucesso com reset garantido
   handleSuccess() {
     this.showSuccess("Formulário enviado com sucesso! Em breve retornaremos.");
     this.announceToScreenReader("Formulário enviado com sucesso");
 
-    // ✅ NOVO: Reset imediato E com delay para garantir
+    // Reset imediato E com delay para garantir
     this.resetForm();
 
     // Disparar evento customizado
@@ -544,18 +544,18 @@ class FormManager {
       })
     );
 
-    // ✅ Reset adicional com delay para garantir
+    // Reset adicional com delay para garantir
     setTimeout(() => {
       this.resetForm();
     }, 500);
 
-    // ✅ NOVO: Reset forçado após mais tempo
+    // Reset forçado após mais tempo
     setTimeout(() => {
       this.forceResetForm();
     }, FORM_CONFIG.RESET_DELAY);
   }
 
-  // ✅ NOVO: Reset forçado do formulário
+  // Reset forçado do formulário
   forceResetForm() {
     try {
       console.log("Executando reset forçado do formulário");
@@ -591,13 +591,13 @@ class FormManager {
     }
   }
 
-  // ✅ MELHORADO: Manipulação de erro
+  // Manipulação de erro
   handleError(message) {
     this.showError(message);
     this.announceToScreenReader(`Erro: ${message}`);
   }
 
-  // ✅ NOVO: Reset seguro do formulário
+  // Reset seguro do formulário
   resetForm() {
     try {
       this.form.reset();
@@ -618,7 +618,7 @@ class FormManager {
     }
   }
 
-  // ✅ NOVO: Sistema de notificações
+  // Sistema de notificações
   showSuccess(message) {
     this.showNotification(message, "success");
   }
@@ -657,7 +657,7 @@ class FormManager {
     }, FORM_CONFIG.NOTIFICATION_DURATION);
   }
 
-  // ✅ NOVO: Métodos públicos para controle
+  // Métodos públicos para controle
   getFormData() {
     return new FormData(this.form);
   }
@@ -679,10 +679,10 @@ class FormManager {
   }
 }
 
-// ✅ Instância global
+// Instância global
 let formManager;
 
-// ✅ Inicialização
+// Inicialização
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     formManager = new FormManager();
@@ -691,7 +691,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// ✅ Funções globais para compatibilidade
+// Funções globais para compatibilidade
 window.handleFormSubmit = function (event) {
   if (formManager) {
     formManager.handleSubmit(event);
@@ -706,7 +706,7 @@ window.resetFormAfterSend = function () {
   }
 };
 
-// ✅ Debug helpers melhorados
+// Debug helpers melhorados
 window.debugForm = {
   manager: () => formManager,
   validate: () => formManager?.isFormValid(),

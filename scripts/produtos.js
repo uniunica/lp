@@ -1,4 +1,4 @@
-// ✅ Configuração e constantes
+// Configuração e constantes
 const MODAL_CONFIG = {
   ANIMATION_DURATION: 300,
   ESCAPE_KEY: "Escape",
@@ -8,7 +8,7 @@ const MODAL_CONFIG = {
   BACKDROP_CLASS: "modal-backdrop",
 };
 
-// ✅ Classe principal para gerenciar modais de produtos
+// Classe principal para gerenciar modais de produtos
 class ProductModalManager {
   constructor() {
     this.isOpen = false;
@@ -39,7 +39,7 @@ class ProductModalManager {
     this.setupAccessibility();
   }
 
-  // ✅ NOVO: Configuração de acessibilidade
+  // Configuração de acessibilidade
   setupAccessibility() {
     // Adicionar atributos ARIA se não existirem
     if (!this.modal.getAttribute("role")) {
@@ -53,7 +53,7 @@ class ProductModalManager {
     }
   }
 
-  // ✅ MELHORADO: Event listeners com tratamento completo
+  // MELHORADO: Event listeners com tratamento completo
   setupEventListeners() {
     // Fechar modal clicando no backdrop
     this.modal.addEventListener("click", (e) => {
@@ -84,7 +84,7 @@ class ProductModalManager {
     }
   }
 
-  // ✅ NOVO: Gerenciamento de foco com Tab
+  // Gerenciamento de foco com Tab
   handleTabKey(e) {
     if (this.focusableElements.length === 0) return;
 
@@ -103,7 +103,7 @@ class ProductModalManager {
     }
   }
 
-  // ✅ MELHORADO: Abertura de modal com validação completa
+  // Abertura de modal com validação completa
   openModal(productData) {
     try {
       // Validar dados de entrada
@@ -137,7 +137,7 @@ class ProductModalManager {
     }
   }
 
-  // ✅ NOVO: Validação robusta de dados do produto
+  // Validação robusta de dados do produto
   validateProductData(data) {
     // Aceitar tanto objeto quanto parâmetros separados (compatibilidade)
     let productData;
@@ -190,7 +190,7 @@ class ProductModalManager {
     };
   }
 
-  // ✅ NOVO: Validação e sanitização de URLs
+  // Validação e sanitização de URLs
   validateAndSanitizeUrl(url, linkType) {
     if (!url || typeof url !== "string") {
       console.warn(`${linkType}: URL não fornecida`);
@@ -238,7 +238,7 @@ class ProductModalManager {
     }
   }
 
-  // ✅ NOVO: Sanitização de texto
+  // Sanitização de texto
   sanitizeText(text) {
     if (!text || typeof text !== "string") return "";
 
@@ -247,7 +247,7 @@ class ProductModalManager {
     return div.innerHTML;
   }
 
-  // ✅ MELHORADO: Atualização do conteúdo do modal
+  // Atualização do conteúdo do modal
   updateModalContent(productData) {
     // Atualizar título
     const titleElement = document.getElementById("modal-title");
@@ -269,7 +269,7 @@ class ProductModalManager {
     }
   }
 
-  // ✅ NOVO: Atualização de links do modal
+  // Atualização de links do modal
   updateModalLinks(links) {
     const linkElements = {
       catalog: document.getElementById("modal-link-catalogo"),
@@ -300,7 +300,7 @@ class ProductModalManager {
     });
   }
 
-  // ✅ NOVO: Labels para tipos de link
+  // Labels para tipos de link
   getLinkLabel(type) {
     const labels = {
       catalog: "Catálogo",
@@ -310,7 +310,7 @@ class ProductModalManager {
     return labels[type] || type;
   }
 
-  // ✅ NOVO: Adicionar ícone de link externo
+  // Adicionar ícone de link externo
   addExternalLinkIcon(linkElement) {
     const icon = document.createElement("svg");
     icon.className = "external-link-icon w-4 h-4 ml-1 inline";
@@ -323,7 +323,7 @@ class ProductModalManager {
     linkElement.appendChild(icon);
   }
 
-  // ✅ NOVO: Atualizar descrição do modal
+  // Atualizar descrição do modal
   updateModalDescription(description) {
     let descElement = document.getElementById("modal-description");
     if (!descElement) {
@@ -343,13 +343,13 @@ class ProductModalManager {
     descElement.textContent = description;
   }
 
-  // ✅ NOVO: Atualizar metadata do modal
+  // Atualizar metadata do modal
   updateModalMetadata(metadata) {
     // Implementar conforme necessário
     console.log("Metadata do produto:", metadata);
   }
 
-  // ✅ MELHORADO: Mostrar modal com animação
+  // Mostrar modal com animação
   showModal() {
     this.modal.classList.remove("hidden");
     this.modal.setAttribute("aria-hidden", "false");
@@ -363,7 +363,7 @@ class ProductModalManager {
     }, 10);
   }
 
-  // ✅ MELHORADO: Configurar foco no modal
+  // Configurar foco no modal
   setupFocus() {
     // Encontrar elementos focáveis
     this.focusableElements = Array.from(
@@ -386,7 +386,7 @@ class ProductModalManager {
     }
   }
 
-  // ✅ MELHORADO: Fechar modal
+  // Fechar modal
   closeModal() {
     if (!this.isOpen) return;
 
@@ -409,7 +409,7 @@ class ProductModalManager {
     }, MODAL_CONFIG.ANIMATION_DURATION);
   }
 
-  // ✅ NOVO: Prevenir/restaurar scroll do body
+  // Prevenir/restaurar scroll do body
   preventBodyScroll(prevent) {
     if (prevent) {
       document.body.style.overflow = "hidden";
@@ -420,7 +420,7 @@ class ProductModalManager {
     }
   }
 
-  // ✅ NOVO: Mostrar erro
+  // Mostrar erro
   showError(message) {
     // Criar notificação de erro
     const notification = document.createElement("div");
@@ -444,7 +444,7 @@ class ProductModalManager {
     }, 3000);
   }
 
-  // ✅ NOVO: Métodos públicos para controle
+  // Métodos públicos para controle
   isModalOpen() {
     return this.isOpen;
   }
@@ -463,10 +463,10 @@ class ProductModalManager {
   }
 }
 
-// ✅ Instância global do gerenciador
+// Instância global do gerenciador
 let productModalManager;
 
-// ✅ Inicialização
+// Inicialização
 document.addEventListener("DOMContentLoaded", () => {
   try {
     productModalManager = new ProductModalManager();
@@ -476,7 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ✅ MELHORADO: Função global para compatibilidade (mantém API original)
+// Função global para compatibilidade (mantém API original)
 function openModal(title, catalogLink, creativeLink, regulationLink) {
   if (!productModalManager) {
     console.error("Modal manager não inicializado");
@@ -491,7 +491,7 @@ function openModal(title, catalogLink, creativeLink, regulationLink) {
   });
 }
 
-// ✅ MELHORADO: Função global para fechar modal
+// Função global para fechar modal
 function closeModal() {
   if (!productModalManager) {
     console.error("Modal manager não inicializado");
@@ -502,7 +502,7 @@ function closeModal() {
   return true;
 }
 
-// ✅ NOVO: Função avançada para abrir modal com mais opções
+// Função avançada para abrir modal com mais opções
 function openProductModal(productData) {
   if (!productModalManager) {
     console.error("Modal manager não inicializado");
@@ -512,12 +512,12 @@ function openProductModal(productData) {
   return productModalManager.openModal(productData);
 }
 
-// ✅ NOVO: Função para verificar se modal está aberto
+// Função para verificar se modal está aberto
 function isModalOpen() {
   return productModalManager ? productModalManager.isModalOpen() : false;
 }
 
-// ✅ Debug helpers (remover em produção)
+// Debug helpers (remover em produção)
 window.debugModal = {
   manager: () => productModalManager,
   data: () => productModalManager?.getModalData(),
@@ -526,7 +526,7 @@ window.debugModal = {
   isOpen: () => productModalManager?.isModalOpen(),
 };
 
-// ✅ Tratamento de erros globais
+// Tratamento de erros globais
 window.addEventListener("error", (event) => {
   if (
     event.error &&

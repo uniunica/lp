@@ -78,7 +78,7 @@ const Utils = {
     }
   },
 
-  // ✅ NOVO: Função para retry com backoff
+  // Função para retry com backoff
   async retryWithBackoff(fn, maxRetries = FAQ_CONFIG.MAX_RETRIES) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
@@ -96,7 +96,7 @@ const Utils = {
     }
   },
 
-  // ✅ NOVO: Sanitizar HTML básico
+  // Sanitizar HTML básico
   sanitizeHtml(html) {
     const temp = document.createElement("div");
     temp.innerHTML = html;
@@ -142,7 +142,7 @@ function faqSearch() {
       await this.loadFaqsFromSheet();
     },
 
-    // ✅ MELHORADO: Carregamento com retry automático
+    // Carregamento com retry automático
     async loadFaqsFromSheet() {
       try {
         this.isLoading = true;
@@ -170,7 +170,7 @@ function faqSearch() {
             headers: {
               Accept: "application/json",
             },
-            // ✅ NOVO: Timeout para evitar travamento
+            // Timeout para evitar travamento
             signal: AbortSignal.timeout(10000), // 10 segundos
           });
 
@@ -206,7 +206,7 @@ function faqSearch() {
       }
     },
 
-    // ✅ MELHORADO: Processamento de dados mais robusto
+    // Processamento de dados mais robusto
     processFaqData(values) {
       if (!Array.isArray(values)) {
         console.warn("Valores não são um array:", values);
@@ -262,7 +262,7 @@ function faqSearch() {
         .filter(Boolean); // Remove itens nulos
     },
 
-    // ✅ MELHORADO: Tratamento de erros mais específico
+    // Tratamento de erros mais específico
     handleLoadError(error) {
       this.hasError = true;
       this.retryCount++;
@@ -295,7 +295,7 @@ function faqSearch() {
       console.log("Usando FAQs padrão como fallback");
     },
 
-    // ✅ MELHORADO: Busca com destaque de termos
+    // Busca com destaque de termos
     get filteredFaqs() {
       if (!this.search.trim()) return this.faqs;
 
@@ -336,7 +336,7 @@ function faqSearch() {
       return this.filteredFaqs.length;
     },
 
-    // ✅ MELHORADO: Controle de paginação
+    // Controle de paginação
     showMore() {
       const remaining = this.filteredFaqs.length - this.visibleCount;
       this.visibleCount += Math.min(5, remaining);
@@ -351,20 +351,20 @@ function faqSearch() {
       this.selected = null;
     },
 
-    // ✅ NOVO: Limpar pesquisa
+    // Limpar pesquisa
     clearSearch() {
       this.search = "";
       this.resetVisible();
     },
 
-    // ✅ MELHORADO: Método para recarregar dados
+    // Método para recarregar dados
     async refreshFaqs() {
       localStorage.removeItem(FAQ_CONFIG.CACHE_KEY);
       this.retryCount = 0;
       await this.loadFaqsFromSheet();
     },
 
-    // ✅ NOVO: Alternar FAQ
+    // Alternar FAQ
     toggleFaq(index) {
       this.selected = this.selected === index ? null : index;
     },
@@ -372,7 +372,7 @@ function faqSearch() {
   };
 }
 
-// ✅ MELHORADO: Sistema de notificações mais robusto
+// Sistema de notificações mais robusto
 const FaqNotifications = {
   show(message, type = "info", duration = 4000) {
     // Remover notificações existentes do mesmo tipo
@@ -423,7 +423,7 @@ const FaqNotifications = {
   },
 };
 
-// ✅ MELHORADO: Inicialização mais robusta
+// Inicialização mais robusta
 document.addEventListener("DOMContentLoaded", () => {
   // Verificar dependências
   if (typeof Alpine === "undefined") {
@@ -445,7 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("Sistema de FAQ inicializado com sucesso");
 });
 
-// ✅ MELHORADO: Tratamento de erros globais
+// Tratamento de erros globais
 window.addEventListener("unhandledrejection", (event) => {
   if (
     event.reason &&
@@ -462,7 +462,7 @@ window.addEventListener("unhandledrejection", (event) => {
   }
 });
 
-// ✅ NOVO: Detectar mudanças de conectividade
+// Detectar mudanças de conectividade
 window.addEventListener("online", () => {
   console.log("Conexão restaurada");
   FaqNotifications.show(
@@ -477,7 +477,7 @@ window.addEventListener("offline", () => {
   FaqNotifications.show("Sem conexão. Usando dados em cache.", "warning", 3000);
 });
 
-// ✅ NOVO: Função utilitária para debug (remover em produção)
+// Função utilitária para debug (remover em produção)
 window.debugFaq = {
   clearCache: () => {
     localStorage.removeItem(FAQ_CONFIG.CACHE_KEY);
