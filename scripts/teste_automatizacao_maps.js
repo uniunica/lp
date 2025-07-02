@@ -11,7 +11,7 @@ const MAPS_CONFIG = {
   REQUEST_TIMEOUT: 15000, // 15 segundos
 };
 
-// ✅ Classe principal para gerenciar mapas e polos
+// Classe principal para gerenciar mapas e polos
 class MapsManager {
   constructor() {
     this.polos = [];
@@ -37,7 +37,7 @@ class MapsManager {
     await this.loadPolos();
   }
 
-  // ✅ NOVO: Validação de elementos DOM
+  // Validação de elementos DOM
   validateElements() {
     const missing = Object.entries(this.elements)
       .filter(([key, element]) => !element)
@@ -51,7 +51,7 @@ class MapsManager {
     return true;
   }
 
-  // ✅ NOVO: Validação de dependências externas
+  // Validação de dependências externas
   validateDependencies() {
     if (typeof simplemaps_countrymap_mapdata === "undefined") {
       console.error("Dependência simplemaps_countrymap_mapdata não encontrada");
@@ -61,7 +61,7 @@ class MapsManager {
     return true;
   }
 
-  // ✅ MELHORADO: Sistema de cache robusto
+  // Sistema de cache robusto
   getCache() {
     try {
       const cached = localStorage.getItem(MAPS_CONFIG.CACHE_KEY);
@@ -98,7 +98,7 @@ class MapsManager {
     }
   }
 
-  // ✅ MELHORADO: Carregamento com retry e estados
+  // Carregamento com retry e estados
   async loadPolos() {
     try {
       this.setLoadingState(true);
@@ -163,7 +163,7 @@ class MapsManager {
     }
   }
 
-  // ✅ NOVO: Retry com backoff exponencial
+  // Retry com backoff exponencial
   async retryWithBackoff(fn, maxRetries = MAPS_CONFIG.MAX_RETRIES) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
@@ -180,7 +180,7 @@ class MapsManager {
     }
   }
 
-  // ✅ MELHORADO: Processamento de dados com validação rigorosa
+  // Processamento de dados com validação rigorosa
   processPolosData(rows) {
     const validPolos = [];
     const errors = [];
@@ -215,7 +215,7 @@ class MapsManager {
     return validPolos;
   }
 
-  // ✅ NOVO: Extração de dados do polo
+  // Extração de dados do polo
   extractPoloData(row, index) {
     const [
       name,
@@ -252,7 +252,7 @@ class MapsManager {
     };
   }
 
-  // ✅ NOVO: Parse seguro de coordenadas
+  // Parse seguro de coordenadas
   parseCoordinate(value) {
     if (value === undefined || value === null || value === "") return NaN;
 
@@ -260,7 +260,7 @@ class MapsManager {
     return isNaN(parsed) ? NaN : parsed;
   }
 
-  // ✅ NOVO: Validação de polo
+  // Validação de polo
   validatePolo(polo, lineNumber) {
     const errors = [];
 
@@ -294,13 +294,13 @@ class MapsManager {
     return true;
   }
 
-  // ✅ NOVO: Validação de email
+  // Validação de email
   isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
 
-  // ✅ NOVO: Normalização de texto melhorada
+  // Normalização de texto melhorada
   normalizeText(text) {
     if (!text) return "";
     return text
@@ -311,7 +311,7 @@ class MapsManager {
       .trim();
   }
 
-  // ✅ MELHORADO: Estados de loading
+  // Estados de loading
   setLoadingState(loading) {
     this.isLoading = loading;
 
@@ -330,7 +330,7 @@ class MapsManager {
     }
   }
 
-  // ✅ MELHORADO: Tratamento de erros específico
+  // Tratamento de erros específico
   handleError(error) {
     this.hasError = true;
     console.error("Erro ao carregar polos:", error);
@@ -356,7 +356,7 @@ class MapsManager {
     this.showError(errorMessage, actionButton);
   }
 
-  // ✅ NOVO: Exibir erro visual
+  // Exibir erro visual
   showError(message, actionButton = "") {
     this.elements.locationList.innerHTML = `
       <li class="p-4 text-center bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
@@ -371,14 +371,14 @@ class MapsManager {
     `;
   }
 
-  // ✅ NOVO: Método para retry manual
+  // Método para retry manual
   async retry() {
     localStorage.removeItem(MAPS_CONFIG.CACHE_KEY);
     this.hasError = false;
     await this.loadPolos();
   }
 
-  // ✅ MELHORADO: Atualização de dados do mapa
+  // Atualização de dados do mapa
   updateMapData() {
     try {
       const locations = {};
@@ -399,7 +399,7 @@ class MapsManager {
     }
   }
 
-  // ✅ MELHORADO: Formatação da descrição do polo
+  // Formatação da descrição do polo
   formatPoloDescription(polo) {
     const fields = [
       { label: "Responsável", value: polo.responsavel },
@@ -420,14 +420,14 @@ class MapsManager {
       .join("<br>");
   }
 
-  // ✅ NOVO: Escape HTML para segurança
+  // Escape HTML para segurança
   escapeHtml(text) {
     const div = document.createElement("div");
     div.textContent = text;
     return div.innerHTML;
   }
 
-  // ✅ MELHORADO: Renderização da lista
+  // Renderização da lista
   renderLocationList(polosList = null) {
     const polos = polosList || this.polos;
 
@@ -448,7 +448,7 @@ class MapsManager {
     this.elements.locationList.appendChild(fragment);
   }
 
-  // ✅ NOVO: Estado vazio
+  // Estado vazio
   showEmptyState() {
     const emptyLi = document.createElement("li");
     emptyLi.className =
@@ -467,7 +467,7 @@ class MapsManager {
     this.elements.locationList.appendChild(emptyLi);
   }
 
-  // ✅ MELHORADO: Criação de item da lista
+  // Criação de item da lista
   createPoloListItem(polo) {
     const li = document.createElement("li");
     li.className =
@@ -521,7 +521,7 @@ class MapsManager {
     return li;
   }
 
-  // ✅ MELHORADO: Foco no mapa
+  // Foco no mapa
   focusCityOnMap(cityName) {
     try {
       if (typeof focusCityOnMap === "function") {
@@ -534,7 +534,7 @@ class MapsManager {
     }
   }
 
-  // ✅ MELHORADO: Busca com debounce
+  // Busca com debounce
   setupEventListeners() {
     this.elements.searchInput.addEventListener("input", (e) => {
       clearTimeout(this.searchTimeout);
@@ -552,7 +552,7 @@ class MapsManager {
     });
   }
 
-  // ✅ NOVO: Execução da busca
+  // Execução da busca
   performSearch(query) {
     const normalizedQuery = this.normalizeText(query);
 
@@ -568,7 +568,7 @@ class MapsManager {
     this.renderLocationList(filtered);
   }
 
-  // ✅ NOVO: Métodos públicos para debug e controle
+  // Métodos públicos para debug e controle
   getStats() {
     return {
       total: this.polos.length,
@@ -595,7 +595,7 @@ class MapsManager {
   }
 }
 
-// ✅ Sistema de notificações
+// Sistema de notificações
 const MapsNotifications = {
   show(message, type = "info", duration = 3000) {
     const notification = document.createElement("div");
@@ -621,7 +621,7 @@ const MapsNotifications = {
   },
 };
 
-// ✅ Inicialização global
+// Inicialização global
 let mapsManager;
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -634,7 +634,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// ✅ Tratamento de conectividade
+// Tratamento de conectividade
 window.addEventListener("online", () => {
   if (mapsManager && mapsManager.hasError) {
     MapsNotifications.show(
@@ -649,7 +649,7 @@ window.addEventListener("offline", () => {
   MapsNotifications.show("Sem conexão. Usando dados em cache.", "warning");
 });
 
-// ✅ Debug helpers (remover em produção)
+// Debug helpers (remover em produção)
 window.debugMaps = {
   manager: () => mapsManager,
   stats: () => mapsManager?.getStats(),
