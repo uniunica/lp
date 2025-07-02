@@ -649,7 +649,7 @@ window.addEventListener("offline", () => {
   MapsNotifications.show("Sem conexão. Usando dados em cache.", "warning");
 });
 
-// Debug helpers (remover em produção)
+// Debug helpers
 window.debugMaps = {
   manager: () => mapsManager,
   stats: () => mapsManager?.getStats(),

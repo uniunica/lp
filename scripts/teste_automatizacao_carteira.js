@@ -12,7 +12,7 @@ const CARTEIRA_CONFIG = {
   REQUEST_TIMEOUT: 15000,
 };
 
-// ✅ Configuração de carteiras (considere mover para backend em produção)
+// Configuração de carteiras (Mover futuramente para backend em produção)
 const CARTEIRAS_CONFIG = {
   "Carteira 1": {
     numero: "+553175211620",
@@ -46,7 +46,7 @@ const CARTEIRAS_CONFIG = {
   },
 };
 
-// ✅ Classe principal para gerenciar sistema de carteiras
+// Classe principal para gerenciar sistema de carteiras
 class CarteiraManager {
   constructor() {
     this.parceiros = {};
@@ -79,7 +79,7 @@ class CarteiraManager {
     await this.carregarParceiros();
   }
 
-  // ✅ NOVO: Validação de elementos DOM
+  // Validação de elementos DOM
   validateElements() {
     const missing = Object.entries(this.elements)
       .filter(([key, element]) => !element)
@@ -93,7 +93,7 @@ class CarteiraManager {
     return true;
   }
 
-  // ✅ NOVO: Configuração de acessibilidade
+  // Configuração de acessibilidade
   setupAccessibility() {
     // Configurar modal
     this.elements.modal.setAttribute("role", "dialog");
@@ -115,7 +115,7 @@ class CarteiraManager {
     );
   }
 
-  // ✅ MELHORADO: Event listeners com acessibilidade
+  // Event listeners com acessibilidade
   setupEventListeners() {
     // Abrir modal
     this.elements.abrirModal.addEventListener("click", (e) => {
@@ -162,7 +162,7 @@ class CarteiraManager {
     });
   }
 
-  // ✅ NOVO: Navegação por teclado
+  // Navegação por teclado
   handleKeyboardNavigation(e) {
     const suggestions = this.elements.listaAuto.querySelectorAll("li");
 
@@ -203,7 +203,7 @@ class CarteiraManager {
     }
   }
 
-  // ✅ NOVO: Atualizar foco nas sugestões
+  // Atualizar foco nas sugestões
   updateSuggestionFocus(suggestions) {
     suggestions.forEach((suggestion, index) => {
       suggestion.classList.toggle(
@@ -224,7 +224,7 @@ class CarteiraManager {
     );
   }
 
-  // ✅ MELHORADO: Abertura de modal com acessibilidade
+  // Abertura de modal com acessibilidade
   openModal() {
     this.previousFocus = document.activeElement;
 
@@ -247,7 +247,7 @@ class CarteiraManager {
     this.modalOpen = true;
   }
 
-  // ✅ MELHORADO: Fechamento de modal
+  // Fechamento de modal
   closeModal() {
     this.elements.modal.classList.add("hidden");
     this.elements.modal.setAttribute("aria-hidden", "true");
@@ -263,7 +263,7 @@ class CarteiraManager {
     this.modalOpen = false;
   }
 
-  // ✅ MELHORADO: Sistema de cache robusto
+  // Sistema de cache robusto
   getCache() {
     try {
       const cached = localStorage.getItem(CARTEIRA_CONFIG.CACHE_KEY);
@@ -303,7 +303,7 @@ class CarteiraManager {
     }
   }
 
-  // ✅ MELHORADO: Carregamento com retry e estados
+  // Carregamento com retry e estados
   async carregarParceiros() {
     try {
       this.setLoadingState(true);
@@ -364,7 +364,7 @@ class CarteiraManager {
     }
   }
 
-  // ✅ NOVO: Retry com backoff exponencial
+  // Retry com backoff exponencial
   async retryWithBackoff(fn, maxRetries = CARTEIRA_CONFIG.MAX_RETRIES) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
@@ -381,7 +381,7 @@ class CarteiraManager {
     }
   }
 
-  // ✅ MELHORADO: Processamento de dados com validação - ATUALIZADO para colunas A e D
+  // Processamento de dados com validação - ATUALIZADO para colunas A e D
   processParceirosData(values) {
     const validParceiros = {};
     const errors = [];
@@ -438,7 +438,7 @@ class CarteiraManager {
     return validParceiros;
   }
 
-  // ✅ NOVO: Normalização de texto
+  // Normalização de texto
   normalizeText(text) {
     if (!text || typeof text !== "string") return "";
     return text
@@ -449,7 +449,7 @@ class CarteiraManager {
       .trim();
   }
 
-  // ✅ MELHORADO: Estados de loading
+  // Estados de loading
   setLoadingState(loading) {
     this.isLoading = loading;
 
@@ -462,7 +462,7 @@ class CarteiraManager {
     }
   }
 
-  // ✅ MELHORADO: Tratamento de erros específico
+  // Tratamento de erros específico
   handleError(error) {
     this.hasError = true;
     console.error("Erro ao carregar parceiros:", error);
@@ -489,7 +489,7 @@ class CarteiraManager {
     this.elements.nomeInput.placeholder = "Erro ao carregar dados";
   }
 
-  // ✅ NOVO: Exibir erro visual
+  // Exibir erro visual
   showError(message) {
     const notification = document.createElement("div");
     notification.className =
@@ -513,7 +513,7 @@ class CarteiraManager {
     }, 5000);
   }
 
-  // ✅ MELHORADO: Busca de parceiros
+  // Busca de parceiros
   performSearch(query) {
     if (!query || !query.trim()) {
       this.clearSuggestions();
@@ -538,7 +538,7 @@ class CarteiraManager {
     this.renderSuggestions(suggestions);
   }
 
-  // ✅ MELHORADO: Renderizar sugestões
+  // Renderizar sugestões
   renderSuggestions(suggestions) {
     this.elements.listaAuto.innerHTML = "";
     this.currentSuggestionIndex = -1;
@@ -583,7 +583,7 @@ class CarteiraManager {
     this.elements.nomeInput.setAttribute("aria-expanded", "true");
   }
 
-  // ✅ NOVO: Destacar termo de busca
+  // Destacar termo de busca
   highlightSearchTerm(text, term) {
     if (!term) return this.escapeHtml(text);
 
@@ -597,21 +597,21 @@ class CarteiraManager {
     );
   }
 
-  // ✅ NOVO: Escape HTML
+  // Escape HTML
   escapeHtml(text) {
     const div = document.createElement("div");
     div.textContent = text;
     return div.innerHTML;
   }
 
-  // ✅ MELHORADO: Selecionar sugestão
+  // Selecionar sugestão
   selectSuggestion(nome) {
     this.elements.nomeInput.value = nome;
     this.clearSuggestions();
     this.mostrarContato(nome);
   }
 
-  // ✅ MELHORADO: Limpar sugestões
+  // Limpar sugestões
   clearSuggestions() {
     this.elements.listaAuto.innerHTML = "";
     this.elements.listaAuto.classList.add("hidden");
@@ -619,7 +619,7 @@ class CarteiraManager {
     this.currentSuggestionIndex = -1;
   }
 
-  // ✅ MELHORADO: Mostrar contato
+  // Mostrar contato
   mostrarContato(nome) {
     try {
       const nomeNormalizado = this.normalizeText(nome);
@@ -650,7 +650,7 @@ class CarteiraManager {
     }
   }
 
-  // ✅ NOVO: Atualizar informações do contato
+  // Atualizar informações do contato
   updateContactInfo(carteiraConfig, parceiro) {
     // Atualizar número visível
     this.elements.numeroVisivel.textContent = carteiraConfig.numero;
@@ -678,7 +678,7 @@ class CarteiraManager {
     };
   }
 
-  // ✅ MELHORADO: Seleção de texto
+  // Seleção de texto
   selectText(element) {
     try {
       const range = document.createRange();
@@ -697,7 +697,7 @@ class CarteiraManager {
     }
   }
 
-  // ✅ NOVO: Anunciar contato para acessibilidade
+  // Anunciar contato para acessibilidade
   announceContact(parceiro, carteiraConfig) {
     const announcement = `Contato encontrado: ${parceiro.nomeOriginal}, ${carteiraConfig.nome}, número ${carteiraConfig.numero}`;
 
@@ -711,21 +711,21 @@ class CarteiraManager {
     setTimeout(() => announcer.remove(), 1000);
   }
 
-  // ✅ NOVO: Ocultar contato
+  // Ocultar contato
   hideContact() {
     this.elements.contatoSection.classList.add("hidden");
     this.elements.numeroVisivel.textContent = "";
     this.elements.btnWhatsapp.href = "#";
   }
 
-  // ✅ NOVO: Método para retry manual
+  // Método para retry manual
   async retry() {
     localStorage.removeItem(CARTEIRA_CONFIG.CACHE_KEY);
     this.hasError = false;
     await this.carregarParceiros();
   }
 
-  // ✅ NOVO: Métodos públicos para controle
+  // Métodos públicos para controle
   getStats() {
     return {
       totalParceiros: Object.keys(this.parceiros).length,
@@ -754,17 +754,17 @@ class CarteiraManager {
   }
 }
 
-// ✅ Função global para compatibilidade
+// Função global para compatibilidade
 function fecharModal() {
   if (carteiraManager) {
     carteiraManager.closeModal();
   }
 }
 
-// ✅ Instância global
+// Instância global
 let carteiraManager;
 
-// ✅ Inicialização
+// Inicialização
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     carteiraManager = new CarteiraManager();
@@ -774,7 +774,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// ✅ Tratamento de conectividade
+// Tratamento de conectividade
 window.addEventListener("online", () => {
   if (carteiraManager && carteiraManager.hasError) {
     console.log("Conexão restaurada, recarregando parceiros...");
@@ -786,7 +786,7 @@ window.addEventListener("offline", () => {
   console.log("Conexão perdida, usando dados em cache");
 });
 
-// ✅ Debug helpers (remover em produção)
+// Debug helpers (remover em produção)
 window.debugCarteira = {
   manager: () => carteiraManager,
   stats: () => carteiraManager?.getStats(),
