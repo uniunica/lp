@@ -10,6 +10,18 @@
     <meta property="og:image" content="logo.png" />
     <meta property="og:url" content="https://uniunica.github.io/lp/" />
     <meta property="og:type" content="website" />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <!-- Leaflet JS (deve vir antes do plugin) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <!-- Leaflet Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
     <!-- Título -->
     <title>Setor de Expansão e Negócios</title>
     <!-- CSS Tailwind -->
@@ -781,31 +793,57 @@
                 Encontre o Polo mais próximo
               </button>
             </div>
+
             <!-- Modal -->
-            <div id="modal-location" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 hidden justify-center items-center px-4" >
+            <div id="modal-location" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 hidden justify-center items-center px-4">
               <div class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-xl max-w-md w-full relative">
                 <!-- Botão de fechar -->
                 <button id="close-modal" class="absolute top-3 right-4 text-gray-600 dark:text-gray-300 hover:text-red-500 text-2xl font-bold transition">
                   &times;
                 </button>
                 <h3 class="text-3xl font-bold text-purple-800 dark:text-purple-300 text-center mb-6">Polo mais próximo</h3>
+
                 <!-- Input da cidade -->
                 <div class="mb-4">
                   <label for="cidade" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Digite sua cidade:</label>
                   <input type="text" id="cidade" list="lista-cidades" placeholder="Ex: Belo Horizonte - MG" class="w-full p-3 border border-purple-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-gray-800 dark:text-white dark:border-purple-600"/>
                   <datalist id="lista-cidades"></datalist>
+                  <!-- NOVO: Mensagem de erro -->
+                  <div id="erro-cidade" class="hidden mt-2 p-2 bg-red-100 dark:bg-red-900 border border-red-300 dark:border-red-700 rounded text-red-700 dark:text-red-300 text-sm">
+                    <p>Cidade não encontrada. Verifique a digitação ou tente com o formato "Cidade - UF".</p>
+                  </div>
                 </div>
+
                 <!-- Resultado do polo mais próximo -->
                 <div id="resultado-polo" class="mb-4 hidden">
                   <p class="text-gray-800 dark:text-gray-200"><strong>Unidade:</strong> <span class="text-purple-700 dark:text-purple-400" id="unidade-nome"></span></p>
                   <p class="text-gray-800 dark:text-gray-200"><strong>Endereço:</strong> <span class="text-purple-700 dark:text-purple-400" id="polo-nome"></span></p>
                 </div>
+
                 <!-- Distância e rota -->
                 <div id="resultado-distancia" class="hidden">
                   <p class="text-gray-800 dark:text-gray-200 mb-2"><strong>Distância:</strong> <span id="distancia-km" class="text-purple-700 dark:text-purple-400"></span> km</p>
                   <a id="rota-link" href="#" target="_blank" class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold transition">
                     Ver rota no Google Maps
                   </a>
+                </div>
+
+                <!-- Container do mapa -->
+                <div id="map-container" class="w-full h-64 rounded-lg hidden mt-4 border border-gray-300 dark:border-gray-700"></div>
+
+                <!-- NOVO: Informações detalhadas da rota -->
+                <div id="info-rota" class="hidden mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <h4 class="text-lg font-semibold text-purple-800 dark:text-purple-300 mb-3">Informações da Rota</h4>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center">
+                      <p class="text-sm text-gray-600 dark:text-gray-400">Distância</p>
+                      <p id="rota-distancia" class="text-xl font-bold text-purple-700 dark:text-purple-400">-</p>
+                    </div>
+                    <div class="text-center">
+                      <p class="text-sm text-gray-600 dark:text-gray-400">Tempo estimado</p>
+                      <p id="rota-tempo" class="text-xl font-bold text-purple-700 dark:text-purple-400">-</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
